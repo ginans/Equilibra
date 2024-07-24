@@ -1,0 +1,16 @@
+$backgroundColor: #007089;
+$backgroundColorTwo: #005163;
+$backgroundColorThree: #002E38;
+
+
+*{
+  box-sizing: border-box;
+}
+button{
+  border: none;
+}
+body {
+  margin: 0;
+  padding: 0; 
+  background-color: $backgroundColor;
+}  

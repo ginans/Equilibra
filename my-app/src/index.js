@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './styles/global.module.scss';
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Layout from './app/user/layout/layout';
+import NotFound from './app/notFound/notFound';
+import HomewithoutLogin from './app/homewithoutLogin/homewithoutLogin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     <div className="App"> 
+      <BrowserRouter>  
+        <Routes> 
+          
+         {/* <Route path='/login' element={<Login/> }/>
+          <Route path='/register' element={<Register/>}/> */}
+          <Route element={<Layout/> }> 
+            <Route path='/' element={<HomewithoutLogin/>}/> 
+            {/* aqui van los archivos que esten dentro de la carpeta user */}
+          </Route>
+          <Route path="*" element={<NotFound />} /> {/* Ruta para páginas no encontradas */}
+        </Routes>
+      </BrowserRouter>  
+    </div>
   </React.StrictMode>
 );
 
