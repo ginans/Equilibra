@@ -1,0 +1,53 @@
+.containFooter{
+  background-color: #005163;
+  display: flex;
+  justify-content: space-between; 
+  width: 100%; 
+  height:100%;
+  padding: 1rem 2rem;
+}
+.leftContain{
+  display: flex;
+  flex-direction: column;
+  
+}
+.logo{
+  width: 150px;
+  height: auto;
+  justify-self: center;
+  align-content: center;
+}
+.textLogo{
+  font-size: 12px;
+  width: 300px;
+}
+.centralContain{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-self: center;
+}
+.centralContain > p{
+  width: 300px;
+  text-align: center;
+  font-size: 12px;
+}
+.centralContain > div > p{ 
+  text-align: center;
+}
+.socialNetworks{
+  display: flex;
+  gap: 1rem;
+}
+.socialNetworks img{
+  width: 30px;
+}
+.rightContain{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 12px;
+  line-height: 10px;
+  width: 300px;
+}

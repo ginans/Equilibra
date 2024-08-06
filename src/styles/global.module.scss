@@ -1,0 +1,25 @@
+$backgroundColor: #007089;
+$backgroundColorTwo: #005163;
+$backgroundColorThree: #002E38;
+
+
+*{
+  box-sizing: border-box;
+}
+button{
+  border: none;
+}
+body {
+  display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: space-between;
+    width:100%;
+    background-color: $backgroundColor;
+}  
+
+footer{
+  display: flex;
+
+}
