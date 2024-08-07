@@ -1,13 +1,15 @@
 import Navbar from "../layout/components/Navbar.jsx";
 import Footer from "../layout/components/Footer.jsx";
-import "../../../styles/layout/Layout.css"
+import styles from "../../../styles/layout/Layout.module.scss"
+import { Outlet } from "react-router-dom";
 
 
-function Layout({ children }) {
+function Layout() {
+  console.log("reenderizando layout")
   return (
-    <div className="main-layout">
+    <div className={styles.mainLayout}>
       <Navbar />
-      <main className="main-content">{children}</main>
+      <main className={styles.mainContent}><Outlet /></main>
       <Footer />
     </div>
   );

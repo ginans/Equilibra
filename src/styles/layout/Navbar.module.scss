@@ -12,6 +12,7 @@
     z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
     font-size: 16px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
   }
   
   /* Estilos para la lista de elementos de navegación */
@@ -19,13 +20,17 @@
     list-style-type: none; /* Elimina los puntos o viñetas de los elementos de la lista */
     padding: 0; /* Elimina el espacio interno (padding) de los elementos de la lista */
     display: flex; /* Usa flexbox para organizar los elementos en una fila */
+    margin-left: 0;
+
+    gap: 30px; 
     
   }
   
   /* Estilos para cada ítem de la lista de navegación */
   .navItem {
-    margin-right: 100px; /* Añade un margen derecho de 100 píxeles a cada ítem */
+    margin-right: 0; /* Añade un margen derecho de 100 píxeles a cada ítem */
     position: relative; /* Establece el contexto para posicionar elementos secundarios */
+    
 
     &:active {
       transform: scale(0.98);
@@ -37,7 +42,7 @@
   .navLink {
     color: #fff; /* Color del texto del enlace en blanco */
     text-decoration: none; /* Elimina el subrayado del enlace */
-    padding: 15px 15px; /* Espacio interno alrededor del texto del enlace */
+    padding: 5px 10px; /* Espacio interno alrededor del texto del enlace */
     transition: background-color 0.3s;
     border-radius: 10px;
 
@@ -57,24 +62,30 @@
   .logo img {
     width: 200px; /* Establece un ancho fijo para la imagen del logo */
     height: auto; /* Mantiene la proporción original de la imagen */
+    margin-top: 7px;
   }
-  
   
   .perfilContainer{
     position: relative;
     display: flex;
     justify-content: center;
+
   }
 
-  .perfilHamburger {
+  .perfilHamburger, .loginButton {
     background-color: transparent;
     border: none;
     cursor: pointer;
     color: #fff;
     transition: background-color 0.3s;
-    padding: 15px 15px;
     border-radius: 10px;
     font-size: 16px;
+    text-align: center; /* Centra el texto dentro del botón */
+    width: 200px; /* Ajusta este valor según necesites */
+    padding: 10px; /* Ajusta el padding para hacer los botones más altos */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total del botón */
+    
+
 
     &:active {
       transform: scale(0.98);
@@ -83,14 +94,54 @@
     
   }
 
-  .perfilHamburger:hover{
+  .perfilHamburger:hover, .loginButton:hover{
     position: relative;
     background-color:  #007089;
     border-radius: 10px;
     
   }
 
-  
+  .loginIcon{
+    font-size: 40px; /* Ajusta el tamaño del icono */
+    cursor: pointer;
 
+  }
+
+  .registerOptions{
+    position: absolute;
+    top: 45px; /* Ajusta según sea necesario para posicionar la opción debajo del icono */
+    right: 0%;
+    background: #005163;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+
+    
+    
+  }
+
+  .registerButton{
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 8px 15px;
+    cursor: pointer;
+    text-align: left;
+    width: 120px;
+    display: flex;
+    
+  }
+
+  .registerButton:hover, .loginIcon:hover{
+    position: relative;
+    background-color:  #007089;
+    border-radius: 10px;
+  }
+
+  .loginContainer{
+    width: 200px;
+    display: flex;
+    justify-content: flex-end;
+  }
 
   

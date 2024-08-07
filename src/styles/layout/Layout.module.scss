@@ -1,9 +1,9 @@
-.main-layout{
+.mainLayout{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 
-    .main-content{
+    .mainContent{
         flex: 1;
         display: flex;
         justify-content: center;

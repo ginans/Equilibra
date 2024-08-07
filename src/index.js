@@ -8,8 +8,9 @@ import reportWebVitals from './reportWebVitals';
 import Layout from '../src/app/user/layout/LayoutG.jsx';
 import NotFound from './app/notFound/notFound';
 import HomewithoutLogin from './app/homewithoutLogin/homewithoutLogin';
-import HomeUser from './app/user/HomeUser/HomeUser.jsx';
+import LandingPageUser from './app/user/HomeUser/LandingPageUser.jsx';
 
+console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -20,11 +21,12 @@ root.render(
   
          {/* <Route path='/login' element={<Login/> }/>
           <Route path='/register' element={<Register/>}/> */}
-          <Route element={<Layout/> }> 
+          <Route element={<Layout/> }>
             <Route path='/' element={<HomewithoutLogin/>}/>
-            <Route path='/' element={<HomeUser/>}/>
+            <Route path='/xd' element={<LandingPageUser/>}/>
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
+
           <Route path="*" element={<NotFound />} /> {/* Ruta para páginas no encontradas */}
 
         </Routes>
