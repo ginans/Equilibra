@@ -1,13 +1,13 @@
-const { form } = require("../../models/userClient/userClient.js")
+const { modelUserProfessional } = require("../../../models/userProfessional/userProfessional.js")
 
-const checkName = async (req, res) => {
+const checkNameUserProfessional = async (req, res) => {
     const { name } = req.params; // Usa req.params para obtener el parámetro de la URL 
     if (!name) {
         return res.status(400).json({ message: 'Name parameter is required' });
     } 
     try {
         // Busca el nombre de usuario en la base de datos usando el nombre correcto de la columna
-        const user = await form.findOne({ where: { userName: name } }); 
+        const user = await modelUserProfessional.findOne({ where: { userName: name } }); 
         // Envía una respuesta indicando si el usuario existe o no
         res.json({ exists: !!user });
     } catch (error) {
@@ -16,4 +16,4 @@ const checkName = async (req, res) => {
     }
 };
 
-module.exports = { checkName };
+module.exports = { checkNameUserProfessional };

@@ -1,7 +1,7 @@
-const { db } = require("../database/dataBase");
+const { db } = require("../../database/dataBase");
 const { DataTypes } = require("sequelize");
 
-const modelUserProfessional = db.define('userClients', {
+const modelUserProfessional = db.define('userProfessionals', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -31,11 +31,11 @@ const modelUserProfessional = db.define('userClients', {
     allowNull: true,
   },
   rut: {
-    type: DataTypes.DECIMAL(5, 2),
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
   registerSis: {
-    type: DataTypes.DECIMAL(5, 2),
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
   specialty: {
