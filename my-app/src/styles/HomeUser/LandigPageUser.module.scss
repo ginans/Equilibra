@@ -1,0 +1,40 @@
+.landingPageUser{
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: 100%;
+    background-color: #005163;
+    border: 1px solid #03475f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-inline: 50px;
+    padding-block: 20px;
+}
+
+.feedItem{
+    padding:10px
+}
+
+.link {
+  color: #00D208; /* Elige el color que prefieras */
+  text-decoration: none; /* Opcional: para quitar el subrayado */
+}
+
+.link:hover {
+  color: #029f07; /* Opcional: cambia el color cuando se pasa el mouse sobre el enlace */
+}
+
+.feedContent{
+    display:flex;
+
+
+    p{
+        padding-left: 20px;
+    }
+
+    img{
+        border: 1px solid #03475f;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-self: center;
+    }
+}

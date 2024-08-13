@@ -10,7 +10,16 @@ button{
   border: none;
 }
 body {
-  margin: 0;
-  padding: 0; 
-  background-color: $backgroundColor;
+  display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: space-between;
+    width:100%;
+    background-color: $backgroundColor;
 }  
+
+footer{
+  display: flex;
+
+}

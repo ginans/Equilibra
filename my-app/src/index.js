@@ -1,30 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './styles/global.module.scss';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./styles/global.module.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Layout from './app/user/layout/layout';
-import NotFound from './app/notFound/notFound';
-import HomewithoutLogin from './app/homewithoutLogin/homewithoutLogin';
+import reportWebVitals from "./reportWebVitals";
+import Layout from "../src/app/user/layout/LayoutG.jsx";
+import NotFound from "./app/notFound/notFound";
+import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
+import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log("Renderizando rutas principales");
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-     <div className="App"> 
-      <BrowserRouter>  
-        <Routes> 
-          
-         {/* <Route path='/login' element={<Login/> }/>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path='/login' element={<Login/> }/>
           <Route path='/register' element={<Register/>}/> */}
-          <Route element={<Layout/> }> 
-            <Route path='/' element={<HomewithoutLogin/>}/> 
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomewithoutLogin />} />
+            <Route path="/LandingPageUser" element={<LandingPageUser />} />
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
-          <Route path="*" element={<NotFound />} /> {/* Ruta para páginas no encontradas */}
+          <Route path="*" element={<NotFound />} />{" "}
+          {/* Ruta para páginas no encontradas */}
         </Routes>
-      </BrowserRouter>  
+      </BrowserRouter>
     </div>
   </React.StrictMode>
 );
