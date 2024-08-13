@@ -9,6 +9,8 @@ import Layout from "../src/app/user/layout/LayoutG.jsx";
 import NotFound from "./app/notFound/notFound";
 import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
 import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
+import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx";
+import RegisterClient from "./app/authentication/register/registerClient/registerProfessional.jsx";
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,6 +19,10 @@ root.render(
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route element={<LayoutAuthentication/>}>
+            <Route path="/registerClient" element={<RegisterClient/>}/>
+          
+          </Route>
           {/* <Route path='/login' element={<Login/> }/>
           <Route path='/register' element={<Register/>}/> */}
           <Route element={<Layout />}>
