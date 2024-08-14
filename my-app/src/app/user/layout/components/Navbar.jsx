@@ -26,7 +26,7 @@ const Navbar = () => {
   const handleLogoClick = () => {
     console.log("reenderizando boton a la langing con user");
     if (isLoggedIn) {
-      navigate("/LandingPageUser"); //si esta loggeado me lleva a landing con user
+      navigate("/landingPageUser"); //si esta loggeado me lleva a landing con user
     } else {
       navigate("/"); //si no, me lleva a landing sin user
     }
@@ -55,8 +55,8 @@ const Navbar = () => {
           </a>
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
-            Información educacional
+          <a href="/educationalPage" className={styles.navLink}>
+            Info Activa
           </a>
         </li>
       </ul>

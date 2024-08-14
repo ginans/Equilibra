@@ -1,0 +1,74 @@
+
+.educationPage{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: #005163;
+    border: 1px solid #03475f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-inline: 50px;
+    padding-block: 20px;
+    margin-right: 20%;
+}
+
+.cards{
+  display:flex;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.card{
+  width: 16rem;
+  background-color: #005163;
+  margin: 10px;
+  border: 1px solid #03475f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.cardImg {
+    width: 100%;
+    height: auto;
+}
+  
+.cardBody {
+    padding: 1rem;
+}
+  
+.cardTitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cardText {
+    margin-bottom: 1.25rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
+  
+  .btnPrimary {
+    color: #fff;
+    background-color: #04718c;
+    border: 1px solid #03475f;
+  }
+  
+  .btnPrimary:hover {
+    color: #fff;
+    background-color: #0a83a1;
+    border: 1px solid #03475f;
+  }

@@ -9,6 +9,7 @@ import Layout from "../src/app/user/layout/LayoutG.jsx";
 import NotFound from "./app/notFound/notFound";
 import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
 import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
+import EducationPage from "./app/user/EducationPage/EducationPage.jsx";
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -21,7 +22,9 @@ root.render(
           <Route path='/register' element={<Register/>}/> */}
           <Route element={<Layout />}>
             <Route path="/" element={<HomewithoutLogin />} />
-            <Route path="/LandingPageUser" element={<LandingPageUser />} />
+            <Route path="/landingPageUser" element={<LandingPageUser />} />
+            <Route path="/educationalPage" element={<EducationPage />} />
+            
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
