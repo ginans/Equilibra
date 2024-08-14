@@ -3,40 +3,33 @@ import ReactDOM from 'react-dom/client';
 import './styles/global.module.scss';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Layout from '../src/app/user/layout/LayoutG.jsx';
+import Layout from './app/user/layout/LayoutG.jsx';
 import NotFound from './app/notFound/notFound';
 import HomewithoutLogin from './app/homewithoutLogin/homewithoutLogin';
 import LandingPageUser from './app/user/HomeUser/LandingPageUser.jsx';
+import Noticias from './app/noticias/ListaNoticias.jsx';
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <div className="App"> 
+    <div className="App"> 
       <BrowserRouter>  
-
         <Routes> 
-  
-         {/* <Route path='/login' element={<Login/> }/>
-          <Route path='/register' element={<Register/>}/> */}
-          <Route element={<Layout/> }>
-            <Route path='/' element={<HomewithoutLogin/>}/>
-            <Route path='/xd' element={<LandingPageUser/>}/>
-            {/* aqui van los archivos que esten dentro de la carpeta user */}
+          {/* Rutas dentro del Layout */}
+          <Route element={<Layout />}>
+            <Route path='/' element={<HomewithoutLogin />} />
+            <Route path='/xd' element={<LandingPageUser />} />
+            <Route path='/noticias' element={<Noticias />} /> 
           </Route>
-
-          <Route path="*" element={<NotFound />} /> {/* Ruta para páginas no encontradas */}
-
+          
+          {/* Ruta para páginas no encontradas */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
-
       </BrowserRouter>  
     </div>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

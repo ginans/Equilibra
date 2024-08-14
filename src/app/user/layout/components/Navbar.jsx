@@ -1,15 +1,15 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavigate
 import logo from "../images/logo5.png";
-import { useState } from "react";
 import Hamburger from "./Hamburger";
 import styles from "../../../../styles/layout/Navbar.module.scss";
 import { HiOutlineUserCircle } from "react-icons/hi2"; 
-import { useNavigate } from "react-router-dom";//se importa el hook usenavegate
 
 const Navbar = () => {
   const [dropDown, setDropDown] = useState("closed");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para manejar si el usuario está logueado
   const [showRegister, setShowRegister] = useState(false); // Estado para mostrar la opción de registrar
-  const navigate = useNavigate();// otro hook :( lo llamo aqui y lo defino para usarlo en mi funcion más abajo
+  const navigate = useNavigate(); // Hook para la navegación
 
   const hamburguesa = () => {
     setDropDown((prevState) => (prevState === "closed" ? "open" : "closed")); 
@@ -24,15 +24,13 @@ const Navbar = () => {
   };
 
   const handleLogoClick = () => {
-    console.log("reenderizando boton a la langing con user")
+    console.log("Renderizando botón a la landing con user");
     if (isLoggedIn) {
-      navigate("/xd"); //si esta loggeado me lleva a landing con user
+      navigate("/xd"); // Si está loggeado, me lleva a landing con user
     } else {
-      navigate("/"); //si no, me lleva a landing sin user
+      navigate("/"); // Si no, me lleva a landing sin user
     }
   };
-
-
 
   return (
     <nav className={styles.navbar}>
@@ -42,24 +40,16 @@ const Navbar = () => {
 
       <ul className={styles.navbarNav}>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
-            Foro
-          </a>
+          <Link to="/" className={styles.navLink}>Foro</Link>
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
-            Noticias
-          </a>
+          <Link to="/noticias" className={styles.navLink}>Noticias</Link> {/* Cambiado a Link */}
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
-            Rutinas
-          </a>
+          <Link to="/rutinas" className={styles.navLink}>Rutinas</Link>
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
-            Información educacional
-          </a>
+          <Link to="/informacion-educacional" className={styles.navLink}>Información educacional</Link>
         </li>
       </ul>
 
@@ -92,4 +82,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
