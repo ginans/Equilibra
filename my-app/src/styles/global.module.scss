@@ -5,6 +5,7 @@ $backgroundColorThree: #002E38;
 
 *{
   box-sizing: border-box;
+  font-family: xd;
 }
 button{
   border: none;
@@ -17,9 +18,4 @@ body {
     align-items: space-between;
     width:100%;
     background-color: $backgroundColor;
-}  
-
-footer{
-  display: flex;
-
-}
+}   
