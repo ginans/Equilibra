@@ -1,0 +1,72 @@
+/* Estilos para la barra de navegación principal */
+.navbar {
+  background-color: #005163; /* Color de fondo de la barra de navegación */
+  padding: 10px 20px; /* Espacio interno (padding) en la barra de navegación */
+  display: flex; /* Usa flexbox para organizar los elementos */
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  align-items: center; /* Alinea verticalmente los elementos al centro */
+  position: fixed; /* Fija la barra de navegación en la parte superior */
+  width: 100%; /* Ocupa el ancho completo de la pantalla */
+  top: 0; /* Asegura que la barra de navegación esté en la parte superior */
+  z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
+  
+}
+
+/* Estilos para la lista de elementos de navegación */
+.navbar-nav {
+  list-style-type: none; /* Elimina los puntos o viñetas de los elementos de la lista */
+  padding: 0; /* Elimina el espacio interno (padding) de los elementos de la lista */
+  display: flex; /* Usa flexbox para organizar los elementos en una fila */
+}
+
+/* Estilos para cada ítem de la lista de navegación */
+.nav-item {
+  margin-right: 100px; /* Añade un margen derecho de 100 píxeles a cada ítem */
+  position: relative; /* Establece el contexto para posicionar elementos secundarios */
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-link {
+  color: #fff; /* Color del texto del enlace en blanco */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  padding: 10px; /* Espacio interno alrededor del texto del enlace */
+}
+
+/* Estilos para los enlaces de navegación cuando se pasa el ratón sobre ellos */
+.nav-link:hover {
+  background-color: #555; /* Cambia el color de fondo a gris oscuro en hover */
+}
+
+/* Estilos para la imagen del logo */
+.logo img {
+  width: 200px; /* Establece un ancho fijo para la imagen del logo */
+  height: auto; /* Mantiene la proporción original de la imagen */
+}
+
+/* Estilos para el contenido del menú desplegable */
+.dropdown-content {
+  display: none; /* Oculta el contenido del menú desplegable por defecto */
+  position: absolute; /* Posiciona el contenido del menú desplegable en relación con el elemento padre */
+  background-color: #005163; /* Color de fondo del menú desplegable (mismo tono de azul) */
+  min-width: 160px; /* Define un ancho mínimo para el menú desplegable */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Añade una sombra sutil al menú desplegable */
+  z-index: 1; /* Asegura que el contenido del menú desplegable esté por encima de otros elementos */
+}
+
+/* Estilos para los enlaces dentro del contenido del menú desplegable */
+.dropdown-content a {
+  color: rgb(255, 255, 255); /* Color del texto en blanco para los enlaces en el menú desplegable */
+  padding: 12px 16px; /* Espacio interno alrededor del texto de los enlaces */
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  display: block; /* Hace que los enlaces ocupen toda el área disponible en el menú desplegable */
+}
+
+/* Estilos para el ítem de menú desplegable cuando se pasa el ratón sobre él */
+.dropdownC:hover {
+  background-color: #555; /* Cambia el color de fondo a gris oscuro en hover */
+}
+
+/* Estilos para mostrar el contenido del menú desplegable cuando el ítem de menú está en hover */
+.dropdown:hover .dropdown-content {
+  display: block; /* Muestra el contenido del menú desplegable en hover */
+}

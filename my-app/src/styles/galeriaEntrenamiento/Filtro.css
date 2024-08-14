@@ -1,0 +1,31 @@
+.filtro-bar {
+    background-color: #ddd;
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto; /* Centra la barra horizontalmente */
+    margin-top: 100px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  
+  .filtro-button {
+    background-color: #007089;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #fff;
+  }
+  
+  .filtro-button.active {
+    background-color: #005163;
+    color: #fff;
+  }
+  
+  .filtro-button:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
