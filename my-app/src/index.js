@@ -5,9 +5,9 @@ import './styles/global.module.scss';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Layout from './app/user/layout/layout';
 import NotFound from './app/notFound/notFound';
-import HomewithoutLogin from './app/homewithoutLogin/homewithoutLogin';
+import Foro from './app/user/Foro/components/Foro';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,8 +18,10 @@ root.render(
           
          {/* <Route path='/login' element={<Login/> }/>
           <Route path='/register' element={<Register/>}/> */}
-          <Route element={<Layout/> }> 
-            <Route path='/' element={<HomewithoutLogin/>}/> 
+          <Route element={<Foro/> }> 
+          <Route path="/" element={<Foro />} />
+          <Route path="/Foro/:id" element={<Foro />} />
+          
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} /> {/* Ruta para páginas no encontradas */}
