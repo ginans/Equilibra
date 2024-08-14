@@ -5,7 +5,7 @@ import rulerIcon from "../../../img/ruler-vertical-solid.svg";
 import clockIcon from "../../../img/clock-rotate-left-solid.svg";
 import virusIcon from "../../../img/virus.svg";
 import bodyWeightIcon from "../../../img/body-weight-scales-icon.svg";
-import { RegisterContext } from "../registerProfessional"; // Importa el contexto desde el archivo Register
+import { RegisterContext } from "../registerClient"; // Importa el contexto desde el archivo Register
 import xMarkIcon from "../../../img/circle-xmark-solid.svg"
 import checkIcon from "../../../img/circle-check-solid.svg"
 
@@ -156,10 +156,9 @@ const StepTwoForm = () => {
             </div>
             <div className={styles.containInput}>
                 {/* <p htmlFor="diseases">Enfermedades crónicas</p> */}
-                <div> 
+                <div className={styles.checkInput}> 
                     {/* <img alt="IconContraseña" className={styles.iconInput} src={virusIcon} /> */}
-                    <input
-                    className={styles.inputCheck}
+                    <input 
                     style={{ width: "20%" }}
                     type="checkbox"
                     id="diseases"
@@ -170,7 +169,7 @@ const StepTwoForm = () => {
                     <p>Tengo enfermedades cronicas</p>
                     
                 </div>
-                <div> 
+                <div className={styles.checkInput}> 
                     {/* <img alt="IconContraseña" className={styles.iconInput} src={virusIcon} /> */}
                     <input
                     className={styles.inputCheck}

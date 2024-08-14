@@ -1,5 +1,5 @@
 import styles from "./../../../../styles/authentication/login/login.module.scss" 
-import { createUser } from "./services/createUser.js"; 
+import { createUser } from "./services/createUserClient.js"; 
 import { useState, createContext, useEffect } from "react";
 import { Link ,useNavigate } from "react-router-dom";
 import { nextStep } from "./utils/nextStep.js";
@@ -9,7 +9,7 @@ import arrowLeftIcon from "../../img/arrow-left-long-solid.svg";
 
 export const RegisterContext = createContext();
 
-const RegisterClient = () => {
+const RegisterProfessional = () => {
     const [stepOneVisibility, setStepOneVisibility] = useState(true);
     const [stepTwoVisibility, setStepTwoVisibility] = useState(false);
     const [step, setStep] = useState(1);
@@ -27,7 +27,7 @@ const RegisterClient = () => {
         event.preventDefault()
         const isUserCreationComplete = await createUser( existName, existEmail, isHeightValid, isWeightValid, isYearValid,hasAcceptedTerms)
         if (isUserCreationComplete){   
-           sessionStorage.clear();
+           
            return navigate("/home")
         }
     } 
@@ -42,7 +42,7 @@ const RegisterClient = () => {
     return (
         <RegisterContext.Provider value={{ hasAcceptedTerms, setHasAcceptedTerms, isYearValid , setIsYearValid,  isWeightValid , setIsWeightValid, isHeightValid, setIsHeightValid, existEmail, setExistEmail, existName, setExistName ,stepOneVisibility, setStepOneVisibility, stepTwoVisibility, setStepTwoVisibility, step, setStep, switchWidth, setSwitchWidth, backButtonVisibility, setBackButtonVisibility }}> 
                 <div className={styles.containRegisters}>
-                    <h1>Registro de usuario</h1>  
+                    <h1>Registro Profesional</h1>  
                     <div onClick={backStep} style={ !backButtonVisibility ? { visibility:"hidden" } : null} className={styles.backButton}>
                         <img src={arrowLeftIcon}/>
                         <p>Volver</p>
@@ -68,4 +68,4 @@ const RegisterClient = () => {
     )
 }
 
-export default RegisterClient; 
+export default RegisterProfessional; 

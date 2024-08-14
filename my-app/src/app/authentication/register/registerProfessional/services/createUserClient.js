@@ -27,7 +27,14 @@ export const createUser = async ( existName, existEmail, isHeightValid, isWeight
          email:existsEmail,
          password:existsPassword
         }) 
+
     if(result.status == 200){   
+        console.log(result)
+        const token = await result.json()
+        if(token){
+            sessionStorage.clear();
+            localStorage.setItem("token", token.token) 
+        } 
         return true
     }
     return false

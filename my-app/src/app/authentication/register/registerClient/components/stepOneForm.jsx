@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import mailIcon from "../../../img/envelope-solid.svg";
 import passwordIcon from "../../../img/lock-solid.svg";
 import userIcon from "../../../img/usericon.svg";
-import { RegisterContext } from "../registerProfessional.jsx"; // Importa el contexto desde el archivo Register
+import { RegisterContext } from "../registerClient.jsx"; // Importa el contexto desde el archivo Register
 import { Fetch } from "../../../../fetch/fetch.js";
 import checkIcon from "../../../img/circle-check-solid.svg"
 import xMarkIcon from "../../../img/circle-xmark-solid.svg"

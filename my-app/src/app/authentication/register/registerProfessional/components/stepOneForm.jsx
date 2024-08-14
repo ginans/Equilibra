@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import mailIcon from "../../../img/envelope-solid.svg";
 import passwordIcon from "../../../img/lock-solid.svg";
 import userIcon from "../../../img/usericon.svg";
-import { RegisterContext } from "../registerProfessional.jsx"; // Importa el contexto desde el archivo Register
-import { Fetch } from "../../../../../services/fetch.js";
+import { RegisterContext } from "../registerClient.jsx"; // Importa el contexto desde el archivo Register
+import { Fetch } from "../../../../fetch/fetch.js";
 import checkIcon from "../../../img/circle-check-solid.svg"
 import xMarkIcon from "../../../img/circle-xmark-solid.svg"
 import infoIcon from "../../../img/circle-info-solid.svg"
@@ -46,7 +46,7 @@ useEffect(() => {
     useEffect(() => {
         const timeoutId = setTimeout( async() => {
             if (name) {
-                const response = await Fetch(`http://localhost:8000/checkName/${name}`, "GET")
+                const response = await Fetch(`http://localhost:8000/checkNameProfessional/${name}`, "GET")
                 if(response){
                     const test = await response.json()  
                     if(test.exists){ 
@@ -72,7 +72,7 @@ useEffect(() => {
                 return setIsEmailValid(false)
                 }
                 setIsEmailValid(true)
-                const response = await Fetch(`http://localhost:8000/checkEmail/${email}`, "GET")
+                const response = await Fetch(`http://localhost:8000/checkEmailProfessional/${email}`, "GET")
                 if(response){
                    
                     const test = await response.json()  
@@ -103,6 +103,7 @@ useEffect(() => {
     }, []);
 
     return (
+        // 
         <div style={{ visibility: !stepOneVisibility ? "hidden" : "visible", position: "absolute", width: "100%" }}>
             <div className={styles.containInput}>
                 <label htmlFor="name">Nombre</label>
@@ -118,12 +119,11 @@ useEffect(() => {
                 {existName && <div className={styles.error}>Este nombre ya existe</div>}
             </div>
             <div className={styles.containInput}>
-                <div>
+                <div className={styles.emailInfo}>
                     <label htmlFor="email">Correo electronico</label>
-                    <img onMouseEnter={()=> setHoverInfoEmail(true)} onMouseLeave={()=> setHoverInfoEmail(false)} src={infoIcon} style={{width:"20px", cursor: "pointer"}}/>  
+                    <img onMouseEnter={()=> setHoverInfoEmail(true)} onMouseLeave={()=> setHoverInfoEmail(false)} src={infoIcon} className={styles.infoIcon}/>  
                 </div>
-                <div> 
-
+                <div>  
                     <img alt="IconEmail" className={styles.iconInput} src={mailIcon} />
                     
                     <input className={styles.input} placeholder="Correo electronico" type="email" value={email} id="email" name="email" onChange={req => setEmail(req.target.value)} required />

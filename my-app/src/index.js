@@ -10,7 +10,9 @@ import NotFound from "./app/notFound/notFound";
 import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
 import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
 import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx";
-import RegisterClient from "./app/authentication/register/registerClient/registerProfessional.jsx";
+import RegisterClient from "./app/authentication/register/registerClient/registerClient.jsx";
+import RegisterProfessional from "./app/authentication/register/registerProfessional/registerClient.jsx";
+
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -21,7 +23,7 @@ root.render(
         <Routes>
           <Route element={<LayoutAuthentication/>}>
             <Route path="/registerClient" element={<RegisterClient/>}/>
-          
+            <Route path="/registerProfessional" element={<RegisterProfessional/>}/>
           </Route>
           {/* <Route path='/login' element={<Login/> }/>
           <Route path='/register' element={<Register/>}/> */}

@@ -1,12 +1,11 @@
 import styles from "./../../../../styles/authentication/login/login.module.scss" 
-import { createUser } from "./services/createUser.js"; 
+import { createUser } from "./services/createUserClient.js"; 
 import { useState, createContext, useEffect } from "react";
 import { Link ,useNavigate } from "react-router-dom";
 import { nextStep } from "./utils/nextStep.js";
 import StepOneForm from "./components/stepOneForm.jsx";
 import StepTwoForm from "./components/stepTwoForm.jsx"; 
-import arrowLeftIcon from "../../img/arrow-left-long-solid.svg";  
-
+import arrowLeftIcon from "../../img/arrow-left-long-solid.svg";   
 
 export const RegisterContext = createContext();
 
@@ -28,7 +27,7 @@ const RegisterClient = () => {
         event.preventDefault()
         const isUserCreationComplete = await createUser( existName, existEmail, isHeightValid, isWeightValid, isYearValid,hasAcceptedTerms)
         if (isUserCreationComplete){   
-           sessionStorage.clear();
+           
            return navigate("/home")
         }
     } 
@@ -46,7 +45,7 @@ const RegisterClient = () => {
                     <h1>Registro de usuario</h1>  
                     <div onClick={backStep} style={ !backButtonVisibility ? { visibility:"hidden" } : null} className={styles.backButton}>
                         <img src={arrowLeftIcon}/>
-                        <div>Volver</div>
+                        <p>Volver</p>
                     </div>  
                     <div className={styles.stepsLine}>
                         <div style={{ width: !switchWidth ? "50%" : "100%" }} className={styles.stepsLine2}></div>

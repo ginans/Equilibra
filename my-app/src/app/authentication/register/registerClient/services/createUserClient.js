@@ -1,4 +1,4 @@
-import { Fetch } from "../../../../../services/fetch.js"; 
+import { Fetch } from "../../../../fetch/fetch.js"; 
 export const createUser = async ( existName, existEmail, isHeightValid, isWeightValid, isYearValid, hasAcceptedTerms)=>{
     
     if( existName, existEmail, !isHeightValid, !isWeightValid, !isYearValid, !hasAcceptedTerms){
@@ -27,7 +27,14 @@ export const createUser = async ( existName, existEmail, isHeightValid, isWeight
          email:existsEmail,
          password:existsPassword
         }) 
+
     if(result.status == 200){   
+        console.log(result)
+        const token = await result.json()
+        if(token){
+            sessionStorage.clear();
+            localStorage.setItem("token", token.token) 
+        } 
         return true
     }
     return false
