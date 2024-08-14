@@ -42,21 +42,33 @@
         }
     }
 }
-
+.buttonEnter{
+    background-color: #00C4CA; 
+    padding: .7rem;
+    margin-top: 1rem;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 100%;
+}
+.containLinks{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 1rem;
+    align-items: center;
+    *{
+        text-decoration: none;
+        color: white;
+    }
+}
 .containLogin{
     position: relative;
     display: flex;
     flex-direction: column;    
     width: 100%;
-    .buttonEnter{
-        background-color: #00C4CA; 
-        padding: .7rem;
-        margin-top: 1rem;
-        color: white;
-        font-size: 18px;
-        border-radius: 5px; 
-        cursor: pointer;
-    }
+    
     .buttonEnter:hover{
         background-color: #03dce4; 
     }

@@ -10,12 +10,16 @@ const { createUserProfessional } = require("../controller/createUserProfessional
 const { checkEmailUserProfessional } = require("../controller/searchData/professional/searchEmailProfessional.js")
 const { checkNameUserProfessional } = require("../controller/searchData/professional/searchNameProfessional.js")
 
+const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
+const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
 
 const router = express.Router()
 
  
 router.get('/checkEmail/:email', checkEmail)
 router.get('/checkName/:name', checkName)
+router.get('/getUserClientById/:token', getUserClientById)
+router.get('/getdataUserProfessional/:token', getUserProfessionalById)
 
 
 router.get('/checkEmailProfessional/:email', checkEmailUserProfessional)

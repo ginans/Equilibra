@@ -20,7 +20,7 @@ const createUserProfessional = async (req, res) => {
       console.log(encrypt) 
      if(encrypt){   
       const newUser = await modelUserProfessional.create({ userName: userName, password: encrypt, age: age, rut:rut, specialty:specialty, registerSis:registerSis, email:email}); 
-      const token = await jwt.sign({ id : newUser.id }, process.env.JWT_SECRET,{ expiresIn: '1d' }); 
+      const token = await jwt.sign({ id : newUser.id }, process.env.JWT_SECRET_PROFESSION,{ expiresIn: '1d' }); 
       return  res.status(200).json({ token });
     }    
     } catch (error) {

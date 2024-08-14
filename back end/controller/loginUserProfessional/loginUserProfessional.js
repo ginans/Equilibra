@@ -13,7 +13,7 @@ const loginUserProfessional = async ( req, res ) => {
     if (!isMatch) {
         return res.status(409).json({ message: "Contraseña incorrecta" });
     }
-    const token = await jwt.sign({ id : user.id }, process.env.JWT_SECRET  ,{ expiresIn: '1d' }); 
+    const token = await jwt.sign({ id : user.id }, process.env.JWT_SECRET_CLIENT  ,{ expiresIn: '1d' }); 
     if(!token){
         return res.status(400).json({message : "no funciono el token"})
     }

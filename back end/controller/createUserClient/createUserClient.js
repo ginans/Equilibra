@@ -20,7 +20,7 @@ const createUsuario = async (req, res) => {
       const encrypt =  await bcrypt.hash(password, 12)  
      if(encrypt){  
       const newUser = await modelUserClient.create({ userName: userName, password: encrypt, age: age, height:height, chronicDiseases:chronicDiseases, weight:weight, email:email}); 
-      const token = await jwt.sign({ id : newUser.id }, process.env.JWT_SECRET  ,{ expiresIn: '1d' }); 
+      const token = await jwt.sign({ id : newUser.id }, process.env.JWT_SECRET_CLIENT  ,{ expiresIn: '1d' }); 
       return  res.status(200).json({ token });
     }    
     } catch (error) {
