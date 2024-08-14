@@ -25,9 +25,8 @@ const RegisterProfessional = () => {
     const navigate = useNavigate() 
     const createUserCompleted = async (event)=>{
         event.preventDefault()
-        const isUserCreationComplete = await createUser( existName, existEmail, isHeightValid, isWeightValid, isYearValid,hasAcceptedTerms)
-        if (isUserCreationComplete){   
-           
+        const isUserCreationComplete = await createUser( existName, existEmail, isYearValid,hasAcceptedTerms)
+        if (isUserCreationComplete){    
            return navigate("/home")
         }
     } 

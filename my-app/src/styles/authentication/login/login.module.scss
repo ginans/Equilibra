@@ -97,13 +97,14 @@
         .iconInput{
             position: absolute;
             height: 23px; 
-            left: 5px;
+            left: 5px;  
         }
         .input{  
             padding: .5rem 3rem;
             border: none;
             border-radius: 5px;
-            width: 100%; 
+            width: 100%;  
+            margin: 0; 
         }
         .infoEmailHover{
             position: absolute;

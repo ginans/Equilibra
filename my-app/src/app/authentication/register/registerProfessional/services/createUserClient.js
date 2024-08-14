@@ -1,7 +1,7 @@
 import { Fetch } from "../../../../fetch/fetch.js"; 
-export const createUser = async ( existName, existEmail, isHeightValid, isWeightValid, isYearValid, hasAcceptedTerms)=>{
+export const createUser = async ( existName, existEmail, isYearValid, hasAcceptedTerms)=>{
     
-    if( existName, existEmail, !isHeightValid, !isWeightValid, !isYearValid, !hasAcceptedTerms){
+    if( existName, existEmail, !isYearValid, !hasAcceptedTerms){
         return console.error("no cumple las condiciones")
     }
     const existsName = sessionStorage.getItem('name');
@@ -9,20 +9,20 @@ export const createUser = async ( existName, existEmail, isHeightValid, isWeight
     const existsPassword = sessionStorage.getItem('password'); 
     const existsRepeatPassword = sessionStorage.getItem('repeatPassword');  
     const existsYear = sessionStorage.getItem('year');
-    const existsHeight = sessionStorage.getItem('height') ;
-    const existsWeight = sessionStorage.getItem('weight'); 
-    const existsDiseases = sessionStorage.getItem('diseases');  
+    const existsRut = sessionStorage.getItem('rut') ;
+    const existsEspecial = sessionStorage.getItem('especial'); 
+    const existsRegisterSis = sessionStorage.getItem('registerSis');  
     if(!existsEmail || !existsName || !existsPassword || !existsRepeatPassword
-        || !existsYear || !existsHeight || !existsWeight || !existsDiseases
+        || !existsYear || !existsRut || !existsEspecial || !existsRegisterSis
     ){ 
         return console.error("Faltan datos")
     }  
-    const result = await Fetch("http://localhost:8000/createUser", "POST",
+    const result = await Fetch("http://localhost:8000/createUserProfessional", "POST",
         {
          age:existsYear,
-         height:existsHeight,
-         weight:existsWeight,
-         chronicDiseases:existsDiseases,
+         registerSis:existsRegisterSis,
+         rut: existsRut,
+         specialty:existsEspecial,
          userName:existsName,
          email:existsEmail,
          password:existsPassword
@@ -32,7 +32,7 @@ export const createUser = async ( existName, existEmail, isHeightValid, isWeight
         console.log(result)
         const token = await result.json()
         if(token){
-            sessionStorage.clear();
+            // sessionStorage.clear();
             localStorage.setItem("token", token.token) 
         } 
         return true

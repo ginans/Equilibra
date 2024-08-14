@@ -1,20 +1,18 @@
 import styles from "./../../../../../styles/authentication/login/login.module.scss";
 import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import rulerIcon from "../../../img/ruler-vertical-solid.svg";
-import clockIcon from "../../../img/clock-rotate-left-solid.svg";
-import virusIcon from "../../../img/virus.svg";
-import bodyWeightIcon from "../../../img/body-weight-scales-icon.svg";
+import { Link } from "react-router-dom"; 
 import { RegisterContext } from "../registerClient"; // Importa el contexto desde el archivo Register
 import xMarkIcon from "../../../img/circle-xmark-solid.svg"
 import checkIcon from "../../../img/circle-check-solid.svg"
-
+import hospitalIcon from "../../../img/hospital-solid.svg"
+import stethoscopeIcon from "../../../img/stethoscope-solid.svg"
+import rutIcon from "../../../img/id-card-solid.svg"
+import yearIcon from "../../../img/clock-rotate-left-solid.svg"
  
 const StepTwoForm = () => {
     const { stepTwoVisibility, isYearValid, 
-         setIsYearValid, isWeightValid, setIsWeightValid,
-         isHeightValid, setIsHeightValid,
-         hasAcceptedTerms, setHasAcceptedTerms } = useContext(RegisterContext); // Accede al estado del contexto
+         setIsYearValid, hasAcceptedTerms
+         , setHasAcceptedTerms } = useContext(RegisterContext);  
 
     const [year, setYear] = useState("");
     const [rut, setRut] = useState("");
@@ -82,7 +80,7 @@ const StepTwoForm = () => {
             <div className={styles.containInput}>
                 <label htmlFor="rut">Rut</label>
                 <div>
-                    <img alt="IconClock" className={styles.iconInput} src={clockIcon} />
+                    <img alt="rut Icon" className={styles.iconInput} src={rutIcon} />
                     
                     {/* { isYearValid && year ? 
                         <img className={styles.iconCircle}  src={checkIcon}/> :
@@ -110,7 +108,7 @@ const StepTwoForm = () => {
             <div className={styles.containInput}>
                 <label htmlFor="sis">N º de Registro SIS</label>
                 <div>
-                    <img alt="IconRuler" className={styles.iconInput} src={rulerIcon} />
+                    <img alt="hospital Icon" className={styles.iconInput} src={hospitalIcon} />
                     {/* { isHeightValid && height ? 
                         <img className={styles.iconCircle}  src={checkIcon}/> :
                         !isHeightValid && height ? 
@@ -136,7 +134,7 @@ const StepTwoForm = () => {
             <div className={styles.containInput}>
                 <label htmlFor="edad">Edad</label>
                 <div>
-                    <img alt="IconPeso" className={styles.iconInput} src={bodyWeightIcon} />
+                    <img alt="Edad Icon" className={styles.iconInput} src={yearIcon} />
                    
                    { isYearValid && year ? 
                         <img className={styles.iconCircle}  src={checkIcon}/> :
@@ -161,9 +159,11 @@ const StepTwoForm = () => {
                 </div>
             </div>
             <div className={styles.containInput}>
-                <label htmlFor="height">Especialidad</label>
-                {/* <p htmlFor="diseases">Enfermedades crónicas</p> */}
-                <select onChange={(e)=>{setEspecial(e.target.value)}} value={especial}>
+            <label htmlFor="height">Especialidad</label>
+                <div>  
+                <img alt="stethoscope Icon" className={styles.iconInput} src={stethoscopeIcon} />
+                <select required className={styles.input} onChange={(e)=>{setEspecial(e.target.value)}} value={especial}>
+                
                     <option value="" disabled>
                         Selecciona una especialidad
                     </option>
@@ -173,6 +173,7 @@ const StepTwoForm = () => {
                         </option>
                     ))}
                 </select>
+                </div>
             </div>
             <div className={styles.containInput}>
                 {/* <p htmlFor="diseases">Enfermedades crónicas</p> */}
