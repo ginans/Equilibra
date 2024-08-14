@@ -19,7 +19,13 @@ const LayoutAuthentication = ()=>{
                 <img className={styles.subLogo} src={subLogo} alt='subLogo Equilibra'/>
                 <p>“Equilibra tu cuerpo, revitaliza tu vida”</p>
             </div>
-            <Outlet/>
+            <div className={styles.containChildren}>
+                <Outlet/>
+                <p className={styles.copyritghtText}>
+                    Copyright © 2024 SextoSentido S.A.
+                    Todos los derechos reservados
+                </p>
+            </div>
         </div>
     )
 }

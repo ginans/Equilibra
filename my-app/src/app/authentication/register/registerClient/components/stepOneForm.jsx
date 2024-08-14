@@ -119,9 +119,9 @@ useEffect(() => {
                 {existName && <div className={styles.error}>Este nombre ya existe</div>}
             </div>
             <div className={styles.containInput}>
-                <div>
+                <div className={styles.emailInfo}>
                     <label htmlFor="email">Correo electronico</label>
-                    <img onMouseEnter={()=> setHoverInfoEmail(true)} onMouseLeave={()=> setHoverInfoEmail(false)} src={infoIcon} style={{width:"20px", cursor: "pointer"}}/>  
+                    <img onMouseEnter={()=> setHoverInfoEmail(true)} onMouseLeave={()=> setHoverInfoEmail(false)} src={infoIcon} className={styles.infoIcon}/>  
                 </div>
                 <div>  
                     <img alt="IconEmail" className={styles.iconInput} src={mailIcon} />
