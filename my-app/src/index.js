@@ -10,6 +10,8 @@ import NotFound from "./app/notFound/notFound";
 import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
 import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
 import EducationPage from "./app/user/EducationPage/EducationPage.jsx";
+import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
+import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,6 +26,8 @@ root.render(
             <Route path="/" element={<HomewithoutLogin />} />
             <Route path="/landingPageUser" element={<LandingPageUser />} />
             <Route path="/educationalPage" element={<EducationPage />} />
+            <Route path="/createArticle" element={<CreateArticle />} />
+            <Route path="/fullArticle/:id" element={<FullArticle/>} />
             
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>

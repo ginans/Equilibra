@@ -1,24 +1,22 @@
 import React from "react";
 import styles from "../../../../styles/EducationPage/EducationPage.module.scss";
-import saludMental from "../images/ejercicio-y-salud-mental.jpg";
+import { Link } from "react-router-dom";
 
-const Card = () => {
-  console.log("rendering card");
+const Card = ({ article }) => {
   return (
     <div className={styles.cards}>
       <div className={styles.card}>
-        <img src={saludMental} className={styles.cardImg} alt="salud mental" />
+        <img src={article.image} className={styles.cardImg} alt={article.title} />
         <div className={styles.cardBody}>
           <h5 className={styles.cardTitle}>
-            Beneficios del ejercicio fisico en la salud mental.
+            {article.title}
           </h5>
           <p className={styles.cardText}>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {article.content}
           </p>
-          <a href="..." className={`${styles.btn} ${styles.btnPrimary}`}>
+          <Link to={`/fullArticle/${article.id}`} className={`${styles.btn} ${styles.btnPrimary}`}>
             Ver artículo completo
-          </a>
+          </Link>
         </div>
       </div>
     </div>
