@@ -38,8 +38,7 @@ root.render(
             <Route path="/educationalPage" element={<EducationPage />} />
             <Route path="/Foro/" element={<Foro />} /> 
             <Route path="/createArticle" element={<CreateArticle />} />
-            <Route path="/fullArticle/:id" element={<FullArticle/>} />
-            
+            <Route path="/fullArticle/:id" element={<FullArticle/>} /> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
