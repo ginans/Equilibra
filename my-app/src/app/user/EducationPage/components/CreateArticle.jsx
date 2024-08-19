@@ -29,10 +29,11 @@ const CreateArticle = () => {
       <input className={styles.input} type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} />
       <textarea className={styles.input} placeholder="Contenido" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
       <input className={styles.input} type="text" placeholder="URL de la imagen" value={image} onChange={(e) => setImage(e.target.value)} />
-      <a className={styles.sendButton} type="submit" href='/educationalPage'>Crear Artículo</a>
+      <button className={styles.sendButton} type="submit" >Crear Artículo</button>
     </form>
   );
 };
+
 //agregar redirección del boton a la educationpage
 
 export default CreateArticle;

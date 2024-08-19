@@ -45,7 +45,7 @@ app.post("/api/articles", (req, res) => {
     "INSERT INTO articles (title, content, image) VALUES (?, ?, ?)",
     [title, content, image],
     (err, results) => {
-      if (err) {
+      if (err) {~
         console.error("Error inserting article:", err);
         res.status(500).send("Error inserting article");
         return;
