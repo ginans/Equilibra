@@ -14,7 +14,6 @@ import RegisterClient from "./app/authentication/register/registerClient/registe
 import RegisterProfessional from "./app/authentication/register/registerProfessional/registerClient.jsx";
 import Login from "./app/authentication/login/login.jsx";
 
-
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
