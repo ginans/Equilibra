@@ -5,15 +5,15 @@ import Usuarios from '../../Foro/components/data/usuarios';
 import styles from '../../../../styles/Foro/foro.module.scss';
 
 const Foro = () => {
-  const [preguntas, setPreguntas] = useState([]);
-  const [meGusta, setMeGusta] = useState({});
-  const [mostrarFormularioRespuesta, setMostrarFormularioRespuesta] = useState(null);
+  const [preguntas, setPreguntas] = useState([]); 
+  const [meGusta, setMeGusta] = useState({}); 
+  const [mostrarFormularioRespuesta, setMostrarFormularioRespuesta] = useState(null); 
 
   const agregarPregunta = (pregunta) => {
     const nuevaPregunta = {
       ...pregunta,
       id: preguntas.length + 1,
-      usuarioId: 1, // ID del usuario que hace la pregunta
+      usuarioId: 1, 
       respuestas: [],
       likes: 0
     };
@@ -24,14 +24,10 @@ const Foro = () => {
     setPreguntas((prevPreguntas) =>
       prevPreguntas.map((pregunta) =>
         pregunta.id === preguntaId
-          ? {
-              ...pregunta,
-              likes: meGusta[preguntaId] ? pregunta.likes - 1 : pregunta.likes + 1
-            }
+          ? { ...pregunta, likes: meGusta[preguntaId] ? pregunta.likes - 1 : pregunta.likes + 1 }
           : pregunta
       )
     );
-
     setMeGusta((prevMeGusta) => ({
       ...prevMeGusta,
       [preguntaId]: !prevMeGusta[preguntaId]
@@ -46,19 +42,13 @@ const Foro = () => {
               ...pregunta,
               respuestas: pregunta.respuestas.map(respuesta =>
                 respuesta.id === respuestaId
-                  ? {
-                      ...respuesta,
-                      likes: meGusta[`${preguntaId}-${respuestaId}`]
-                        ? (respuesta.likes || 0) - 1
-                        : (respuesta.likes || 0) + 1
-                    }
+                  ? { ...respuesta, likes: meGusta[`${preguntaId}-${respuestaId}`] ? respuesta.likes - 1 : respuesta.likes + 1 }
                   : respuesta
               )
             }
           : pregunta
       )
     );
-
     setMeGusta(prevMeGusta => ({
       ...prevMeGusta,
       [`${preguntaId}-${respuestaId}`]: !prevMeGusta[`${preguntaId}-${respuestaId}`]
@@ -66,9 +56,7 @@ const Foro = () => {
   };
 
   const toggleFormularioRespuesta = (preguntaId) => {
-    setMostrarFormularioRespuesta((prevId) =>
-      prevId === preguntaId ? null : preguntaId
-    );
+    setMostrarFormularioRespuesta((prevId) => prevId === preguntaId ? null : preguntaId);
   };
 
   const agregarRespuesta = (preguntaId, respuesta) => {
@@ -77,10 +65,7 @@ const Foro = () => {
         pregunta.id === preguntaId
           ? {
               ...pregunta,
-              respuestas: [
-                ...pregunta.respuestas,
-                { ...respuesta, id: pregunta.respuestas.length + 1, usuarioId: 2, likes: 0 }
-              ]
+              respuestas: [...pregunta.respuestas, { ...respuesta, id: pregunta.respuestas.length + 1, usuarioId: 2, likes: 0 }]
             }
           : pregunta
       )
@@ -104,7 +89,7 @@ const Foro = () => {
             meGusta={meGusta}
             mostrarFormularioRespuesta={mostrarFormularioRespuesta}
             agregarRespuesta={agregarRespuesta}
-            toggleMeGustaRespuesta={toggleMeGustaRespuesta} // Pasar la función para los likes en respuestas
+            toggleMeGustaRespuesta={toggleMeGustaRespuesta}
             usuarios={Usuarios}
           />
         ))}

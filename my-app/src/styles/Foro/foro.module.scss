@@ -1,6 +1,7 @@
+/* Estilos globales */
 body {
-  background-color: #005163; /* Color de fondo de la página */
-  color: #fff; /* Color de texto */
+  background-color: #005163;
+  color: #fff;
   font-family: Roboto, sans-serif;
 }
 
@@ -17,14 +18,15 @@ body {
   padding: 20px;
 }
 
+/* Títulos */
 h1 {
   text-align: center;
-  color: #fff; /* Color de texto del título */
+  color: #fff;
 }
 
 /* Formularios */
 .formContainer {
-  background-color: #002E38; /* Color de fondo del formulario */
+  background-color: #002E38;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -46,16 +48,16 @@ h1 {
   padding: 10px;
   border: 1px solid #007089;
   border-radius: 4px;
-  background-color: #005163; /* Color de fondo de los inputs */
-  color: #fff; /* Color del texto de los inputs */
-  width: 100%; /* Asegura que las cajas de entrada ocupen todo el ancho disponible */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto */
+  background-color: #005163;
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .inputBox textarea {
   resize: vertical;
-  min-height: 100px; /* Ajusta la altura mínima del área de texto */
-  max-height: 300px; /* Ajusta la altura máxima del área de texto */
+  min-height: 100px;
+  max-height: 300px;
 }
 
 .button {
@@ -65,22 +67,22 @@ h1 {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .button:hover {
   background-color: #005163;
 }
 
-/* Lista de preguntas */
+/* Preguntas */
 .preguntasList {
   list-style-type: none;
   padding: 0;
 }
 
 .preguntaItem {
-  background-color: #002E38; /* Color de fondo de cada pregunta */
+  background-color: #002E38;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -89,46 +91,46 @@ h1 {
 
 .preguntaItem h2 {
   margin: 0 0 10px 0;
-  color: #fff; /* Color del texto del título de la pregunta */
+  color: #fff;
 }
 
 .preguntaItem p {
-  margin: 0 0 20px 0; /* Aumenta el espacio inferior para crear más separación */
-  color: #fff; /* Color del texto de la descripción de la pregunta */
-  white-space: pre-wrap; /* Mantiene los saltos de línea y espacios en blanco */
-  word-wrap: break-word; /* Ajusta las palabras largas para que se ajusten al ancho del contenedor */
+  margin: 0 0 20px 0;
+  color: #fff;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 /* Información del usuario */
 .preguntaUsuario {
   display: flex;
   align-items: center;
-  margin-top: 30px; /* Aumenta el espacio superior para crear más separación */
+  margin-top: 30px;
 }
 
 .preguntaUsuario img {
   border-radius: 50%;
   margin-right: 10px;
-  width: 50px; /* Ajusta el ancho de la imagen */
-  height: 50px; /* Ajusta la altura de la imagen */
-  object-fit: cover; /* Asegura que la imagen se ajuste dentro del contenedor sin distorsionarse */
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
 .preguntaUsuario p {
   margin: 0;
-  font-weight: bold; /* Negrita para el nombre del usuario */
+  font-weight: bold;
 }
 
 .verificado {
-  color: #fff; /* Color para indicar verificación */
+  color: #fff;
   margin-left: 5px;
 }
 
-/* Contenedor de íconos */
+/* Íconos */
 .icons {
   display: flex;
-  justify-content: flex-end; /* Alinea los íconos a la derecha */
-  gap: 15px; /* Espaciado entre los íconos */
+  justify-content: flex-end;
+  gap: 15px;
   margin-top: 10px;
 }
 
@@ -150,34 +152,7 @@ h1 {
   cursor: pointer;
 }
 
-.dropdown {
-  position: relative;
-}
-
-.dropdownContent {
-  display: none;
-  position: absolute;
-  background-color: #005163;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown:hover .dropdownContent {
-  display: block;
-}
-
-/* Enlaces */
-.preguntaItem a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.preguntaItem a:hover {
-  color: #005163; /* Cambia el color al pasar el cursor */
-}
-
-/* Menú desplegable */
+/* Dropdown */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -212,22 +187,15 @@ h1 {
   background-color: #007089;
 }
 
-/* Estilos para respuestas */
+/* Respuestas */
 .respuestaItem {
-  background-color: #005163; /* Color de fondo de cada respuesta */
+  background-color: #005163;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
+  position: relative; /* Para posicionar los íconos de manera absoluta */
 }
 
-/* Lista de respuestas */
-ul {
-  list-style-type: none; /* Quita los círculos de la lista */
-  padding: 0; /* Elimina el padding por defecto */
-  margin: 0; /* Elimina el margin por defecto */
-}
-
-/* Estilo para cada respuesta */
 .respuestaUsuario {
   display: flex;
   align-items: center;
@@ -245,4 +213,78 @@ ul {
 .respuestaUsuario p {
   margin: 0;
   font-weight: bold;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end; /* Alinea los íconos a la derecha */
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.iconInactive {
+  color: #007089;
+}
+
+.iconActive {
+  color: #ffffff;
+}
+
+/* Dropdown */
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #005163;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownContent button {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdownContent button:hover {
+  background-color: #007089;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+/* Quitar puntos de lista */
+ul {
+  list-style-type: none; /* Elimina los puntos de la lista */
+  padding: 0;
+  margin: 0;
+}
+
+/* Enlaces */
+.preguntaItem a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.preguntaItem a:hover {
+  color: #005163;
 }

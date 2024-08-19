@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import styles from '../../../../styles/Foro/foro.module.scss'; 
+import styles from '../../../../styles/Foro/foro.module.scss';
 
 const FormularioPregunta = ({ agregarPregunta }) => {
-  // Estado para el título y la descripción de la nueva pregunta
   const [titulo, setTitulo] = useState('');
-  const [descripcion, setDescripcion] = useState('');
+  const [contenido, setContenido] = useState('');
 
-  // Maneja el envío del formulario y agrega una nueva pregunta
-  const handleSubmit = (e) => {
+  const manejarEnvio = (e) => {
     e.preventDefault();
-    agregarPregunta({ titulo, descripcion });
-    setTitulo('');
-    setDescripcion('');
+    if (titulo && contenido) {
+      agregarPregunta({ titulo, contenido });
+      setTitulo('');
+      setContenido('');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formContainer}>
+    <form className={styles.formContainer} onSubmit={manejarEnvio}>
       <div className={styles.inputBox}>
         <label htmlFor="titulo">Título:</label>
         <input
@@ -26,18 +26,18 @@ const FormularioPregunta = ({ agregarPregunta }) => {
         />
       </div>
       <div className={styles.inputBox}>
-        <label htmlFor="descripcion">Descripción:</label>
+        <label htmlFor="contenido">Contenido:</label>
         <textarea
-          id="descripcion"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        ></textarea>
+          id="contenido"
+          value={contenido}
+          onChange={(e) => setContenido(e.target.value)}
+        />
       </div>
-      <button type="submit" className={styles.button}>Agregar Pregunta</button>
+      <button className={styles.button} type="submit">
+        Publicar pregunta
+      </button>
     </form>
   );
 };
 
 export default FormularioPregunta;
-
-

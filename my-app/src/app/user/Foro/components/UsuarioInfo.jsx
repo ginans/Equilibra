@@ -1,18 +1,19 @@
 import React from 'react';
-import usuarios from './data/usuarios';
+import usuarios from './data/usuarios';  // Datos de los usuarios
 import styles from '../../../../styles/Foro/foro.module.scss';
 
 const UsuarioInfo = ({ usuarioId }) => {
-  const usuario = usuarios.find(user => user.id === usuarioId);
+  // Encontramos al usuario por su ID
+  const usuario = usuarios.find((user) => user.id === usuarioId);
 
-  if (!usuario) return null;
-
+  // Renderizamos la información del usuario
   return (
-    <div className={styles.preguntaUsuario}>
-      <img src={usuario.foto} alt={usuario.nombre} />
-      <p>{usuario.nombre}</p>
+    <div className={styles.usuarioInfo}>
+      <img src={usuario.fotoPerfil} alt={`${usuario.nombre}'s perfil`} className={styles.fotoPerfil} />
+      <span>{usuario.nombre}</span>
     </div>
   );
 };
 
 export default UsuarioInfo;
+
