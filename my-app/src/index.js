@@ -16,8 +16,9 @@ import RegisterProfessional from "./app/authentication/register/registerProfessi
 import Login from "./app/authentication/login/login.jsx";
 import Foro from './app/user/Foro/components/Foro';
 import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
-import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
-
+import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx"; 
+import PagPrincipal from './app/landingPage/PaginaPrincipal';
+import GaleriaEntrenamiento from './app/galeriaEntrenamiento/GaleriaEntrenamiento';
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -39,6 +40,9 @@ root.render(
             <Route path="/Foro/" element={<Foro />} /> 
             <Route path="/createArticle" element={<CreateArticle />} />
             <Route path="/fullArticle/:id" element={<FullArticle/>} /> 
+            
+            <Route path='/Pagina-Principal' element={<PagPrincipal/>}/> 
+            <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
