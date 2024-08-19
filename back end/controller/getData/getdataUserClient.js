@@ -6,12 +6,9 @@ const jwt = require("jsonwebtoken")
 const getUserClientById = async (req, res) => {
     try {
         const token = req.params.token;
-        console.log("1",token)
         // Desencriptar el token para obtener el ID
         const decoded = jwt.verify(token, process.env.JWT_SECRET_CLIENT);
-        console.log("2",decoded)
         const userId = decoded.id;
-        console.log("3",decoded.id)
         // Obtener el usuario por su ID, excluyendo el campo 'password'
         const user = await modelUserClient.findByPk(userId, {
             attributes: { exclude: ['password'] }

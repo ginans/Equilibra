@@ -14,8 +14,7 @@ import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx"
 import RegisterClient from "./app/authentication/register/registerClient/registerClient.jsx";
 import RegisterProfessional from "./app/authentication/register/registerProfessional/registerClient.jsx";
 import Login from "./app/authentication/login/login.jsx";
-
-
+import Foro from './app/user/Foro/components/Foro';
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -34,7 +33,7 @@ root.render(
             <Route path="/" element={<HomewithoutLogin />} />
             <Route path="/landingPageUser" element={<LandingPageUser />} />
             <Route path="/educationalPage" element={<EducationPage />} />
-            
+            <Route path="/Foro/" element={<Foro />} /> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
@@ -45,7 +44,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
