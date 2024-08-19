@@ -31,8 +31,7 @@ root.render(
           <Route element={<Layout />}>
             <Route path="/" element={<HomewithoutLogin />} />
             <Route path="/LandingPageUser" element={<LandingPageUser />} />
-            <Route path="/Foro/" element={<Foro />} />
-            {/* <Route path="/Foro/:id" element={<Foro />} /> */}
+            <Route path="/Foro/" element={<Foro />} /> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
