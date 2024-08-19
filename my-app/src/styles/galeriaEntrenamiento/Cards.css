@@ -1,21 +1,24 @@
 .cards-container {
-  background-color: #005163;
+  background-color: rgb(219, 219, 219,0.9);;
   display: flex;
   gap: 50px; /* Espacio entre tarjetas */
   justify-content:space-around; /* Centra las tarjetas en el contenedor */
-  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en múltiples líneas si es necesario */
-  margin-top: 100px;
+  flex-wrap:wrap; /* Permite que las tarjetas se ajusten en múltiples líneas si es necesario */
+  margin-top: 30px;
   width: 80%;
   margin-left: auto; /* Centra el contenedor horizontalmente */
   margin-right: auto;
   border-radius: 10px;
+  padding: 0 20px 30px 20px;;
 }
 
 .card {
   margin-top: 20px;
   cursor: pointer;
   border: 1px solid #120b0b;
-  background-color: #ddd;
+  background-color: #005163;
+  color: #ddd;
+  font-family: Arial, sans-serif;
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
@@ -35,7 +38,7 @@
 }
 
 .card h3 {
-  color: #120b0b;
+  color: #ddd;
   margin: 10px;
   font-size: 1.2em;
 }

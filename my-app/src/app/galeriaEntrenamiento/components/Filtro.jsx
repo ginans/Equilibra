@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../../../styles/galeriaEntrenamiento/Filtro.css'; 
 
 const FiltroBar = ({ selectedCategory, onFilterChange }) => {
-  // Define un componente funcional llamado FiltroBar que recibe dos props: selectedCategory 
-  // (la categoría actualmente seleccionada) y onFilterChange (una función para manejar los cambios de filtro).
-  const categories = ['Todo', 'Cardio', 'Fuerza', 'Tren inferior', 'Tren superior', 'Adulto Mayor'];
-  // Crea un array llamado categories que contiene las categorías disponibles para el filtro.
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null); // Ref para el menú adicional
+  const buttonRef = useRef(null); // Ref para el botón hamburguesa
+
+  const categories = ['Todo', 'Cardio', 'Fuerza', 'Tren inferior', 'Tren superior'];
+  const additionalCategories = ['Adulto Mayor', 'Flexibilidad', 'Categoría 3']; // Añade aquí las categorías adicionales
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Cierra el menú si se hace clic fuera de él o del botón hamburguesa
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current && !menuRef.current.contains(event.target) &&
+        buttonRef.current && !buttonRef.current.contains(event.target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // Añade el manejador de eventos al montar el componente
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Limpia el manejador de eventos al desmontar el componente
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="filtro-bar">
-      {/* Renderiza un contenedor <div> con la clase CSS filtro-bar, que probablemente se utiliza para aplicar estilos 
-        al contenedor de los botones de filtro. */}
       {categories.map((category) => (
         <button
           key={category}
@@ -20,6 +42,26 @@ const FiltroBar = ({ selectedCategory, onFilterChange }) => {
           {category}
         </button>
       ))}
+      <button
+        className="hamburger-button"
+        onClick={toggleMenu}
+        ref={buttonRef} // Asocia el ref al botón hamburguesa
+      >
+        ☰ {/* Icono de menú hamburguesa */}
+      </button>
+      {isMenuOpen && (
+        <div className="additional-categories" ref={menuRef}>
+          {additionalCategories.map((category) => (
+            <button
+              key={category}
+              className={`filtro-button ${selectedCategory === category ? 'active' : ''}`}
+              onClick={() => onFilterChange(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

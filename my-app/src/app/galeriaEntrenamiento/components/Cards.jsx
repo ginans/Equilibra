@@ -12,6 +12,18 @@ import image7 from '../../galeriaEntrenamiento/images/adultoMayor1.jpg';
 import image8 from '../../galeriaEntrenamiento/images/adultoMayor2.jpg';
 import image9 from '../../galeriaEntrenamiento/images/adultoMayor3.jpg';
 import image10 from '../../galeriaEntrenamiento/images/adultoMayor4.jpg';
+import image11 from '../../galeriaEntrenamiento/images/cardio2.jpg';
+import image12 from '../../galeriaEntrenamiento/images/cardio3.jpg';
+import image13 from '../../galeriaEntrenamiento/images/cardio4.jpg';
+import image22 from '../../galeriaEntrenamiento/images/cardio5.jpg';
+import image14 from '../../galeriaEntrenamiento/images/fuerza2.jpg';
+import image15 from '../../galeriaEntrenamiento/images/fuerza3.jpg';
+import image16 from '../../galeriaEntrenamiento/images/fuerza4.jpg';
+import image17 from '../../galeriaEntrenamiento/images/fuerza5.jpg';
+import image18 from '../../galeriaEntrenamiento/images/trenInferior2.jpg';
+import image19 from '../../galeriaEntrenamiento/images/trenInferior3.jpg';
+import image20 from '../../galeriaEntrenamiento/images/trenInferior4.jpg';
+import image21 from '../../galeriaEntrenamiento/images/trenInferior5.jpg';
 import logo from '../../landingPage/images/logo.png';
 
 
@@ -36,16 +48,31 @@ const Cards = () => {//Un componente funcional que maneja la lógica y el estado
   // (selectedCategory). Inicialmente, selectedVideo es null y selectedCategory es 'Todo'.
 
   const cardData = [
-    { title: 'Cardio', text: 'este es un cardio brigido de 3 min',image: image1, videoId: 'ksi-c8YgClY', category: 'Cardio' },
-    { title: 'Fuerza', text:'',image: image4, videoId: 'rTvIPpU_-dU', category: 'Fuerza' },
-    { title: 'Parte inferior', text:'', image: image3, videoId: 'b7vbGgjmNJA', category: 'Tren inferior' },
-    { title: 'Parte superior', text:'', image: image2, videoId: 'hydNsnnOnow', category: 'Tren superior' },
-    { title: 'Parte superior', text:'', image: image5, videoId: 'QMg6Wt0XPQU', category: 'Tren superior' },
-    { title: 'Parte superior', text:'', image: image6, videoId: 'q-GibjArMY8', category: 'Tren superior' },
-    { title: 'Adulto Mayor', text:'', image: image7, videoId: '8gBBtUWdDcY', category: 'Adulto Mayor' },
-    { title: 'Adulto Mayor', text:'', image: image8, videoId: 'dLAmsVnNNQU', category: 'Adulto Mayor' },
-    { title: 'Adulto Mayor', text:'', image: image9, videoId: 'Yt-7YCNyNvA', category: 'Adulto Mayor' },
-    { title: 'Adulto Mayor', text:'', image: image10, videoId: 'etY6yH_blQs', category: 'Adulto Mayor' }
+    { title: 'Cardio 20 minutos', text: 'Ejercicios para quemar grasa',image: image1, videoId: 'ksi-c8YgClY', category: 'Cardio' },
+    { title: 'Cardio 15 minutos', text: 'Rutina intensa para adelgaza y quemar grasa',image: image11, videoId: 'uSD5IxmEQdI', category: 'Cardio' },
+    { title: 'Cardio 30 minutos', text: 'Rutina sin saltos sin impacto pero de alta intensidad',image: image12, videoId: 'yOH-T9uRzpQ', category: 'Cardio' },
+    { title: 'Cardio 20 minutos', text: 'CARDIO HIIT para quemar muchas calorias en poco tiempo',image: image13, videoId: 'jrpanz6Xxhs', category: 'Cardio' },
+    { title: 'Cardio 20 minutos', text: 'Ejercicios para quemar grasa',image: image22, videoId: 's3iC2mB0HU8', category: 'Cardio' },
+
+    { title: 'Fuerza 30 minutos', text:'Rutina de fuerza para mujeres',image: image4, videoId: 'rTvIPpU_-dU', category: 'Fuerza' },
+    { title: 'Fuerza 30 minutos', text:'Rutina de fuerza para mujeres',image: image14, videoId: '2eSlP_3y2po', category: 'Fuerza' },
+    { title: 'Fuerza 30 minutos', text:'Rutina de fuerza para mujeres',image: image15, videoId: 'Mpd2JCGhVRA', category: 'Fuerza' },
+    { title: 'Fuerza 30 minutos', text:'Rutina de fuerza para mujeres',image: image16, videoId: '5qp20nfPlUA', category: 'Fuerza' },
+    { title: 'Fuerza 30 minutos', text:'Rutina de fuerza para mujeres',image: image17, videoId: '6lCeNlSoonk', category: 'Fuerza' },
+
+    { title: 'Parte inferior 20 minutos', text:'Rutina bajo impacto', image: image3, videoId: 'b7vbGgjmNJA', category: 'Tren inferior' },
+    { title: 'Parte inferior 20 minutos', text:'Rutina bajo impacto', image: image18, videoId: 'Du9WQTZVet4', category: 'Tren inferior' },
+    { title: 'Parte inferior 20 minutos', text:'Rutina bajo impacto', image: image19, videoId: 'E8LcNwTotK4', category: 'Tren inferior' },
+    { title: 'Parte inferior 20 minutos', text:'Rutina bajo impacto', image: image20, videoId: 'i1I_Rpw6zAA', category: 'Tren inferior' },
+    { title: 'Parte inferior 20 minutos', text:'Rutina bajo impacto', image: image21, videoId: 'A7pMiSGMezk', category: 'Tren inferior' },
+
+    { title: 'Parte superior 25 minutos', text:'Rutina para ganar fuerza en casa', image: image2, videoId: 'hydNsnnOnow', category: 'Tren superior' },
+    { title: 'Parte superior 20 minutos', text:'7 ejercicios de fortalecimiento', image: image5, videoId: 'QMg6Wt0XPQU', category: 'Tren superior' },
+    { title: 'Parte superior 20 minutos', text:'Rutina para principiantes', image: image6, videoId: 'q-GibjArMY8', category: 'Tren superior' },
+    { title: 'Adulto Mayor 60 minutos', text:'', image: image7, videoId: '8gBBtUWdDcY', category: 'Adulto Mayor' },
+    { title: 'Adulto Mayor 60 minutos', text:'', image: image8, videoId: 'dLAmsVnNNQU', category: 'Adulto Mayor' },
+    { title: 'Adulto Mayor 50 minutos', text:'', image: image9, videoId: 'Yt-7YCNyNvA', category: 'Adulto Mayor' },
+    { title: 'Adulto Mayor 20 minutos', text:'', image: image10, videoId: 'etY6yH_blQs', category: 'Adulto Mayor' }
     // Define los datos de las tarjetas: Un array de objetos que contiene la información de cada tarjeta, 
     // incluyendo título, texto, imagen, ID del video y categoría.
   ];
