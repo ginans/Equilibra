@@ -1,28 +1,37 @@
 import React from "react";
 import styles from "../../../../styles/EducationPage/EducationPage.module.scss";
-import saludMental from "../images/ejercicio-y-salud-mental.jpg";
+import { Link } from "react-router-dom";
 
-const Card = () => {
-  console.log("rendering card");
+const Card = ({ article }) => {
+  const truncateText = (text, maxLength) => {
+    // Función para truncar el texto a un máximo de caracteres
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength) + "..."; // Agrega '...' si el texto es truncado
+  };
+  const maxChar = 150;
+
   return (
-    <div className={styles.cards}>
-      <div className={styles.card}>
-        <img src={saludMental} className={styles.cardImg} alt="salud mental" />
-        <div className={styles.cardBody}>
-          <h5 className={styles.cardTitle}>
-            Beneficios del ejercicio fisico en la salud mental.
-          </h5>
-          <p className={styles.cardText}>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="..." className={`${styles.btn} ${styles.btnPrimary}`}>
-            Ver artículo completo
-          </a>
-        </div>
+    <div className={styles.card}>
+      <img
+        src={article.image}
+        className={styles.cardImg}
+        alt={article.title}
+      />
+      <div className={styles.cardBody}>
+        <h5 className={styles.cardTitle}>{article.title}</h5>
+        <p className={styles.cardText}>
+          {truncateText(article.content, maxChar)}
+        </p>
+        <Link
+          to={`/fullArticle/${article.id}`}
+          className={`${styles.btn} ${styles.btnPrimary}`}
+        >
+          Ver artículo completo
+        </Link>
       </div>
     </div>
   );
 };
 
 export default Card;
+
