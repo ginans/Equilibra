@@ -9,17 +9,16 @@ import Layout from "../src/app/user/layout/LayoutG.jsx";
 import NotFound from "./app/notFound/notFound";
 import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
 import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
-<<<<<<< HEAD
 import EducationPage from "./app/user/EducationPage/EducationPage.jsx";
-import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
-import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
-=======
 import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx";
 import RegisterClient from "./app/authentication/register/registerClient/registerClient.jsx";
 import RegisterProfessional from "./app/authentication/register/registerProfessional/registerClient.jsx";
 import Login from "./app/authentication/login/login.jsx";
-
->>>>>>> fdc9fc296394eaab375da47d27ccde393780ff8d
+import Foro from './app/user/Foro/components/Foro';
+import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
+import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
+import PagPrincipal from "./app/landingPage/PaginaPrincipal.jsx"
+import GaleriaEntrenamiento from "./app/galeriaEntrenamiento/GaleriaEntrenamiento.jsx"
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -39,9 +38,11 @@ root.render(
             <Route path="/" element={<HomewithoutLogin />} />
             <Route path="/landingPageUser" element={<LandingPageUser />} />
             <Route path="/educationalPage" element={<EducationPage />} />
+            <Route path="/Foro/" element={<Foro />} /> 
             <Route path="/createArticle" element={<CreateArticle />} />
             <Route path="/fullArticle/:id" element={<FullArticle/>} />
-            
+            <Route path='/Pagina-Principal' element={<PagPrincipal/>}/> 
+            <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
@@ -52,7 +53,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -25,8 +25,8 @@ const EducationPage = () => {
       </div>
       <h2>Info Activa</h2>
       <div className={styles.cards}>
-        {articles.map((article) => (
-          <Card key={article.id} article={article} />
+        {articles.slice().reverse().map((article) => (
+          (<Card key={article.id} article={article} />)
         ))}
       </div>
     </div>

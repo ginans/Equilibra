@@ -1,0 +1,136 @@
+.carousel {
+  width: 100%; /* Utiliza el ancho completo de la ventana del navegador */
+  height: 600px; /* Altura del carrusel */
+  overflow: hidden; /* Oculta el contenido que se desborda del contenedor */
+  position: relative; /* Posicionamiento relativo para posicionar elementos hijos de manera absoluta si es necesario */
+  margin: 0; /* Elimina márgenes exteriores para evitar desbordamientos */
+  padding: 0; /* Elimina el relleno interior para evitar que afecte el tamaño */
+  margin-top: 60px; /* Agrega un margen superior de 60 píxeles para separar el carrusel del contenido superior */
+}
+
+.carousel-slide {
+  position: relative; /* Posicionamiento relativo para que los elementos dentro puedan ser posicionados absolutamente */
+  height: 100%; /* La altura se ajusta al contenedor padre (el carrusel) */
+}
+
+.carousel img {
+  width: 100%; /* La imagen ocupa el ancho completo del contenedor */
+  height: 100%; /* La imagen ocupa la altura completa del contenedor */
+  object-fit: cover; /* Ajusta la imagen para que cubra el área del contenedor sin distorsionarse */
+  transition: transform 0.5s ease; /* Transición suave para cambios en la transformación */
+}
+
+.carousel img.active {
+  transform: translateX(0); /* La imagen activa se muestra en su posición original */
+}
+
+.carousel img.prev {
+  transform: translateX(-100%); /* La imagen anterior se desplaza completamente hacia la izquierda */
+}
+
+.carousel img.next {
+  transform: translateX(100%); /* La imagen siguiente se desplaza completamente hacia la derecha */
+}
+
+.carousel-text {
+  position: absolute; /* Posicionamiento absoluto para colocar el texto sobre el carrusel */
+  top: 80px; /* Posiciona el texto a 80 píxeles desde la parte superior del contenedor */
+  right: 200px; /* Posiciona el texto a 200 píxeles desde el borde derecho del contenedor */
+  color: white; /* Color del texto blanco para contraste */
+  font-size: 30px; /* Tamaño de fuente de 30 píxeles */
+  background-color: transparent; /* Fondo transparente para que el texto se vea sobre la imagen */
+  padding: 15px; /* Espacio interior de 15 píxeles alrededor del texto */
+  border-radius: 5px; /* Bordes redondeados de 5 píxeles */
+  text-align: center; /* Centra el texto horizontalmente */
+  width: 400px; /* Ancho fijo de 400 píxeles para el contenedor del texto */
+}
+
+.carousel-logo {
+  display: block; /* Muestra el logo como un bloque para centrarlo */
+  margin: 0 auto 10px; /* Centra el logo horizontalmente y agrega un margen inferior de 10 píxeles */
+  width: 130px; /* Ancho fijo del logo de 130 píxeles */
+}
+
+.carousel-button {
+  display: inline-block; /* Muestra el botón en línea con otros elementos pero como un bloque para permitir padding y dimensiones */
+  margin-top: 10px; /* Espacio de 10 píxeles encima del botón */
+  padding: 15px 20px; /* Espacio interior del botón de 15 píxeles arriba y abajo, 20 píxeles a los lados */
+  font-size: 16px; /* Tamaño de fuente del texto del botón de 16 píxeles */
+  color: white; /* Color del texto del botón blanco */
+  background-color: #007bff; /* Color de fondo del botón en azul (puede ser modificado) */
+  text-decoration: none; /* Elimina el subrayado si el botón es un enlace */
+  border-radius: 5px; /* Bordes redondeados de 5 píxeles */
+}
+
+.carousel-button:hover {
+  background-color: #0056b3; /* Color de fondo del botón al pasar el ratón (azul más oscuro) */
+}
+
+/* Otro carrusel */
+.carousel2-container {
+  display: flex; /* Muestra los elementos en una fila flexible */
+  align-items: center; /* Alinea los elementos en el centro verticalmente */
+  position: relative; /* Posicionamiento relativo para los elementos internos */
+  overflow: hidden; /* Oculta el contenido que se desborda del contenedor */
+  width: 100%; /* Ancho completo del contenedor */
+  max-width: 90%; /* Ancho máximo del 90% del contenedor padre */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  margin-bottom: 20px; /* Agrega un margen inferior de 20 píxeles */
+  border-radius: 15px;
+}
+
+.carousel2-images {
+  display: flex; /* Muestra las imágenes en una fila flexible */
+  transition: transform 10s ease-in-out; /* Transición suave para cambios en la transformación durante 10 segundos */
+  width: 100%; /* Ancho completo del contenedor */
+}
+
+.carousel2-image {
+  flex: 1; /* Cada imagen ocupa el mismo espacio en el contenedor flexible */
+  min-width: 33.33%; /* Ancho mínimo del 25% del contenedor para cada imagen */
+  height: 300px; /* Altura fija de 300 píxeles para cada imagen */
+  background-size: cover; /* Ajusta la imagen para cubrir el área del contenedor sin distorsionarse */
+  background-position: center; /* Centra la imagen en el contenedor */
+}
+
+.carousel2-button {
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con 50% de transparencia */
+  color: white; /* Color del texto blanco */
+  border: none; /* Sin borde alrededor del botón */
+  padding: 10px; /* Espacio interior del botón de 10 píxeles */
+  cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+  font-size: 24px; /* Tamaño de fuente del texto del botón de 24 píxeles */
+  position: absolute; /* Posicionamiento absoluto para colocar los botones en los extremos del contenedor */
+  top: 50%; /* Posiciona el botón en el centro vertical del contenedor */
+  transform: translateY(-50%); /* Ajusta la posición vertical del botón para que esté centrado */
+}
+
+.carousel2-button.prev {
+  left: 0; /* Posiciona el botón anterior en el borde izquierdo del contenedor */
+}
+
+.carousel2-button.next {
+  right: 0; /* Posiciona el botón siguiente en el borde derecho del contenedor */
+}
+
+/* Botón para ir a la galería de entrenamiento */
+.gallery-button {
+  display: block; /* Muestra el botón como un bloque para centrarlo y manejar el espacio interno */
+  width: 400px; /* Ancho fijo del botón de 400 píxeles */
+  margin: 0 auto; /* Centra el botón horizontalmente */
+  padding: 20px; /* Espacio interior del botón de 20 píxeles */
+  text-align: center; /* Centra el texto horizontalmente dentro del botón */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con 50% de transparencia */
+  color: white; /* Color del texto blanco */
+  border-radius: 5px; /* Bordes redondeados de 5 píxeles */
+  font-size: 16px; /* Tamaño de fuente del texto del botón de 16 píxeles */
+  cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+  text-decoration: none; /* Elimina el subrayado si el botón es un enlace */
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+  margin-bottom: 20px; /* Agrega un margen inferior de 20 píxeles */
+}
+
+/* Estilo para el botón cuando se pasa el ratón por encima */
+.gallery-button:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con 80% de transparencia al pasar el ratón */
+}
