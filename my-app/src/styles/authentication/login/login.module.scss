@@ -1,0 +1,163 @@
+@import "../../global.module.scss";
+
+.containRegisters{
+    display: flex;
+    flex-direction: column;  
+    justify-content: start;
+    align-items: start;  
+    width: 300px;
+    h1{
+        text-align: center;
+        margin: 1rem auto;
+    }
+    .backButton{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 1rem; 
+        width: 100%;
+        cursor: pointer;
+        img{
+            height: 2.5rem;
+        }
+    }
+    .stepsLine{ 
+        display: flex;
+        background-color: #ffffff; 
+        width: 100%;
+        height: 10px;
+        border-radius: 3px;  
+        .stepsLine2{
+            transition: 0.3s;
+            background-color: #00C4CA; 
+            border-radius: 3px;  
+        }
+    }
+    .containLinks{
+        margin: 0 auto;
+        margin-top: 1.5rem;
+        .enlaces{
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
+.buttonEnter{
+    background-color: #00C4CA; 
+    padding: .7rem;
+    margin-top: 1rem;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 100%;
+}
+.containLinks{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 1rem;
+    align-items: center;
+    *{
+        text-decoration: none;
+        color: white;
+    }
+}
+.containLogin{
+    position: relative;
+    display: flex;
+    flex-direction: column;    
+    width: 100%;
+    
+    .buttonEnter:hover{
+        background-color: #03dce4; 
+    }
+}
+
+.containInput{ 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1rem;    
+    width: 100%;
+    select{
+        padding: .5rem 1rem;
+        margin-top: .5rem; 
+    }
+    label{
+        margin-top: 2rem;
+        margin-left: 1rem;
+    }
+    .emailInfo{
+        display: flex; 
+        align-items: center;
+    }
+    div{
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem; 
+        
+        .infoIcon{
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            margin-top: 2rem;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+        .iconInput{
+            position: absolute;
+            height: 23px; 
+            left: 5px;  
+        }
+        .input{  
+            padding: .5rem 3rem;
+            border: none;
+            border-radius: 5px;
+            width: 100%;  
+            margin: 0; 
+        }
+        .infoEmailHover{
+            position: absolute;
+            left: 320px;
+            background-color: white;
+            width: 250px;
+            border-radius: 5px;
+            padding: 1rem;
+            color: rgb(255, 88, 88);
+        }
+        .iconCircle{
+            position: absolute;
+            width: 20px;
+            right: 5px;
+            bottom: 5px;
+        }
+    }
+    
+    .checkInput{
+        margin-top: 2rem; 
+        display: flex;
+        justify-content: start;
+        gap: 0;
+        input{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+    }
+    .error{
+        position: absolute;
+        font-size: 16px;
+        color: rgb(255, 88, 88);
+        bottom: -25px;
+        left: 10px; 
+    }
+}
+
+.iconInput{
+    width: 30px;
+}

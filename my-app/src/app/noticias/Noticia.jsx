@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../../styles/noticias/Noticia.module.scss'; 
 
 const Noticia = ({ titulo, url, descripcion, imagen }) => {
+  console.log({ titulo, url, descripcion, imagen });
   return (
     <div className={styles.noticia} onClick={() => window.open(url, '_blank')}>
       <img src={imagen} alt={titulo} className={styles.noticiaImagen} />

@@ -8,7 +8,7 @@ const LandingPageUser = () => {
   
   return (
     <div className={styles.landingPageUser}>
-      <h1>Landing Page User</h1>
+      <h1>Bienvenid@!</h1>
       <Feed />
     </div>
   );
