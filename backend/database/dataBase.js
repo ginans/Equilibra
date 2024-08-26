@@ -1,11 +1,14 @@
+require("dotenv").config();
+
 const { Sequelize } = require("sequelize");
 // los 3 argumentos que espera Sequelize(nombebasedatos, username por defecto root, contrasena, por defecto nada)
 const db = new Sequelize(
-  "bvaxsl6t1xlfuwit2he0",
-  "uxb6vijxqolrg7ao",
-  "dbvyqDj3wv0sh3VMU4Ci",
+  process.env.NAME_DB,
+  process.env.USER_DB,
+  process.env.PASSWORD_DB,
+
   {
-    host: "bvaxsl6t1xlfuwit2he0-mysql.services.clever-cloud.com",
+    host: process.env.HOST_DB,
     dialect: "mysql",
     port: "3306",
   }
@@ -13,10 +16,10 @@ const db = new Sequelize(
 
 db.authenticate()
   .then(() => {
-    console.log('Conectado a la db MySQL con Sequelize.');
+    console.log("Conectado a la db MySQL con Sequelize.");
   })
-  .catch(err => {
-    console.error('Error conectándose con la db:', err);
+  .catch((err) => {
+    console.error("Error conectándose con la db:", err);
   });
 
 module.exports = {
