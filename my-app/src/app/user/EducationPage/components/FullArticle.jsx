@@ -9,7 +9,7 @@ const FullArticle = () => {
 
   useEffect(() => {
     console.log("Fetching article with id:", id);
-    fetch(`http://localhost:5000/api/articles/${id}`)
+    fetch(`http://localhost:8000/articles/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setArticle(data);

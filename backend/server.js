@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express");//aqui
 const mysql = require("mysql");
 const cors = require("cors");
 
@@ -9,15 +9,15 @@ const port = 5000;
 app.use(cors()); //permite interactuar con el front
 app.use(express.json()); //paso a json para que mi servidor entienda los mensajes
 
-const db = mysql.createConnection({
+const db = mysql.createConnection({//database
   //me conecto a la base de datos
-  host: "localhost", //el puerto de mi db
-  user: "Gina", // nombre de usuario de mi db
-  password: "equilibraP", // Contraseña de la misma
-  database: "educationpage", //nombre de la db
+  host: "bvaxsl6t1xlfuwit2he0-mysql.services.clever-cloud.com", //el puerto de mi db
+  user: "uxb6vijxqolrg7ao", // nombre de usuario de mi db
+  password: "dbvyqDj3wv0sh3VMU4Ci", // Contraseña de la misma
+  database: "bvaxsl6t1xlfuwit2he0", //nombre de la db
 });
 
-//console logs para manejar posibles errores al conectar
+//console logs para manejar posibles errores al conectar 
 db.connect((err) => {
   if (err) {
     console.error("Error conectandose con la db:", err);

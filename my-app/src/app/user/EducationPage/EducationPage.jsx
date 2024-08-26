@@ -5,8 +5,9 @@ import Card from "./components/Card";
 const EducationPage = () => {
   const [articles, setArticles] = useState([]);
 
-  useEffect(() => {//llamo a la api
-    fetch("http://localhost:5000/api/articles")
+  useEffect(() => {
+    //llamo a la api
+    fetch("http://localhost:8000/articles")
       .then((response) => response.json())
       .then((data) => {
         setArticles(data); // Guardo los artículos obtenidos
@@ -25,14 +26,15 @@ const EducationPage = () => {
       </div>
       <h2>Info Activa</h2>
       <div className={styles.cards}>
-        {articles.slice().reverse().map((article) => (
-          (<Card key={article.id} article={article} />)
-        ))}
+        {articles
+          .slice()
+          .reverse()
+          .map((article) => (
+            <Card key={article.id} article={article} />
+          ))}
       </div>
     </div>
   );
 };
 
 export default EducationPage;
-
-//crear funicion 

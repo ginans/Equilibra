@@ -13,8 +13,11 @@ const { checkNameUserProfessional } = require("../controller/searchData/professi
 const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
 const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
 
-const router = express.Router()
+const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
 
+
+const router = express.Router()
+ 
  
 router.get('/checkEmail/:email', checkEmail)
 router.get('/checkName/:name', checkName)
@@ -30,6 +33,10 @@ router.post('/createUser', createUsuario)
 router.post('/loginUserClient', loginUserClient)
 router.post('/loginUserProfessional', loginUserProfessional)
 router.post('/createUserProfessional', createUserProfessional)
+
+router.get("/articles", getAllArticles);
+router.get("/articles/:id", getArticleById);
+router.post("/articles", createArticle);
 
 module.exports = {
     router:router

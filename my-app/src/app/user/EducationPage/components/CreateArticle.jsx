@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import styles from "../../../../styles/EducationPage/CreateArticle.module.scss";
 import { useNavigate } from "react-router-dom";
 
+
 const CreateArticle = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -19,7 +20,7 @@ const CreateArticle = () => {
       return;
     }
 
-    fetch("http://localhost:5000/api/articles", {//llamo a mi api
+    fetch("http://localhost:8000/articles", {//llamo a mi api
       method: "POST",
       headers: {
         "Content-Type": "application/json",
