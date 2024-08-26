@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaThumbsUp, FaComment, FaEllipsisV } from 'react-icons/fa';
-import styles from '../../../../styles/Foro/foro.module.scss';
+import styles from '../../../../styles/Foro/preguntaItem.module.scss';
 import RespuestaItem from './RespuestaItem';
 import FormularioRespuesta from './FormularioRespuesta';
 
@@ -67,3 +67,4 @@ const PreguntaItem = ({
 };
 
 export default PreguntaItem;
+

@@ -13,6 +13,12 @@ const { checkNameUserProfessional } = require("../controller/searchData/professi
 const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
 const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
 
+const createPregunta = require('../controller/foro/createPregunta.js');
+const getPreguntas = require('../controller/getData/getPreguntas.js');
+const createRespuesta = require('../controller/foro/createRespuesta.js');
+const toggleLike = require('../controller/foro/toggleLike.js');
+const authMiddleware = require('../middleware/auth.js');
+
 const router = express.Router()
 
  
@@ -30,6 +36,13 @@ router.post('/createUser', createUsuario)
 router.post('/loginUserClient', loginUserClient)
 router.post('/loginUserProfessional', loginUserProfessional)
 router.post('/createUserProfessional', createUserProfessional)
+
+//foro
+
+router.post('/preguntas', authMiddleware, createPregunta);
+router.post('/respuestas', authMiddleware, createRespuesta);
+router.get('/preguntas', getPreguntas);
+router.post('/likes', toggleLike);
 
 module.exports = {
     router:router

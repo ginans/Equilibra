@@ -14,7 +14,7 @@ import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx"
 import RegisterClient from "./app/authentication/register/registerClient/registerClient.jsx";
 import RegisterProfessional from "./app/authentication/register/registerProfessional/registerClient.jsx";
 import Login from "./app/authentication/login/login.jsx";
-import Foro from './app/user/Foro/components/Foro';
+import Foro from './app/user/Foro/Foro.jsx';
 import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
 import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx"; 
 import PagPrincipal from './app/landingPage/PaginaPrincipal';

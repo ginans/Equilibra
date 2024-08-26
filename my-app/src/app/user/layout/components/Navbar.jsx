@@ -40,7 +40,7 @@ const Navbar = () => {
 
       <ul className={styles.navbarNav}>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
+          <a href="/Foro/" className={styles.navLink}>
             Foro
           </a>
         </li>

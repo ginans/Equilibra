@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../../../styles/Foro/foro.module.scss';
+import styles from '../../../../styles/Foro/formularioRespuesta.module.scss';
 
 const FormularioRespuesta = ({ agregarRespuesta }) => {
   const [contenido, setContenido] = useState('');
@@ -30,3 +30,4 @@ const FormularioRespuesta = ({ agregarRespuesta }) => {
 };
 
 export default FormularioRespuesta;
+
