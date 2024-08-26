@@ -1,7 +1,8 @@
-const { db } = require("../../database/dataBase");
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
+const { db } = require('../../database/dataBase');
 
 const modelUserClient = db.define('userClients', {
+
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -49,6 +50,4 @@ const modelUserClient = db.define('userClients', {
   },
 });
 
-module.exports = {  
-  modelUserClient 
-}
+module.exports = {modelUserClient} 
