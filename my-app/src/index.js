@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Layout from "../src/app/user/layout/LayoutG.jsx";
 import NotFound from "./app/notFound/notFound";
-import HomewithoutLogin from "./app/homewithoutLogin/homewithoutLogin";
 import LandingPageUser from "./app/user/HomeUser/LandingPageUser.jsx";
 import EducationPage from "./app/user/EducationPage/EducationPage.jsx";
 import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx";
@@ -16,9 +15,10 @@ import RegisterProfessional from "./app/authentication/register/registerProfessi
 import Login from "./app/authentication/login/login.jsx";
 import Foro from './app/user/Foro/Foro.jsx';
 import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
-import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx"; 
-import PagPrincipal from './app/landingPage/PaginaPrincipal';
-import GaleriaEntrenamiento from './app/galeriaEntrenamiento/GaleriaEntrenamiento';
+import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
+import PagPrincipal from "./app/landingPage/PaginaPrincipal.jsx"
+import GaleriaEntrenamiento from "./app/galeriaEntrenamiento/GaleriaEntrenamiento.jsx"
+
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -34,14 +34,14 @@ root.render(
           {/* <Route path='/login' element={<Login/> }/>
           <Route path='/register' element={<Register/>}/> */}
           <Route element={<Layout />}>
-            <Route path="/" element={<HomewithoutLogin />} />
+            <Route path='/' element={<PagPrincipal/>}/> 
             <Route path="/landingPageUser" element={<LandingPageUser />} />
             <Route path="/educationalPage" element={<EducationPage />} />
             <Route path="/Foro/" element={<Foro />} /> 
             <Route path="/createArticle" element={<CreateArticle />} />
             <Route path="/fullArticle/:id" element={<FullArticle/>} />
-            <Route path='/Pagina-Principal' element={<PagPrincipal/>}/> 
             <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
+            <Route path='/noticias' element={<jksakj/>}/> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}

@@ -1,5 +1,3 @@
-/* styles.module.css */
-
 .educationPage {
   display: flex;
   flex-direction: column;
@@ -26,161 +24,26 @@
   font-size: 1rem;
   font-weight: bold;
   color: white;
-  background-color: #04718c;
+  background-color: #007089;
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
 }
 
 .postButton:hover {
-  background-color: #0b96b9;
+  background-color: #00829f;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  width: 100%;
-  margin: 2rem auto;
-
-
-}
-
-.card {
-  width: 250px;
-  background-color: #005163;
-  margin: 10px;
-  border: 1px solid #03475f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s;
-  border-radius: 10px;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.cardImg {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.cardBody {
-  padding: 1rem;
-}
-
-.cardTitle {
-  margin-bottom: 0.75rem;
-  font-size: 1.25rem;
-  color: #ffffff;
-}
-
-.cardText {
-  font-size: 1rem;
-  color: #ffffff;
-  margin-bottom: 1rem;
-}
-
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  color: #ffffff;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.btnPrimary {
-  color: #fff;
-  background-color: #04718c;
-  border: 1px solid #03475f;
-}
-
-.btnPrimary:hover {
-  color: #fff;
-  background-color: #0a83a1;
-  border: 1px solid #03475f;
-}
-
-/* Formulario para crear artículo */
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #03475f;
-  border: 1px solid #03475f;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
-  textarea{
-    height: 230px;
-    width: 100%;
-  }
-}
-
-.input {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.input:focus {
-  border-color: #0070f3;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
-}
-
-.sendButton {
-  padding: 0.75rem;
-  background-color: #0a83a1;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sendButton:hover {
-  background-color: #0b96b9;
-}
-
-/* Artículo completo */
-.fullArticle {
-  width: 80%;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #005163;
-  border: 1px solid #005163;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.titles {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #ffffff;
-  text-align: center;
-}
-
-.imagesBox {
-  display: flex;
   justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 2rem auto;
 }
-

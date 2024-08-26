@@ -20,8 +20,9 @@ const toggleLike = require('../controller/foro/toggleLike.js');
 const authMiddleware = require('../middleware/auth.js');
 
 const router = express.Router()
+const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
 
- 
+
 router.get('/checkEmail/:email', checkEmail)
 router.get('/checkName/:name', checkName)
 router.get('/getUserClientById/:token', getUserClientById)
@@ -43,6 +44,9 @@ router.post('/preguntas', authMiddleware, createPregunta);
 router.post('/respuestas', authMiddleware, createRespuesta);
 router.get('/preguntas', getPreguntas);
 router.post('/likes', toggleLike);
+router.get("/articles", getAllArticles);
+router.get("/articles/:id", getArticleById);
+router.post("/articles", createArticle);
 
 module.exports = {
     router:router

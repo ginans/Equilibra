@@ -1,13 +1,17 @@
 import React from "react";
-import styles from "../../../../styles/EducationPage/EducationPage.module.scss";
+import styles from "../../../../styles/EducationPage/Card.module.scss"
 import { Link } from "react-router-dom";
 
 const Card = ({ article }) => {
   const truncateText = (text, maxLength) => {
-    // Función para truncar el texto a un máximo de caracteres
     if (text.length <= maxLength) return text;
-    return text.slice(0, maxLength) + "..."; // Agrega '...' si el texto es truncado
+    return text.slice(0, maxLength) + "...";
   };
+
+  const stripHtmlTags = (text) => {
+    return text.replace(/<\/?[^>]+(>|$)/g, ""); // para eliminar las etiquetas HTML
+  };
+
   const maxChar = 150;
 
   return (
@@ -20,18 +24,19 @@ const Card = ({ article }) => {
       <div className={styles.cardBody}>
         <h5 className={styles.cardTitle}>{article.title}</h5>
         <p className={styles.cardText}>
-          {truncateText(article.content, maxChar)}
+          {truncateText(stripHtmlTags(article.content), maxChar)}
         </p>
-        <Link
-          to={`/fullArticle/${article.id}`}
-          className={`${styles.btn} ${styles.btnPrimary}`}
-        >
-          Ver artículo completo
-        </Link>
+        <div className={styles.btnContainer}>
+          <Link
+            to={`/fullArticle/${article.id}`}
+            className={`${styles.btn} ${styles.btnPrimary}`}
+          >
+            Ver artículo completo
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Card;
-
