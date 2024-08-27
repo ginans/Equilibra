@@ -33,6 +33,7 @@ export const createUser = async ( existName, existEmail, isHeightValid, isWeight
         const token = await result.json()
         if(token){
             sessionStorage.clear();
+            localStorage.clear();
             localStorage.setItem("token", token.token) 
         } 
         return true

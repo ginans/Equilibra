@@ -28,7 +28,7 @@ const RegisterClient = () => {
         const isUserCreationComplete = await createUser( existName, existEmail, isHeightValid, isWeightValid, isYearValid,hasAcceptedTerms)
         if (isUserCreationComplete){   
            
-           return navigate("/home")
+           return navigate("/")
         }
     } 
     const backStep = () => {
