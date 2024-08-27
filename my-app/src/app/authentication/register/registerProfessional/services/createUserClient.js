@@ -32,8 +32,9 @@ export const createUser = async ( existName, existEmail, isYearValid, hasAccepte
         console.log(result)
         const token = await result.json()
         if(token){
-            // sessionStorage.clear();
-            localStorage.setItem("token", token.token) 
+            sessionStorage.clear();
+            localStorage.clear()
+            localStorage.setItem("tokenProfessional", token.token) 
         } 
         return true
     }

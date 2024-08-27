@@ -27,7 +27,7 @@ const RegisterProfessional = () => {
         event.preventDefault()
         const isUserCreationComplete = await createUser( existName, existEmail, isYearValid,hasAcceptedTerms)
         if (isUserCreationComplete){    
-           return navigate("/home")
+           return navigate("/")
         }
     } 
     const backStep = () => {

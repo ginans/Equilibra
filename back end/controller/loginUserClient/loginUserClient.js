@@ -8,6 +8,9 @@ const loginUserClient = async ( req, res ) => {
     const user = await modelUserClient.findOne({ where: { email: email } });
     if (!user) {
         return res.status(409).json({ message: "No existe este email" });
+        {status: 409,
+            json
+        } 
     } 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {

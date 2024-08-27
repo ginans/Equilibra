@@ -1,7 +1,8 @@
 const { modelUserClient } = require("../../models/userClient/userClient.js")
+const { modelUserProfessional } = require("../../models/userProfessional/userProfessional") ;
 // const { Sequelize } = require("sequelize");   
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')  
+const jwt = require('jsonwebtoken')
 
 const createUsuario = async (req, res) => {
     try { 
@@ -15,6 +16,10 @@ const createUsuario = async (req, res) => {
       }  
       const existingEmail = await modelUserClient.findOne({ where: { email: email } });
       if (existingEmail) {
+        return res.status(409).json({ message: "Ya existe un usuario con ese email" });
+      }
+      const existingEmailProfessional = await modelUserProfessional.findOne({ where: { email: email } });
+      if (existingEmailProfessional) {
         return res.status(409).json({ message: "Ya existe un usuario con ese email" });
       }
       const encrypt =  await bcrypt.hash(password, 12)  

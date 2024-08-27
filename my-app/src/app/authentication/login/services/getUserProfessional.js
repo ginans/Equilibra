@@ -11,7 +11,7 @@ const getUserProfessional = async (email, password)=> {
         const token = await result.json()
         if(token){ 
             sessionStorage.clear();
-            localStorage.setItem("token", token.token) 
+            localStorage.setItem("tokenProfessional", token.token) 
         } 
         return true
     }

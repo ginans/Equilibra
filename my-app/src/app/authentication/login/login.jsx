@@ -13,22 +13,15 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState(""); 
-    const navigate = useNavigate()
-    const [isChecked, setIsChecked] = useState(false); 
+    const navigate = useNavigate() 
     const getUser = async(e)=>{
         e.preventDefault() 
-        if(!isChecked){
-            const dataUser = await getUserClient(email, password)
-            if(dataUser){
-                return navigate("/")
-            }
-            return console.error("error")
+        const dataUserProfessional = await getUserProfession(email, password) 
+        const dataUser = await getUserClient(email, password)
+        if(!dataUser && !dataUserProfessional){
+            return console.error("Email o contraseña no coinciden")
         }
-        const dataUser = await getUserProfession(email, password)
-            if(dataUser){
-                return navigate("/")
-            }
-            return console.error("error")
+        return navigate("/")
        
     }
     // Guarda los datos en sessionStorage
@@ -97,19 +90,7 @@ const Login = () => {
                     { password && <img className={styles.iconCircle}  src={checkIcon}/> }
                 </div>
             </div> 
-            <div style={{margin:"2rem 0"}}>
-            <input
-                id="professional-checkbox"
-                style={{ margin: "0 1rem" }}
-                type="checkbox"
-                checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
-                />
-                <label htmlFor="professional-checkbox">
-                Soy un profesional
-                </label>
-
-              
+            <div style={{margin:"2rem 0"}}> 
                 </div>
                 <button className={styles.buttonEnter}  type="submit">Iniciar sesión</button>
             </form>

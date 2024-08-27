@@ -1,5 +1,6 @@
 const { modelUserProfessional } = require("../../models/userProfessional/userProfessional") ;
 const bcrypt = require('bcryptjs')
+const { modelUserClient } = require("../../models/userClient/userClient.js")
 const jwt = require("jsonwebtoken")
 
 const createUserProfessional = async (req, res) => {
@@ -16,6 +17,10 @@ const createUserProfessional = async (req, res) => {
       if (existingEmail) {
         return res.status(409).json({ message: "Ya existe un usuario con ese email" });
       } 
+      const existingEmailClient = await modelUserClient.findOne({ where: { email: email } });
+      if (existingEmailClient) {
+        return res.status(409).json({ message: "Ya existe un usuario con ese email" });
+      }
       const encrypt =  await bcrypt.hash(password, 12)
       console.log(encrypt) 
      if(encrypt){   

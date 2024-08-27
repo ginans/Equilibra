@@ -1,5 +1,5 @@
 const { modelUserClient } = require("../../../models/userClient/userClient.js")
-
+const { modelUserProfessional } = require("../../../models/userProfessional/userProfessional.js")
 const checkEmail = async (req, res) => {
     const { email } = req.params; // Usa req.params para obtener el parámetro de la URL 
 
@@ -9,9 +9,10 @@ const checkEmail = async (req, res) => {
 
     try {
         // Busca el nombre de usuario en la base de datos usando el nombre correcto de la columna
+        const userProfessional = await modelUserProfessional.findOne({ where: { email: email } });
         const user = await modelUserClient.findOne({ where: { email: email } });
         // Envía una respuesta indicando si el usuario existe o no
-        res.json({ exists: !!user });
+        res.json({ exists: !!user || !!userProfessional });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
