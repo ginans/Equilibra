@@ -15,7 +15,7 @@
   }
   
   .text-container p {
-    font-size: 20px; /* Tamaño de fuente para el párrafo */
+    font-size: 15px; /* Tamaño de fuente para el párrafo */
     line-height: 1.5; /* Espaciado de línea del párrafo */
     text-align: justify;
   }
@@ -53,7 +53,7 @@
   }
   
   .text-container2 p {
-    font-size: 20px;
+    font-size: 15px;
     line-height: 1.5;
     text-align: justify;
   }
@@ -70,12 +70,12 @@
 }
 
 .text-container3 h2 {
-  font-size: 50px; /* Tamaño de fuente para el título */
+  font-size: 30px; /* Tamaño de fuente para el título */
   margin-bottom: 25px; /* Espacio inferior entre el título y el párrafo */
 }
 
 .text-container3 p {
-  font-size: 40px; /* Tamaño de fuente para el párrafo */
+  font-size: 20px; /* Tamaño de fuente para el párrafo */
   line-height: 1.5; /* Espaciado de línea del párrafo */
   text-align: center;
 }

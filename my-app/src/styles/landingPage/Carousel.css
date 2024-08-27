@@ -1,11 +1,11 @@
 .carousel {
   width: 100%; /* Utiliza el ancho completo de la ventana del navegador */
-  height: 600px; /* Altura del carrusel */
+  height: 400px; /* Altura del carrusel */
   overflow: hidden; /* Oculta el contenido que se desborda del contenedor */
   position: relative; /* Posicionamiento relativo para posicionar elementos hijos de manera absoluta si es necesario */
   margin: 0; /* Elimina márgenes exteriores para evitar desbordamientos */
   padding: 0; /* Elimina el relleno interior para evitar que afecte el tamaño */
-  margin-top: 60px; /* Agrega un margen superior de 60 píxeles para separar el carrusel del contenido superior */
+  margin-top: 10px; /* Agrega un margen superior de 60 píxeles para separar el carrusel del contenido superior */
 }
 
 .carousel-slide {
@@ -34,10 +34,10 @@
 
 .carousel-text {
   position: absolute; /* Posicionamiento absoluto para colocar el texto sobre el carrusel */
-  top: 80px; /* Posiciona el texto a 80 píxeles desde la parte superior del contenedor */
+  top: 10px; /* Posiciona el texto a 80 píxeles desde la parte superior del contenedor */
   right: 200px; /* Posiciona el texto a 200 píxeles desde el borde derecho del contenedor */
   color: white; /* Color del texto blanco para contraste */
-  font-size: 30px; /* Tamaño de fuente de 30 píxeles */
+  font-size: 25px; /* Tamaño de fuente de 30 píxeles */
   background-color: transparent; /* Fondo transparente para que el texto se vea sobre la imagen */
   padding: 15px; /* Espacio interior de 15 píxeles alrededor del texto */
   border-radius: 5px; /* Bordes redondeados de 5 píxeles */
@@ -88,7 +88,7 @@
 .carousel2-image {
   flex: 1; /* Cada imagen ocupa el mismo espacio en el contenedor flexible */
   min-width: 33.33%; /* Ancho mínimo del 25% del contenedor para cada imagen */
-  height: 300px; /* Altura fija de 300 píxeles para cada imagen */
+  height: 220px; /* Altura fija de 300 píxeles para cada imagen */
   background-size: cover; /* Ajusta la imagen para cubrir el área del contenedor sin distorsionarse */
   background-position: center; /* Centra la imagen en el contenedor */
 }
@@ -99,7 +99,7 @@
   border: none; /* Sin borde alrededor del botón */
   padding: 10px; /* Espacio interior del botón de 10 píxeles */
   cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
-  font-size: 24px; /* Tamaño de fuente del texto del botón de 24 píxeles */
+  font-size: 20px; /* Tamaño de fuente del texto del botón de 24 píxeles */
   position: absolute; /* Posicionamiento absoluto para colocar los botones en los extremos del contenedor */
   top: 50%; /* Posiciona el botón en el centro vertical del contenedor */
   transform: translateY(-50%); /* Ajusta la posición vertical del botón para que esté centrado */
@@ -116,9 +116,9 @@
 /* Botón para ir a la galería de entrenamiento */
 .gallery-button {
   display: block; /* Muestra el botón como un bloque para centrarlo y manejar el espacio interno */
-  width: 400px; /* Ancho fijo del botón de 400 píxeles */
+  width: 300px; /* Ancho fijo del botó */
   margin: 0 auto; /* Centra el botón horizontalmente */
-  padding: 20px; /* Espacio interior del botón de 20 píxeles */
+  padding: 10px; /* Espacio interior del botón de 20 píxeles */
   text-align: center; /* Centra el texto horizontalmente dentro del botón */
   background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con 50% de transparencia */
   color: white; /* Color del texto blanco */

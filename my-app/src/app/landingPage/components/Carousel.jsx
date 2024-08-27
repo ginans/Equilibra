@@ -36,7 +36,7 @@ const Carousel = () => {
       logo: true,
       button: {
         text: 'Ir a Foro',
-        link: '/pagina-noticias'
+        link: '/Foro'
       }
     },
     { 

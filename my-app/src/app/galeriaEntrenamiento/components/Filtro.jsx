@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import '../../../styles/galeriaEntrenamiento/Filtro.css'; 
+import '../../../styles/galeriaEntrenamiento/Filtro.scss'; 
 
 const FiltroBar = ({ selectedCategory, onFilterChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -7,7 +7,7 @@ const FiltroBar = ({ selectedCategory, onFilterChange }) => {
   const buttonRef = useRef(null); // Ref para el botón hamburguesa
 
   const categories = ['Todo', 'Cardio', 'Fuerza', 'Tren inferior', 'Tren superior'];
-  const additionalCategories = ['Adulto Mayor', 'Flexibilidad', 'Categoría 3']; // Añade aquí las categorías adicionales
+  const additionalCategories = ['Adulto Mayor', 'Flexibilidad', 'Embarazadas']; // Añade aquí las categorías adicionales
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 

@@ -19,6 +19,7 @@ import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
 import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx"; 
 import PagPrincipal from './app/landingPage/PaginaPrincipal';
 import GaleriaEntrenamiento from './app/galeriaEntrenamiento/GaleriaEntrenamiento';
+import AdminVideos from './app/crearVideos/AdminVideos.jsx';
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -42,6 +43,7 @@ root.render(
             <Route path="/fullArticle/:id" element={<FullArticle/>} />
             <Route path='/Pagina-Principal' element={<PagPrincipal/>}/> 
             <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
+            <Route path='/AdminVideos' element={<AdminVideos/>}/> 
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}
