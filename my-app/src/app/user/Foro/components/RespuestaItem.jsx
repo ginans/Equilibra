@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaThumbsUp, FaEllipsisV } from 'react-icons/fa';
-import styles from '../../../../styles/Foro/foro.module.scss';
+import styles from '../../../../styles/Foro/respuestaItem.module.scss';
 
 const RespuestaItem = ({ respuesta, toggleMeGusta, meGusta, usuarios }) => {
   const usuario = usuarios.find(usuario => usuario.id === respuesta.usuarioId);
@@ -40,3 +40,4 @@ const RespuestaItem = ({ respuesta, toggleMeGusta, meGusta, usuarios }) => {
 };
 
 export default RespuestaItem;
+

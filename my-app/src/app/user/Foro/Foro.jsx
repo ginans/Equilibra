@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import PreguntaItem from './PreguntaItem';
-import FormularioPregunta from './FormularioPregunta';
-import Usuarios from '../../Foro/components/data/usuarios';
-import styles from '../../../../styles/Foro/foro.module.scss';
+import PreguntaItem from './components/PreguntaItem';
+import FormularioPregunta from './components/FormularioPregunta';
+import Usuarios from './components/data/usuarios';
+import styles from '../../../styles/Foro/foro.module.scss';
 
 const Foro = () => {
   const [preguntas, setPreguntas] = useState([]); 
@@ -99,3 +99,4 @@ const Foro = () => {
 };
 
 export default Foro;
+

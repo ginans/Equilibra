@@ -13,9 +13,16 @@ const { checkNameUserProfessional } = require("../controller/searchData/professi
 const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
 const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
 
-const router = express.Router()
+const createPregunta = require('../controller/foro/createPregunta.js');
+const getPreguntas = require('../controller/getData/getPreguntas.js');
+const createRespuesta = require('../controller/foro/createRespuesta.js');
+const toggleLike = require('../controller/foro/toggleLike.js');
+const authMiddleware = require('../middleware/auth.js');
 
- 
+const router = express.Router()
+const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
+
+
 router.get('/checkEmail/:email', checkEmail)
 router.get('/checkName/:name', checkName)
 router.get('/getUserClientById/:token', getUserClientById)
@@ -30,6 +37,16 @@ router.post('/createUser', createUsuario)
 router.post('/loginUserClient', loginUserClient)
 router.post('/loginUserProfessional', loginUserProfessional)
 router.post('/createUserProfessional', createUserProfessional)
+
+//foro
+
+router.post('/preguntas', createPregunta);
+router.post('/respuestas', createRespuesta);
+router.get('/preguntas', getPreguntas);
+router.post('/likes', toggleLike);
+router.get("/articles", getAllArticles);
+router.get("/articles/:id", getArticleById);
+router.post("/articles", createArticle);
 
 module.exports = {
     router:router
