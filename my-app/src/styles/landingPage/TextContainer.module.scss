@@ -1,0 +1,84 @@
+/* TextContainer.module.scss */
+
+/* Estilos para el primer contenedor de texto */
+.textContainer {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con 50% de opacidad */
+  width: 70%; /* Ancho del contenedor del 70% del ancho total */
+  margin: 60px auto; /* Margen superior e inferior de 60px, centrado horizontalmente */
+  padding: 20px; /* Relleno interior de 20px */
+  color: white; /* Color de texto blanco */
+  text-align: center; /* Alineación del texto al centro */
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+
+.textContainer h2 {
+  font-size: 30px; /* Tamaño de fuente para el título */
+  margin-bottom: 25px; /* Espacio inferior entre el título y el párrafo */
+}
+
+.textContainer p {
+  font-size: 15px; /* Tamaño de fuente para el párrafo */
+  line-height: 1.5; /* Espaciado de línea del párrafo */
+  text-align: justify;
+}
+
+/* Estilos para el segundo contenedor de texto */
+.textContainer2 {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 80%;
+  margin: 60px auto;
+  padding: 20px;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.textContainer2Image {
+  flex: 1;
+  margin-right: 20px; /* Espacio entre la imagen y el contenido */
+}
+
+.textContainer2Image img {
+  width: 100%; /* Ajusta el tamaño de la imagen al contenedor */
+  border-radius: 10px; /* Bordes redondeados para la imagen */
+}
+
+.textContainer2Content {
+  flex: 3; /* El contenido ocupa más espacio que la imagen */
+}
+
+.textContainer2 h2 {
+  font-size: 30px;
+  margin-bottom: 15px; /* Menos espacio entre el título y el párrafo */
+}
+
+.textContainer2 p {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Estilos para el tercer contenedor de texto */
+.textContainer3 {
+  width: 70%; /* Ancho del contenedor del 70% del ancho total */
+  margin: 60px auto; /* Margen superior e inferior de 60px, centrado horizontalmente */
+  padding: 20px; /* Relleno interior de 20px */
+  color: white; /* Color de texto blanco */
+  text-align: center; /* Alineación del texto al centro */
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+
+.textContainer3 h2 {
+  font-size: 30px; /* Tamaño de fuente para el título */
+  margin-bottom: 25px; /* Espacio inferior entre el título y el párrafo */
+}
+
+.textContainer3 p {
+  font-size: 20px; /* Tamaño de fuente para el párrafo */
+  line-height: 1.5; /* Espaciado de línea del párrafo */
+  text-align: center;
+}

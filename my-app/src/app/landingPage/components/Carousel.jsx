@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import '../../../styles/landingPage/Carousel.css';
+import styles from '../../../styles/landingPage/Carousel.module.scss'; // Asegúrate de que el archivo SCSS esté en esta ruta
+
 // Importar imágenes desde la carpeta local
 import carousel1 from '../images/carousel1.jpg';
 import carousel2 from '../images/carousel2.jpg';
 import carousel3 from '../images/carousel3.jpg';
-import logo from '../images/logo.png'; // Asegúrate de importar tu logo aquí
 import carousel21 from '../images/carousel21.jpg';
 import carousel22 from '../images/carousel22.jpeg';
 import carousel23 from '../images/carousel23.jpg';
 import carousel24 from '../images/carousel24.jpg';
 import carousel25 from '../images/carousel25.jpg';
 import carousel26 from '../images/carousel26.jpg';
+import logo from '../images/logo.png'; // Asegúrate de importar tu logo aquí
 
 const Carousel = () => {
   const [index, setIndex] = useState(0);
-//Se usa el hook useState para manejar el estado interno del componente. 
-//Aquí, index es una variable de estado que indica la imagen actual que se está mostrando 
-//en el carrusel, y setIndex es la función para actualizar ese estado. El valor inicial es 0, 
-//lo que significa que al principio se mostrará la primera imagen del carrusel.
+  const [showContent, setShowContent] = useState(true); // Inicia mostrando el contenido
 
   // Lista de imágenes y textos
-  const slides = [ //slides es un array de objetos, donde cada objeto representa una diapositiva del carrusel.
+  const slides = [
     { 
       src: carousel1, 
       text: 'Tu guía digital para una vida saludable y activa',
       logo: true, 
       button: {
         text: 'Registrate',
-        link: '/Registro'
+        link: '/login'
       }
     },
     { 
@@ -45,27 +43,44 @@ const Carousel = () => {
       logo: true, 
       button: {
         text: 'Ir a Noticias',
-        link: '/pagina-noticias'
+        link: '/noticias'
       }
     }
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex(prevIndex => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-    }, 5000);
+    const changeImage = () => {
+      setShowContent(false); // Oculta el contenido antes de cambiar la imagen
+
+      // Cambia la imagen después de 300ms
+      setTimeout(() => {
+        setIndex(prevIndex => {
+          const nextIndex = (prevIndex === slides.length - 1 ? 0 : prevIndex + 1);
+          return nextIndex;
+        });
+
+        // Muestra el contenido después de la transición de la imagen (500ms)
+        setTimeout(() => {
+          setShowContent(true);
+        }, 500); // Tiempo para mostrar el contenido después de que la nueva imagen esté lista
+      }, 500); // Tiempo para ocultar el contenido antes del cambio de imagen
+    };
+
+    // Intervalo para cambiar de imagen cada 5 segundos
+    const interval = setInterval(changeImage, 5000);
+
     return () => clearInterval(interval);
-  }, [slides.length]); //se usa useEffect para configurar un intervalo que actualiza el estado del índice (index) cada 5 segundos.
+  }, [slides.length]);
 
   return (
-    <div className="carousel">
-      <div className="carousel-slide">
-        <img src={slides[index].src} alt={`Slide ${index + 1}`} className="active" />
-        <div className="carousel-text">
-          {slides[index].logo && <img src={logo} alt="Logo" className="carousel-logo" />}
+    <div className={styles.carousel}>
+      <div className={styles.carouselSlide}>
+        <img src={slides[index].src} alt={`Slide ${index + 1}`} className={styles.active} />
+        <div className={`${styles.carouselText} ${showContent ? styles.show : styles.hide}`}>
+          {slides[index].logo && <img src={logo} alt="Logo" className={styles.carouselLogo} />}
           <p>{slides[index].text}</p>
           {slides[index].button && (
-            <a href={slides[index].button.link} className="carousel-button">
+            <a href={slides[index].button.link} className={styles.carouselButton}>
               {slides[index].button.text}
             </a>
           )}
@@ -88,49 +103,57 @@ const Carousel2 = () => {
     carousel26,
   ];
 
-  const imagesToShow = 3; // Número de imágenes a mostrar
-  const totalImages = images2.length;//Calcula el número total de imágenes en el array 
+  const imagesToShow = 3;
+  const totalImages = images2.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStartIndex(prevIndex => 
+        prevIndex === totalImages - imagesToShow ? 0 : prevIndex + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [totalImages, imagesToShow]);
 
   const goToPrevious = () => {
-    setStartIndex(prevIndex => //Actualiza startIndex basado en el valor actual (prevIndex).
+    setStartIndex(prevIndex => 
       prevIndex === 0 ? totalImages - imagesToShow : prevIndex - 1
-    ); //Si prevIndex es 0, significa que estamos en la primera posición, así que vuelve a la última posición. De lo contrario, decrementa el índice.
+    );
   };
 
-  const goToNext = () => { // Define una función que se llama cuando el usuario hace clic en el botón de la derecha (siguiente).
+  const goToNext = () => {
     setStartIndex(prevIndex => 
       prevIndex === totalImages - imagesToShow ? 0 : prevIndex + 1
-    );//Si prevIndex está en la última posición posible, vuelve al inicio. De lo contrario, incrementa el índice.
+    );
   };
 
   return (
-    <div className="carousel2-wrapper">{/*Contenedor principal del carrusel. Aplica estilos y controla el desbordamiento.*/}
-      <div className="carousel2-container">{/*Contenedor que agrupa el carrusel y los botones de navegación.*/}
-        <button className="carousel2-button prev" onClick={goToPrevious}>{/*Botón para navegar a la imagen anterior. Llama a goToPrevious al hacer clic.*/}
-          &lt; 
-          {/* representa la flecha hacia la izquierda. */}
+    <>
+      <div className={styles.carousel2Wrapper}>
+        <button className={`${styles.carousel2Button} ${styles.prev}`} onClick={goToPrevious}>
+          &lt;
         </button>
-        <div className="carousel2-images">{/*Contenedor de las imágenes visibles del carrusel.*/}
-          {images2.slice(startIndex, startIndex + imagesToShow).map((image, index) => ( //Utiliza slice para mostrar las imágenes desde startIndex hasta startIndex + imagesToShow. Mapea estas imágenes a elementos div con un fondo de imagen.
-            <div
-              key={index}
-              className="carousel2-image"
-              style={{ backgroundImage: `url(${image})` }}
-              
-            />
-          ))}
+        <div className={styles.carousel2Container}>
+          <div className={styles.carousel2Images}>
+            {images2.slice(startIndex, startIndex + imagesToShow).map((image, index) => (
+              <div
+                key={index}
+                className={styles.carousel2Image}
+                style={{ backgroundImage: `url(${image})` }}
+              />
+            ))}
+          </div>
         </div>
-        <button className="carousel2-button next" onClick={goToNext}>{/*Botón para navegar a la imagen siguiente. Llama a goToNext al hacer clic.*/}
+        <button className={`${styles.carousel2Button} ${styles.next}`} onClick={goToNext}>
           &gt;
-          {/* representa la flecha hacia la derecha. */}
         </button>
       </div>
       
-      <a href="/galeria-entrenamiento" className="gallery-button"> {/*Enlace a la galería de entrenamiento con un estilo de botón.*/}
+      <a href="/galeria-entrenamiento" className={styles.galleryButton}>
         Ir a galería de entrenamiento
       </a>
-    </div>
+    </>
   );
 };
-
 export { Carousel, Carousel2 };

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styles/crearVideos/UploadVideo.scss';
+import styles from '../../styles/crearVideos/UploadVideo.module.scss'; // Nota la extensión .module.scss
 
-//useState se utiliza para crear y gestionar el estado del componente. 
-//Cada estado representa un campo del formulario o una lista de categorías.
 const UploadVideo = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -11,21 +9,14 @@ const UploadVideo = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([]);
-  //title, content, image, videoUrl, selectedCategory son estados 
-  //que representan el valor de los campos del formulario.
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
 
- 
-  //useEffect se usa para ejecutar efectos secundarios en el componente. 
-  //En este caso, se usa para cargar las categorías cuando el componente se monta por primera vez.
   useEffect(() => {
     const fetchCategories = async () => {
       const fetchedCategories = ['Cardio', 'Fuerza', 'Tren inferior', 'Tren superior', 'Adulto Mayor', 'Flexibilidad', 'Embarazadas'];
-      // La función fetchCategories simula la obtención de categorías (en un caso real, podrías hacer 
-      //   una solicitud HTTP para obtener estos datos).
       setCategories(fetchedCategories);
-      setSelectedCategory(fetchedCategories[0]); // Establece una categoría por defecto
-      // setCategories establece las categorías disponibles, y setSelectedCategory 
-      // selecciona la primera categoría por defecto.
+      setSelectedCategory(fetchedCategories[0]);
     };
 
     fetchCategories();
@@ -35,7 +26,7 @@ const UploadVideo = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/videos', {
+      await axios.post('http://localhost:8000/api/videos', {
         title,
         content,
         image,
@@ -43,8 +34,10 @@ const UploadVideo = () => {
         category: selectedCategory
       });
 
-      alert('Video cargado con éxito');
-      // Resetear formulario después de la carga
+      setMessage('Video cargado con éxito');
+      setShowMessage(true);
+      setTimeout(() => setShowMessage(false), 3000);
+
       setTitle('');
       setContent('');
       setImage('');
@@ -52,18 +45,23 @@ const UploadVideo = () => {
       setSelectedCategory(categories[0]);
     } catch (error) {
       console.error('Error al cargar el video:', error);
-      alert('Error al cargar el video. Inténtalo de nuevo.');
+      setMessage('Error al cargar el video. Inténtalo de nuevo.');
+      setShowMessage(true);
+      setTimeout(() => setShowMessage(false), 3000);
     }
-    // handleSubmit es la función que maneja el envío del formulario.
-    // e.preventDefault() evita que la página se recargue al enviar el formulario.
-    // axios.post envía una solicitud POST al servidor con los datos del formulario.
-    // Si la solicitud es exitosa, muestra una alerta y restablece los campos del formulario.
-    // Si ocurre un error, muestra una alerta y registra el error en la consola.
   };
 
   return (
-    <div className="upload-video">
+    <div className={styles.uploadVideo}>
       <h1>Cargar Video</h1>
+      {showMessage && (
+        <>
+          <div className={styles.overlay}></div>
+          <div className={styles.messageBox}>
+            {message}
+          </div>
+        </>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Título</label>

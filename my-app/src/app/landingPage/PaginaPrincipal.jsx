@@ -13,6 +13,7 @@ const PaginaPrincipal = () => {
         <TextContainer />
         <TextContainer2/>
         <Carousel2/>
+        <Cards/>
         <TextContainer3/>
 
       

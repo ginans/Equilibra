@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import '../../../styles/galeriaEntrenamiento/Cards.scss'; 
+import styles from '../../../styles/galeriaEntrenamiento/Cards.module.scss'; 
 import FiltroBar from './Filtro'; 
-import Logo from '../../landingPage/images/logo.png'
+import Logo from '../../galeriaEntrenamiento/images/logo.png';
 
 const Card = ({ title, image, text, onClick }) => {
   return (
-    <div className="card" onClick={onClick}>
-      <img src={image} alt={title} className="card-image" />
+    <div className={styles.card} onClick={onClick}>
+      <img src={image} alt={title} className={styles.cardImage} />
       <h3>{title}</h3>
       <p>{text}</p>
     </div>
@@ -22,9 +22,8 @@ const Cards = () => {
 
   const fetchCardData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/videos');
+      const response = await fetch('http://localhost:8000/api/videos');
       const data = await response.json();
-      // Invertir el orden de los datos aquí para que estén en el orden deseado
       setCardData(data.reverse());
     } catch (error) {
       console.error('Error fetching card data:', error);
@@ -54,7 +53,6 @@ const Cards = () => {
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  // Seleccionar los datos actuales para la página
   const currentCards = filteredCardData.slice(indexOfFirstCard, indexOfLastCard);
 
   const totalPages = Math.ceil(filteredCardData.length / cardsPerPage);
@@ -69,7 +67,7 @@ const Cards = () => {
         selectedCategory={selectedCategory}
         onFilterChange={handleFilterChange}
       />
-      <div className="cards-container">
+      <div className={styles.cardsContainer}>
         {currentCards.map((card) => (
           <Card
             key={card.id}
@@ -82,10 +80,10 @@ const Cards = () => {
       </div>
 
       {selectedVideo && (
-      <div className="video-overlay">
-        <div className="video-modal">
-          <button className="close-button" onClick={handleCloseVideo}>X</button>
-          <img src={Logo} alt="Logo" className="logo-image" />
+      <div className={styles.videoOverlay}>
+        <div className={styles.videoModal}>
+          <button className={styles.closeButton} onClick={handleCloseVideo}>X</button>
+          <img src={Logo} alt="Logo" className={styles.logoImage} />
           <iframe
             src={`https://www.youtube.com/embed/${selectedVideo}`}
             title="YouTube video player"
@@ -96,12 +94,12 @@ const Cards = () => {
       </div>
       )}
 
-      <div className="pagination">
+      <div className={styles.pagination}>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
             onClick={() => handlePageChange(index + 1)}
-            className={`page-button ${currentPage === index + 1 ? 'active' : ''}`}
+            className={`${styles.pageButton} ${currentPage === index + 1 ? styles.active : ''}`}
           >
             {index + 1}
           </button>
