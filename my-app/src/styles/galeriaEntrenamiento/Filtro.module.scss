@@ -1,0 +1,95 @@
+.filtro-bar {
+  background-color: #ddd;
+  display: flex;
+  flex-wrap: wrap; // Permite que los botones se envuelvan en líneas adicionales
+  justify-content: space-between; // Ajusta la distribución del espacio entre los botones
+  width: 70%;
+  margin: 20px auto 10px; // Margen superior, centrado horizontalmente y margen inferior
+  border-radius: 8px;
+  position: relative; // Necesario para posicionar el menú adicional
+}
+
+.filtro-button {
+  background-color: #007089;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #fff;
+
+  &.active {
+    background-color: #005163;
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: #ddd;
+    color: black;
+  }
+}
+
+.hamburger-button {
+  background-color: #007089;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 15px; // Tamaño del icono de menú
+  transition: background-color 0.2s;
+  margin: 5px;
+
+  &:hover {
+    background-color: #005163;
+  }
+}
+
+.additional-categories {
+  position: absolute;
+  top: 100%; // Posiciona el menú justo debajo de la barra de filtros
+  left: 0;
+  background-color: #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 100%; // Asegura que el menú adicional tenga el mismo ancho que la barra
+  z-index: 10; // Asegura que el menú adicional aparezca sobre otros elementos
+}
+
+.additional-categories .filtro-button {
+  margin: 0; // Elimina el margen para botones en el menú desplegable
+  padding: 10px;
+  width: 100%; // Hace que los botones ocupen el ancho completo del contenedor
+}
+
+// Media queries para hacer el filtro más responsivo
+@media (max-width: 1200px) {
+  .filtro-bar {
+    width: 80%;
+  }
+}
+
+@media (max-width: 900px) {
+  .filtro-bar {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .filtro-bar {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filtro-button {
+    width: 100%; // Los botones ocupan el ancho completo en pantallas pequeñas
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .hamburger-button {
+    margin: 10px 0; // Ajusta el margen en pantallas pequeñas
+  }
+}

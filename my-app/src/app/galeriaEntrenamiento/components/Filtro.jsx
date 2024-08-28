@@ -1,17 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import '../../../styles/galeriaEntrenamiento/Filtro.css'; 
+import styles from '../../../styles/galeriaEntrenamiento/Filtro.module.scss'; 
 
 const FiltroBar = ({ selectedCategory, onFilterChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null); // Ref para el menú adicional
-  const buttonRef = useRef(null); // Ref para el botón hamburguesa
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const categories = ['Todo', 'Cardio', 'Fuerza', 'Tren inferior', 'Tren superior'];
-  const additionalCategories = ['Adulto Mayor', 'Flexibilidad', 'Categoría 3']; // Añade aquí las categorías adicionales
+  const additionalCategories = ['Adulto Mayor', 'Flexibilidad', 'Embarazadas'];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Cierra el menú si se hace clic fuera de él o del botón hamburguesa
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -22,39 +21,36 @@ const FiltroBar = ({ selectedCategory, onFilterChange }) => {
       }
     };
 
-    // Añade el manejador de eventos al montar el componente
     document.addEventListener('mousedown', handleClickOutside);
-
-    // Limpia el manejador de eventos al desmontar el componente
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   return (
-    <div className="filtro-bar">
+    <div className={styles['filtro-bar']}>
       {categories.map((category) => (
         <button
           key={category}
-          className={`filtro-button ${selectedCategory === category ? 'active' : ''}`}
+          className={`${styles['filtro-button']} ${selectedCategory === category ? styles['active'] : ''}`}
           onClick={() => onFilterChange(category)}
         >
           {category}
         </button>
       ))}
       <button
-        className="hamburger-button"
+        className={styles['hamburger-button']}
         onClick={toggleMenu}
-        ref={buttonRef} // Asocia el ref al botón hamburguesa
+        ref={buttonRef}
       >
-        ☰ {/* Icono de menú hamburguesa */}
+        ☰
       </button>
       {isMenuOpen && (
-        <div className="additional-categories" ref={menuRef}>
+        <div className={styles['additional-categories']} ref={menuRef}>
           {additionalCategories.map((category) => (
             <button
               key={category}
-              className={`filtro-button ${selectedCategory === category ? 'active' : ''}`}
+              className={`${styles['filtro-button']} ${selectedCategory === category ? styles['active'] : ''}`}
               onClick={() => onFilterChange(category)}
             >
               {category}

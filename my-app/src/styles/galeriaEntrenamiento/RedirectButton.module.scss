@@ -1,0 +1,22 @@
+// RedirectButton.module.scss
+
+.button {
+    background-color: #007bff; // Color de fondo 
+    color: white; // Color del texto
+    border: none; // Sin borde
+    border-radius: 4px; // Bordes redondeados
+    padding: 10px 20px; // Espaciado interno
+    font-size: 16px; // Tamaño de fuente
+    cursor: pointer; // Cursor de mano al pasar sobre el botón
+    transition: background-color 0.3s; // Transición suave para el cambio de color de fondo
+    margin: 20px auto 10px;
+  
+    &:hover {
+      background-color: #0056b3; // Color de fondo azul oscuro en hover
+    }
+  
+    &:focus {
+      outline: none; // Sin contorno en el foco
+    }
+  }
+  

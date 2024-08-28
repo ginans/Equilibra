@@ -13,6 +13,8 @@ const { checkNameUserProfessional } = require("../controller/searchData/professi
 const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
 const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
 
+const videoController = require("../controller/galeriaEntrenamiento/videoController.js");
+
 const createPregunta = require('../controller/foro/createPregunta.js');
 const getPreguntas = require('../controller/getData/getPreguntas.js');
 const createRespuesta = require('../controller/foro/createRespuesta.js');
@@ -39,6 +41,8 @@ router.post('/loginUserClient', loginUserClient)
 router.post('/loginUserProfessional', loginUserProfessional)
 router.post('/createUserProfessional', createUserProfessional)
 
+const noticiasController = require('../controller/landingPage/noticiasController.js');
+
 //foro
 
 router.post('/preguntas', createPregunta);
@@ -50,6 +54,17 @@ router.get("/articles/:id", getArticleById);
 router.post("/articles", createArticle);
 router.get("/noticias", getAllNoticias);
 router.post("/noticias", createNoticia);
+
+
+//Galeria Entrenamiento
+router.get('/api/videos', videoController.getVideos);
+
+// Rutas protegidas (requieren autenticación)
+router.post('/api/videos', videoController.createVideo);
+router.delete('/api/videos/:id', videoController.deleteVideo);
+router.put('/api/videos/:id', videoController.updateVideo);
+
+router.get('/api/noticias', noticiasController.getNoticias);
 
 module.exports = {
     router:router

@@ -22,6 +22,7 @@ import GaleriaEntrenamiento from "./app/galeriaEntrenamiento/GaleriaEntrenamient
 import CreateNoticia from "./app/noticias/components/createnoticia.jsx"
 import Noticias from "./app/noticias/Noticia.jsx"
 import ListaNoticias from "./app/noticias/ListaNoticias";
+import AdminVideos from './app/crearVideos/AdminVideos.jsx';
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -47,6 +48,9 @@ root.render(
             <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
             <Route path='/noticias' element={<ListaNoticias/>}/> 
             <Route path="/createNoticia" element={<CreateNoticia/>}/>
+           
+            <Route path='/AdminVideos' element={<AdminVideos/>}/> 
+            
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}

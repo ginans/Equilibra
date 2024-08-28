@@ -1,0 +1,68 @@
+
+.cardsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centra horizontalmente el contenido
+  justify-content: center; // Centra verticalmente el contenido
+  text-align: center;
+  margin: 50px auto;
+  padding: 100px; // Asegúrate de que no haya padding adicional en el contenedor
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 50px; // Espacio entre tarjetas
+  justify-content: center; // Centra las tarjetas en el contenedor
+  align-items: center;
+  flex-wrap: wrap; // Permite que las tarjetas se ajusten en múltiples líneas si es necesario
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%; // Cambia el ancho a 100% para que tome todo el ancho del contenedor padre
+  max-width: 1200px; // Ajusta el ancho máximo según tus necesidades
+  height: 400px; // Ajusta la altura según el contenido
+  border-radius: 20px;
+}
+
+.card {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  width: 300px; // Ancho de la tarjeta
+  height: 320px;
+  transition: transform 0.2s;
+  background-color: #005163;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .cardImage {
+    width: 100%;
+    height: 200px; // Altura fija para la imagen
+    object-fit: cover; // Asegura que la imagen cubra el área sin distorsionarse
+  }
+
+  h3 {
+    margin: 10px;
+    font-size: 1.2em;
+    color: #ffffff; // Asegúrate de que el color sea visible sobre el fondo
+    font-family: Arial, sans-serif; // Asegúrate de que la fuente esté bien definida
+  }
+}
+
+.viewMoreButton {
+  background-color: rgba(0, 0, 0, 0.5); // Color del botón
+  color: #fff; // Color del texto del botón
+  border: none;
+  border-radius: 5px;
+  padding: 10px 60px;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; // Espacio encima del botón
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.952); // Color del botón en hover
+  }
+}
