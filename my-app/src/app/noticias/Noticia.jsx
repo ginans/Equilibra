@@ -2,16 +2,19 @@ import React from 'react';
 import styles from '../../styles/noticias/Noticia.module.scss'; 
 
 const Noticia = ({ titulo, url, descripcion, imagen }) => {
-  console.log({ titulo, url, descripcion, imagen });
   return (
-    <div className={styles.noticia} onClick={() => window.open(url, '_blank')}>
+    <div className={styles.noticiaCard}>
       <img src={imagen} alt={titulo} className={styles.noticiaImagen} />
-      <div className={styles.noticiaContent}>
-        <h3 className={styles.noticiaTitulo}>{titulo}</h3>
-        <div className={styles.noticiaDescripcionContainer}>
-          <p className={styles.noticiaDescripcion}>{descripcion}</p>
-        </div>
-      </div>
+      <h3 className={styles.noticiaTitulo}>{titulo}</h3>
+      <p className={styles.noticiaDescripcion}>{descripcion}</p>
+      <a 
+        href={url} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className={styles.noticiaLink}
+      >
+        Leer más
+      </a>
     </div>
   );
 };

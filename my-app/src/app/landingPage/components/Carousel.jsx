@@ -45,7 +45,7 @@ const Carousel = () => {
       logo: true, 
       button: {
         text: 'Ir a Noticias',
-        link: '/pagina-noticias'
+        link: '/noticias'
       }
     }
   ];

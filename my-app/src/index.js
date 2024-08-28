@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/global.module.scss";
-import Noticias from "./app/noticias/Noticia.jsx"
-import ListaNoticias from "./app/noticias/ListaNoticias";
+
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import App from './App';
@@ -20,6 +19,9 @@ import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
 import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
 import PagPrincipal from "./app/landingPage/PaginaPrincipal.jsx"
 import GaleriaEntrenamiento from "./app/galeriaEntrenamiento/GaleriaEntrenamiento.jsx"
+import CreateNoticia from "./app/noticias/components/createnoticia.jsx"
+import Noticias from "./app/noticias/Noticia.jsx"
+import ListaNoticias from "./app/noticias/ListaNoticias";
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -43,7 +45,8 @@ root.render(
             <Route path="/createArticle" element={<CreateArticle />} />
             <Route path="/fullArticle/:id" element={<FullArticle/>} />
             <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
-            <Route path='/noticias' element={<jksakj/>}/> 
+            <Route path='/noticias' element={<ListaNoticias/>}/> 
+            <Route path="/createNoticia" element={<CreateNoticia/>}/>
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}

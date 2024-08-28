@@ -21,6 +21,7 @@ const authMiddleware = require('../middleware/auth.js');
 
 const router = express.Router()
 const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
+const { getAllNoticias, getNoticiaById, createNoticia } = require("../controller/noticias/noticiascontroller.js");
 
 
 router.get('/checkEmail/:email', checkEmail)
@@ -47,6 +48,8 @@ router.post('/likes', toggleLike);
 router.get("/articles", getAllArticles);
 router.get("/articles/:id", getArticleById);
 router.post("/articles", createArticle);
+router.get("/noticias", getAllNoticias);
+router.post("/noticias", createNoticia);
 
 module.exports = {
     router:router

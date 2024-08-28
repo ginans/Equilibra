@@ -1,0 +1,50 @@
+.cardNoticia {
+    border: 10px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    transition: box-shadow 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  .cardImg {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cardBody {
+    padding: 15px;
+  
+    .cardTitle {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+  
+    .cardText {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  
+    .btnContainer {
+      margin-top: 15px;
+  
+      .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+  
