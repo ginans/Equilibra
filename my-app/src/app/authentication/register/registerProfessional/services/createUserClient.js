@@ -1,6 +1,6 @@
 import { Fetch } from "../../../../fetch/fetch.js"; 
 export const createUser = async ( existName, existEmail, isYearValid, hasAcceptedTerms)=>{
-    
+
     if( existName, existEmail, !isYearValid, !hasAcceptedTerms){
         return console.error("no cumple las condiciones")
     }
@@ -23,12 +23,12 @@ export const createUser = async ( existName, existEmail, isYearValid, hasAccepte
          registerSis:existsRegisterSis,
          rut: existsRut,
          specialty:existsEspecial,
-         userName:existsName,
+         userNameP:existsName,
          email:existsEmail,
          password:existsPassword
         }) 
 
-    if(result.status == 200){   
+    if(result.status === 200){   
         console.log(result)
         const token = await result.json()
         if(token){

@@ -17,7 +17,7 @@ export const nextStep = (
     if(!existsEmail || !existsName || !existsPassword || !existsRepeatPassword){
         return console.error("Faltan datos")
     }
-    if(existsPassword != existsRepeatPassword){
+    if(existsPassword !== existsRepeatPassword){
         return console.error("las Contraseñas no coinciden")
     }
     // const regexName = /^[a-zA-Z]+\s[a-zA-Z]+\s[a-zA-Z]+\s[a-zA-Z]+$/;

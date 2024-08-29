@@ -3,14 +3,21 @@ import { useNavigate, Outlet } from "react-router-dom";
 import styles from "../../styles/authentication/layoutAuthentication.module.scss";
 import logo from "./img/logo.svg";
 import subLogo from "./img/subLogo.svg";
+import useCheckAdmin from "../../hooks/useCheckAdmin";
+import useCheckClient from "../../hooks/useCheckClient";
+import useCheckProfessional from "../../hooks/useCheckProfessional";
+
 const LayoutAuthentication = () => {
+  const isAdminLogged= useCheckAdmin()
+  const isClientLogged= useCheckClient()
+  const isProfessionalLogged= useCheckProfessional()
   const navigate = useNavigate();
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      return navigate("/landingPageUser");
+    if (isAdminLogged || isClientLogged || isProfessionalLogged) {
+      navigate("/landingPageUser");
     }
-  }, []);
+  }, [isAdminLogged, isClientLogged, isProfessionalLogged, navigate]);
 
   return (
     <div className={styles.container}>

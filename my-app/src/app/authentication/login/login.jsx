@@ -7,41 +7,23 @@ import checkIcon from "../img/circle-check-solid.svg";
 import getUserClient from "./services/getUser";
 import getUserProfession from "./services/getUserProfessional";
 import { useNavigate } from "react-router-dom";
+import getUserAdmin  from "../../authentication/login/services/getUserAdmin";
 
 const Login = () => {
-<<<<<<< HEAD
   const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [isChecked, setIsChecked] = useState(false);
+  
   const getUser = async (e) => {
     e.preventDefault();
-    if (!isChecked) {
-      const dataUser = await getUserClient(email, password);
-      if (dataUser) {
-        return navigate("/landingPageUser");
-      }
-      return console.error("error");
-=======
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState(""); 
-    const navigate = useNavigate() 
-    const getUser = async(e)=>{
-        e.preventDefault() 
-        const dataUserProfessional = await getUserProfession(email, password) 
-        const dataUser = await getUserClient(email, password)
-        if(!dataUser && !dataUserProfessional){
-            return console.error("Email o contraseña no coinciden")
-        }
-        return navigate("/")
-       
->>>>>>> 5d3de6e5ff288c4da3f10da1ee8c46846c944524
-    }
-    const dataUser = await getUserProfession(email, password);
-    if (dataUser) {
+    const dataUserProfessional = await getUserProfession(email, password);
+    const dataUserClient = await getUserClient(email, password);
+    const dataUserAdmin = await getUserAdmin(email, password)
+
+    if (dataUserClient || dataUserProfessional || dataUserAdmin) {
       return navigate("/landingPageUser");
     }
-    return console.error("error");
+    console.error("Email o contraseña no coinciden");
   };
   // Guarda los datos en sessionStorage
   useEffect(() => {
@@ -77,9 +59,9 @@ const Login = () => {
   // }, [email]);
 
   // Carga los datos desde sessionStorage al inicializar el componente
-  useEffect(() => {
-    const existsEmail = sessionStorage.getItem("email");
-  }, []);
+  // useEffect(() => {
+  //     const existsEmail = sessionStorage.getItem('email');
+  // }, []);
 
   return (
     // style={{ visibility: !stepOneVisibility ? "hidden" : "visible", position: "absolute", width: "100%" }}
@@ -93,7 +75,6 @@ const Login = () => {
           <div>
             <img alt="IconEmail" className={styles.iconInput} src={mailIcon} />
 
-<<<<<<< HEAD
             <input
               className={styles.input}
               placeholder="Correo electronico"
@@ -105,42 +86,6 @@ const Login = () => {
               required
             />
           </div>
-=======
-    return (
-        // style={{ visibility: !stepOneVisibility ? "hidden" : "visible", position: "absolute", width: "100%" }}
-        <div > 
-            <h1>¡Bienvenido de nuevo!</h1>
-            <form onSubmit={getUser}>
-            <div className={styles.containInput}>
-                <div>
-                    <label htmlFor="email">Correo electronico</label>
-                    
-                </div>
-                <div>  
-                    <img alt="IconEmail" className={styles.iconInput} src={mailIcon} />
-                    
-                    <input className={styles.input} placeholder="Correo electronico" type="email" value={email} id="email" name="email" onChange={req => setEmail(req.target.value)} required />
-                      
-                </div> 
-            </div>
-            <div className={styles.containInput}>
-                <label htmlFor="password">Contraseña</label>
-                {/* {!isPasswordMatch && password && repeatPassword && <div className={styles.error}>Las contraseñas no coinciden</div>} */}
-                <div>
-                    <img alt="IconContraseña" className={styles.iconInput} src={passwordIcon} />
-                    <input className={styles.input} placeholder="Contraseña" type="password" id="password" name="password" value={password} onChange={req => setPassword(req.target.value)} required />
-                    { password && <img className={styles.iconCircle}  src={checkIcon}/> }
-                </div>
-            </div> 
-            <div style={{margin:"2rem 0"}}> 
-                </div>
-                <button className={styles.buttonEnter}  type="submit">Iniciar sesión</button>
-            </form>
-            <div className={styles.containLinks}>
-                <Link to="/registerClient">¿Todavía no tienes una cuenta? Regístrate</Link>
-                <Link to="/registerProfessional">¿Eres un profesional? Regístrate aquí</Link>
-            </div>
->>>>>>> 5d3de6e5ff288c4da3f10da1ee8c46846c944524
         </div>
         <div className={styles.containInput}>
           <label htmlFor="password">Contraseña</label>
@@ -161,19 +106,12 @@ const Login = () => {
               onChange={(req) => setPassword(req.target.value)}
               required
             />
-            {password && <img className={styles.iconCircle} src={checkIcon} />}
+            {password && (
+              <img className={styles.iconCircle} alt={""} src={checkIcon} />
+            )}
           </div>
         </div>
-        <div style={{ margin: "2rem 0" }}>
-          <input
-            id="professional-checkbox"
-            style={{ margin: "0 1rem" }}
-            type="checkbox"
-            checked={isChecked}
-            onChange={() => setIsChecked(!isChecked)}
-          />
-          <label htmlFor="professional-checkbox">Soy un profesional</label>
-        </div>
+        <div style={{ margin: "2rem 0" }}></div>
         <button className={styles.buttonEnter} type="submit">
           Iniciar sesión
         </button>

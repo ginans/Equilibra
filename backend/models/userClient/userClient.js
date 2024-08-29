@@ -1,7 +1,7 @@
 const { db } = require("../../database/dataBase");
 const { DataTypes } = require("sequelize");
 
-const modelUserClient = db.define('userClients', {
+const modelUserClient = db.define("userClients", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -31,11 +31,11 @@ const modelUserClient = db.define('userClients', {
     allowNull: true,
   },
   height: {
-    type: DataTypes.DECIMAL(5, 2),
+    type: DataTypes.INTEGER(11),
     allowNull: true,
   },
   weight: {
-    type: DataTypes.DECIMAL(5, 2),
+    type: DataTypes.INTEGER(11),
     allowNull: true,
   },
   chronicDiseases: {
@@ -49,6 +49,6 @@ const modelUserClient = db.define('userClients', {
   },
 });
 
-module.exports = {  
-  modelUserClient 
-}
+module.exports = {
+  modelUserClient,
+};

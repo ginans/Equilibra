@@ -18,6 +18,10 @@ import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
 import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
 import PagPrincipal from "./app/landingPage/PaginaPrincipal.jsx"
 import GaleriaEntrenamiento from "./app/galeriaEntrenamiento/GaleriaEntrenamiento.jsx"
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+
+
+
 
 console.log("Renderizando rutas principales");
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -38,7 +42,7 @@ root.render(
             <Route path="/landingPageUser" element={<LandingPageUser />} />
             <Route path="/educationalPage" element={<EducationPage />} />
             <Route path="/Foro/" element={<Foro />} /> 
-            <Route path="/createArticle" element={<CreateArticle />} />
+            <Route path="/createArticle" element={<ProtectedRoute><CreateArticle /></ProtectedRoute>} />
             <Route path="/fullArticle/:id" element={<FullArticle/>} />
             <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
             <Route path='/noticias' element={<jksakj/>}/> 

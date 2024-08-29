@@ -8,7 +8,7 @@ import hospitalIcon from "../../../img/hospital-solid.svg"
 import stethoscopeIcon from "../../../img/stethoscope-solid.svg"
 import rutIcon from "../../../img/id-card-solid.svg"
 import yearIcon from "../../../img/clock-rotate-left-solid.svg"
- 
+
 const StepTwoForm = () => {
     const { stepTwoVisibility, isYearValid, 
          setIsYearValid, hasAcceptedTerms

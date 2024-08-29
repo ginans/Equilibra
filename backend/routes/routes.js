@@ -15,6 +15,9 @@ const { getUserProfessionalById } = require("../controller/getData/getdataUserPr
 
 const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
 
+const { loginUserAdmin } = require("../controller/loginUserAdmin/loginUserAdmin.js");
+const {getDataUserAdmin } = require("../controller/getData/getdataUserAdmin.js")
+
 
 const router = express.Router()
  
@@ -37,6 +40,9 @@ router.post('/createUserProfessional', createUserProfessional)
 router.get("/articles", getAllArticles);
 router.get("/articles/:id", getArticleById);
 router.post("/articles", createArticle);
+
+router.post('/loginUserAdmin', loginUserAdmin);
+router.get('/getDataUserAdmin/:tokenAdmin', getDataUserAdmin);
 
 module.exports = {
     router:router

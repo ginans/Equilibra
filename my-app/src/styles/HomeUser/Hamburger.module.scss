@@ -61,14 +61,15 @@ body {
         .edadImg {
           display:inline-flex;
 
-          .edadP{
+          p{
             padding-left: 20px;
-            margin-top: 4px;
+            margin-top: 8px;
           }
 
           
         }
       }
+      
 
       .imc {
         margin-bottom: -10px;
@@ -82,17 +83,23 @@ body {
       }
 
       .cronicas {
-        margin-bottom: -10px;
+        
 
-        .cronicasImg {
+        .cronicasImg{
           display:flex;
+          margin-top: -10px;
 
-          .cronicasP{
-            padding-left: 20px;
-            margin-top: -2px;
-          }
           
 
+          img {
+            align-self: center;
+          }
+        }
+
+        .cronicasP{
+          margin-left: 20px;
+          
+          
         }
       }
 

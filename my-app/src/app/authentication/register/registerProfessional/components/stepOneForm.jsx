@@ -111,9 +111,9 @@ useEffect(() => {
                     <img alt="IconEmail" className={styles.iconInput} src={userIcon} />
                     <input className={styles.input} placeholder="Nombre completo" type="text" value={name} id="name" name="name" onChange={req => setName(req.target.value)} required />
                     { existName && name ? 
-                        <img className={styles.iconCircle}  src={xMarkIcon}/>
+                        <img className={styles.iconCircle}  src={xMarkIcon} alt="iconCircle"/>
                         :  !existName && name ?
-                        <img className={styles.iconCircle}  src={checkIcon}/> : null
+                        <img className={styles.iconCircle}  src={checkIcon} alt="iconCircle"/> : null
                     }
                 </div>
                 {existName && <div className={styles.error}>Este nombre ya existe</div>}
@@ -121,7 +121,7 @@ useEffect(() => {
             <div className={styles.containInput}>
                 <div className={styles.emailInfo}>
                     <label htmlFor="email">Correo electronico</label>
-                    <img onMouseEnter={()=> setHoverInfoEmail(true)} onMouseLeave={()=> setHoverInfoEmail(false)} src={infoIcon} className={styles.infoIcon}/>  
+                    <img onMouseEnter={()=> setHoverInfoEmail(true)} onMouseLeave={()=> setHoverInfoEmail(false)} src={infoIcon} alt="infoIcon" className={styles.infoIcon}/>  
                 </div>
                 <div>  
                     <img alt="IconEmail" className={styles.iconInput} src={mailIcon} />
@@ -130,9 +130,9 @@ useEffect(() => {
                     { hoverInfoEmail && <p className={styles.infoEmailHover}> Correos aceptados: gmail, outlook, hotmail .com, .es, .org</p>  }
                     
                     {  email && !isEmailValid || existEmail? 
-                        <img className={styles.iconCircle}  src={xMarkIcon}/>
+                        <img className={styles.iconCircle}  src={xMarkIcon} alt="iconCircle"/>
                         :  !existEmail && email && isEmailValid?
-                        <img className={styles.iconCircle}  src={checkIcon}/> : null
+                        <img className={styles.iconCircle}  src={checkIcon} alt="iconCircle"/> : null
                     }
                 </div>
                 { !isEmailValid && email && <div className={styles.error}>El correo no cumple las condiciones</div> }
@@ -144,7 +144,7 @@ useEffect(() => {
                 <div>
                     <img alt="IconContraseña" className={styles.iconInput} src={passwordIcon} />
                     <input className={styles.input} placeholder="Contraseña" type="password" id="password" name="password" value={password} onChange={req => setPassword(req.target.value)} required />
-                    { password && <img className={styles.iconCircle}  src={checkIcon}/> }
+                    { password && <img className={styles.iconCircle}  src={checkIcon} alt="iconCircle"/> }
                 </div>
             </div>
             <div className={styles.containInput}>
@@ -154,9 +154,9 @@ useEffect(() => {
                     <img alt="IconContraseña" className={styles.iconInput} src={passwordIcon} /> 
                     <input className={styles.input} placeholder="Contraseña" type="password" id="Repite contraseña" name="password" value={repeatPassword} onChange={req => setRepeatPassword(req.target.value)} required />
                     { password && repeatPassword && !isPasswordMatch ? 
-                        <img className={styles.iconCircle}  src={xMarkIcon}/>
+                        <img className={styles.iconCircle}  src={xMarkIcon} alt="iconCircle"/>
                         :  password && repeatPassword && isPasswordMatch ?
-                        <img className={styles.iconCircle}  src={checkIcon}/> : null
+                        <img className={styles.iconCircle}  src={checkIcon} alt="iconCircle"/> : null
                     }
                 </div>
             </div>

@@ -1,40 +1,91 @@
 import logo from "../images/logo5.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Hamburger from "./Hamburger";
 import styles from "../../../../styles/layout/Navbar.module.scss";
 import { HiOutlineUserCircle } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom"; //se importa el hook usenavegate
-import useCheckLogin from "../../../../hooks/useCheckLogin";
+import { useNavigate } from "react-router-dom";
+import useCheckAdmin from "../../../../hooks/useCheckAdmin";
+import useCheckClient from "../../../../hooks/useCheckClient";
+import useCheckProfessional from "../../../../hooks/useCheckProfessional";
 
 const Navbar = () => {
   const [dropDown, setDropDown] = useState("closed");
-  const [showRegister, setShowRegister] = useState(false); // Estado para mostrar la opción de registrar
-  const navigate = useNavigate(); // Hook navigate, lo llamo aqui y lo defino para usarlo en mi funcion más abajo
+  const [showRegister, setShowRegister] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  const isLoggedIn = useCheckLogin();
+
+  const isAdminLogged = useCheckAdmin();
+  const isProfessionalLogged = useCheckProfessional();
+  const isClientLogged = useCheckClient();
+
+  console.log("Navbar isClientLogged:", isClientLogged);
+  console.log("Navbar isProfessionalLogged:", isProfessionalLogged);
+  console.log("Navbar isAdminLogged:", isAdminLogged);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      let url;
+      let token;
+    if (isClientLogged) {
+      token = localStorage.getItem("token");
+        url= `http://localhost:8000/getUserClientById/${token}`
+    }else if(isProfessionalLogged){
+      token = localStorage.getItem("tokenProfessional");
+      url= `http://localhost:8000/getdataUserProfessional/${token}`
+    }else if (isAdminLogged){
+      token = localStorage.getItem("tokenAdmin");
+      url= `http://localhost:8000/getDataUserAdmin/${token}`
+    }
+    
+    if (token) {
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos del usuario");
+        }
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  if (isAdminLogged || isClientLogged || isProfessionalLogged) {
+    fetchUserData();
+  }
+}, [isAdminLogged, isClientLogged, isProfessionalLogged]);
+         
 
   const hamburguesa = () => {
-    setDropDown((prevState) => (prevState === "closed" ? "open" : "closed")); //no se cambia
+    setDropDown((prevState) => (prevState === "closed" ? "open" : "closed"));
   };
 
   const toggleRegister = () => {
-    setShowRegister((prevState) => !prevState); // Mostrar u ocultar la opción de registrar
+    setShowRegister((prevState) => !prevState);
   };
 
   const handleLogin = () => {
-    if (isLoggedIn) {
-      navigate("/landingPageUser");//si el usuario esta loggeado que vaya a la landing mostrando hamburger
+    if (isAdminLogged || isClientLogged || isProfessionalLogged) {
+      navigate("/landingPageUser");
     } else {
-      toggleRegister(); // Muestra el boton de registro/inicio de sesión
+      toggleRegister();
     }
   };
 
   const handleLogoClick = () => {
-    console.log("reenderizando boton a la langing con user");
-    if (isLoggedIn) {
-      navigate("/landingPageUser"); //si esta loggeado me lleva a landing con user
+    if (isAdminLogged || isClientLogged || isProfessionalLogged) {
+      navigate("/landingPageUser");
     } else {
-      navigate("/"); //si no, me lleva a landing sin user
+      navigate("/");
     }
   };
 
@@ -68,12 +119,14 @@ const Navbar = () => {
       </ul>
 
       <div className={styles.perfilContainer}>
-        {isLoggedIn ? (
+        { isAdminLogged || isClientLogged || isProfessionalLogged ? ( 
           <>
             <button onClick={hamburguesa} className={styles.perfilHamburger}>
               Perfil
             </button>
-            {dropDown === "open" && <Hamburger />}
+            {dropDown === "open" && (
+              <Hamburger userData={userData} loading={loading} />
+            )}
           </>
         ) : (
           <div className={styles.loginContainer}>

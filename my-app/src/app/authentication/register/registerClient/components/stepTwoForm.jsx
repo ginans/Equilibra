@@ -19,7 +19,7 @@ const StepTwoForm = () => {
     const [year, setYear] = useState("");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
-    const [diseases, setDiseases] = useState(); 
+    const [diseases, setDiseases] = useState(""); 
 
 
     useEffect(()=>{
