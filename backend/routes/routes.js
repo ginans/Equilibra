@@ -13,13 +13,23 @@ const { checkNameUserProfessional } = require("../controller/searchData/professi
 const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
 const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
 
+const videoController = require("../controller/galeriaEntrenamiento/videoController.js");
+
+const createPregunta = require('../controller/foro/createPregunta.js');
+const getPreguntas = require('../controller/getData/getPreguntas.js');
+const createRespuesta = require('../controller/foro/createRespuesta.js');
+const toggleLike = require('../controller/foro/toggleLike.js');
+const authMiddleware = require('../middleware/auth.js');
+
+const router = express.Router()
 const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
+const { getAllNoticias, getNoticiaById, createNoticia } = require("../controller/noticias/noticiascontroller.js");
+
 
 const { loginUserAdmin } = require("../controller/loginUserAdmin/loginUserAdmin.js");
 const {getDataUserAdmin } = require("../controller/getData/getdataUserAdmin.js")
 
 
-const router = express.Router()
  
  
 router.get('/checkEmail/:email', checkEmail)
@@ -37,9 +47,30 @@ router.post('/loginUserClient', loginUserClient)
 router.post('/loginUserProfessional', loginUserProfessional)
 router.post('/createUserProfessional', createUserProfessional)
 
+const noticiasController = require('../controller/landingPage/noticiasController.js');
+
+//foro
+
+router.post('/preguntas', createPregunta);
+router.post('/respuestas', createRespuesta);
+router.get('/preguntas', getPreguntas);
+router.post('/likes', toggleLike);
 router.get("/articles", getAllArticles);
 router.get("/articles/:id", getArticleById);
 router.post("/articles", createArticle);
+router.get("/noticias", getAllNoticias);
+router.post("/noticias", createNoticia);
+
+
+//Galeria Entrenamiento
+router.get('/api/videos', videoController.getVideos);
+
+// Rutas protegidas (requieren autenticación)
+router.post('/api/videos', videoController.createVideo);
+router.delete('/api/videos/:id', videoController.deleteVideo);
+router.put('/api/videos/:id', videoController.updateVideo);
+
+router.get('/api/noticias', noticiasController.getNoticias);
 
 router.post('/loginUserAdmin', loginUserAdmin);
 router.get('/getDataUserAdmin/:tokenAdmin', getDataUserAdmin);

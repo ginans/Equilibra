@@ -1,12 +1,15 @@
-import React from 'react';
-import Cards from '../galeriaEntrenamiento/components/Cards'; // Importa el nuevo componente
-
+import React from "react";
+import Cards from "../galeriaEntrenamiento/components/Cards";
+import RedirectButton from "../galeriaEntrenamiento/components/RedirectButton";
+import useCheckAdmin from "../../hooks/useCheckAdmin";
 
 const GaleriaEntrenamiento = () => {
+  const isAdminLogged = useCheckAdmin();
+
   return (
-    <div>  
-      
-      <Cards /> 
+    <div>
+      {isAdminLogged ? <RedirectButton /> : <></>}
+      <Cards />
     </div>
   );
 };

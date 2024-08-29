@@ -1,6 +1,6 @@
 import React from 'react';
 import usuarios from './data/usuarios';  // Datos de los usuarios
-import styles from '../../../../styles/Foro/foro.module.scss';
+import styles from '../../../../styles/Foro/usuarioInfo.module.scss';
 
 const UsuarioInfo = ({ usuarioId }) => {
   // Encontramos al usuario por su ID
@@ -16,4 +16,5 @@ const UsuarioInfo = ({ usuarioId }) => {
 };
 
 export default UsuarioInfo;
+
 

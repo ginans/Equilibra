@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/global.module.scss";
 
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import App from './App';
 import reportWebVitals from "./reportWebVitals";
@@ -13,11 +14,15 @@ import LayoutAuthentication from "./app/authentication/layoutAuthentication.jsx"
 import RegisterClient from "./app/authentication/register/registerClient/registerClient.jsx";
 import RegisterProfessional from "./app/authentication/register/registerProfessional/registerClient.jsx";
 import Login from "./app/authentication/login/login.jsx";
-import Foro from './app/user/Foro/components/Foro';
+import Foro from './app/user/Foro/Foro.jsx';
 import FullArticle from "./app/user/EducationPage/components/FullArticle.jsx";
 import CreateArticle from "./app/user/EducationPage/components/CreateArticle.jsx";
 import PagPrincipal from "./app/landingPage/PaginaPrincipal.jsx"
 import GaleriaEntrenamiento from "./app/galeriaEntrenamiento/GaleriaEntrenamiento.jsx"
+import CreateNoticia from "./app/noticias/components/createnoticia.jsx"
+import Noticias from "./app/noticias/Noticia.jsx"
+import ListaNoticias from "./app/noticias/ListaNoticias";
+import AdminVideos from './app/crearVideos/AdminVideos.jsx';
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 
@@ -45,7 +50,11 @@ root.render(
             <Route path="/createArticle" element={<ProtectedRoute><CreateArticle /></ProtectedRoute>} />
             <Route path="/fullArticle/:id" element={<FullArticle/>} />
             <Route path='/Galeria-Entrenamiento' element={<GaleriaEntrenamiento/>}/> 
-            <Route path='/noticias' element={<jksakj/>}/> 
+            <Route path='/noticias' element={<ListaNoticias/>}/> 
+            <Route path="/createNoticia" element={<CreateNoticia/>}/>
+           
+            <Route path='/AdminVideos' element={<AdminVideos/>}/> 
+            
             {/* aqui van los archivos que esten dentro de la carpeta user */}
           </Route>
           <Route path="*" element={<NotFound />} />{" "}

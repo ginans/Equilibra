@@ -7,18 +7,18 @@ import checkIcon from "../img/circle-check-solid.svg";
 import getUserClient from "./services/getUser";
 import getUserProfession from "./services/getUserProfessional";
 import { useNavigate } from "react-router-dom";
-import getUserAdmin  from "../../authentication/login/services/getUserAdmin";
+import getUserAdmin from "../../authentication/login/services/getUserAdmin";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+
   const getUser = async (e) => {
     e.preventDefault();
     const dataUserProfessional = await getUserProfession(email, password);
     const dataUserClient = await getUserClient(email, password);
-    const dataUserAdmin = await getUserAdmin(email, password)
+    const dataUserAdmin = await getUserAdmin(email, password);
 
     if (dataUserClient || dataUserProfessional || dataUserAdmin) {
       return navigate("/landingPageUser");

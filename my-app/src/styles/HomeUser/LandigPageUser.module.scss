@@ -1,21 +1,19 @@
-.landingPageUser{
-    display: flex;
-    flex-direction: column;
-    width: 900px;
-    height: 100%;
-    background-color: #005163;
-    border: 1px solid #03475f;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding-inline: 50px;
-    padding-block: 20px;
+.landingPageUser {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 100%;
+  background-color: #005163;
+  border: 1px solid #03475f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.feedItem{
-    padding:10px
+.feedItem {
+  padding: 10px;
 }
 
 .link {
-  color: #00D208; /* Elige el color que prefieras */
+  color: #00d208; /* Elige el color que prefieras */
   text-decoration: none; /* Opcional: para quitar el subrayado */
 }
 
@@ -23,18 +21,115 @@
   color: #029f07; /* Opcional: cambia el color cuando se pasa el mouse sobre el enlace */
 }
 
-.feedContent{
-    display:flex;
+.feedContent {
+  display: flex;
 
+  p {
+    padding-left: 20px;
+  }
 
-    p{
-        padding-left: 20px;
-    }
-
-    img{
-        border: 1px solid #03475f;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-self: center;
-    }
+  img {
+    border: 1px solid #03475f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-self: center;
+  }
 }
+
+//estilos simulación
+
+.feed {
+    display: flex;
+    flex-direction: column;  /* Cambiado para alinear los elementos en columna */
+    gap: 20px;               /* Espacio entre cada feedBox */
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .feedBox {
+    background-color: #055668;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  .articleContent,
+  .newsContent {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  .articleImage,
+  .newsImage {
+    width: 250px;
+    height: 180px;
+    border-radius: 8px;
+    align-self: center;
+  }
+  
+  .feedBox p {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+  
+  .feedBox a {
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 8px;
+    font-weight: bold;
+  }
+  
+  .feedBox a:hover {
+    text-decoration: underline;
+  }
+  
+  .ejercicio {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+  }
+  
+  .ejercicio img {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 8px;
+
+    
+  }
+  
+  .seccionPreguntaForo {
+    background-color: #055668;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .seccionPreguntaForo h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #ffffff;
+  }
+  
+  .seccionPreguntaForo p {
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .seccionPreguntaForo a {
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 8px;
+    font-weight: bold;
+  }
+  
+  .seccionPreguntaForo a:hover {
+    text-decoration: underline;
+  }
+  

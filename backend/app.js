@@ -1,13 +1,16 @@
-const express = require("express");
-// const serverless = require("serverless-http");
-const cors = require('cors');
+// backend/app.js
+const express = require('express');
+const cors = require('cors'); // Ajusta la ruta si es necesario
+const { router } = require('./routes/routes');
 const app = express();
-const { router }= require('./routes/routes')
-app.use(cors())
-app.use(express.json());
-app.use('/', router) 
+const port = 8000;
 
-const port = 8000; 
+app.use(cors()); // Permite solicitudes desde cualquier origen
+app.use(express.json());
+
+// Define las rutas con los controladores importados
+app.use('/',router);
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });

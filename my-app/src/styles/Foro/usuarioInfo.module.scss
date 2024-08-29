@@ -1,0 +1,13 @@
+.usuarioInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .usuarioInfo img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
