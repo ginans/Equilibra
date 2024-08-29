@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
-const {db}= require('../../database/dataBase'); 
-const {modelUserClient} = require('../userClient/userClient'); 
+const { db } = require('../../database/dataBase');
+const { modelUserClient } = require('../../models/userClient/userClient');
 
-const Pregunta = db.define('Pregunta', {
+const Pregunta = db.define('preguntas', {
   titulo: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -11,18 +11,15 @@ const Pregunta = db.define('Pregunta', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  userClientId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
   likes: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
+}, {
+  timestamps: true,
 });
 
-// Asociaciones
-Pregunta.belongsTo(modelUserClient, { foreignKey: 'userClientId' });
-modelUserClient.hasMany(Pregunta, { foreignKey: 'userClientId' });
+// Definir la relación
+Pregunta.belongsTo(modelUserClient, { as: 'usuario', foreignKey: 'userClientId' });
 
-module.exports = Pregunta;
+module.exports = { Pregunta };

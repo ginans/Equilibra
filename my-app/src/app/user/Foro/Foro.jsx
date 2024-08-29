@@ -1,75 +1,120 @@
-import React, { useState } from 'react';
+// Foro.jsx
+import React, { useState, useEffect } from 'react';
 import PreguntaItem from './components/PreguntaItem';
 import FormularioPregunta from './components/FormularioPregunta';
-import Usuarios from './components/data/usuarios';
+import axios from 'axios';
 import styles from '../../../styles/Foro/foro.module.scss';
 
 const Foro = () => {
-  const [preguntas, setPreguntas] = useState([]); 
-  const [meGusta, setMeGusta] = useState({}); 
-  const [mostrarFormularioRespuesta, setMostrarFormularioRespuesta] = useState(null); 
+  const [preguntas, setPreguntas] = useState([]);
+  const [meGusta, setMeGusta] = useState({});
+  const [mostrarFormularioRespuesta, setMostrarFormularioRespuesta] = useState(null);
 
-  const agregarPregunta = (pregunta) => {
-    const nuevaPregunta = {
-      ...pregunta,
-      id: preguntas.length + 1,
-      usuarioId: 1, 
-      respuestas: [],
-      likes: 0
+  useEffect(() => {
+    const fetchPreguntas = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/preguntas');
+        setPreguntas(response.data);
+      } catch (error) {
+        console.error('Error al obtener preguntas:', error);
+      }
     };
-    setPreguntas([...preguntas, nuevaPregunta]);
+    
+    fetchPreguntas();
+  }, []);
+
+  const agregarPregunta = async (pregunta) => {
+    try {
+      const response = await axios.post('http://localhost:8000/preguntas', pregunta);
+      setPreguntas([...preguntas, response.data]);
+    } catch (error) {
+      console.error('Error al agregar pregunta:', error);
+    }
   };
 
-  const toggleMeGusta = (preguntaId) => {
-    setPreguntas((prevPreguntas) =>
-      prevPreguntas.map((pregunta) =>
-        pregunta.id === preguntaId
-          ? { ...pregunta, likes: meGusta[preguntaId] ? pregunta.likes - 1 : pregunta.likes + 1 }
-          : pregunta
-      )
-    );
-    setMeGusta((prevMeGusta) => ({
-      ...prevMeGusta,
-      [preguntaId]: !prevMeGusta[preguntaId]
-    }));
+  const toggleMeGusta = async (preguntaId) => {
+    try {
+      const response = await axios.post(`http://localhost:8000/preguntas/${preguntaId}/me-gusta`);
+      setPreguntas((prevPreguntas) =>
+        prevPreguntas.map((pregunta) =>
+          pregunta.id === preguntaId
+            ? { ...pregunta, likes: response.data.likes }
+            : pregunta
+        )
+      );
+      setMeGusta((prevMeGusta) => ({
+        ...prevMeGusta,
+        [preguntaId]: !prevMeGusta[preguntaId]
+      }));
+    } catch (error) {
+      console.error('Error al togglear me gusta:', error);
+    }
   };
 
-  const toggleMeGustaRespuesta = (preguntaId, respuestaId) => {
-    setPreguntas(prevPreguntas =>
-      prevPreguntas.map(pregunta =>
-        pregunta.id === preguntaId
-          ? {
-              ...pregunta,
-              respuestas: pregunta.respuestas.map(respuesta =>
-                respuesta.id === respuestaId
-                  ? { ...respuesta, likes: meGusta[`${preguntaId}-${respuestaId}`] ? respuesta.likes - 1 : respuesta.likes + 1 }
-                  : respuesta
-              )
-            }
-          : pregunta
-      )
-    );
-    setMeGusta(prevMeGusta => ({
-      ...prevMeGusta,
-      [`${preguntaId}-${respuestaId}`]: !prevMeGusta[`${preguntaId}-${respuestaId}`]
-    }));
+  const toggleMeGustaRespuesta = async (preguntaId, respuestaId) => {
+    try {
+      const response = await axios.post(`http://localhost:8000/preguntas/${preguntaId}/respuestas/${respuestaId}/me-gusta`);
+      setPreguntas(prevPreguntas =>
+        prevPreguntas.map(pregunta =>
+          pregunta.id === preguntaId
+            ? {
+                ...pregunta,
+                respuestas: pregunta.respuestas.map(respuesta =>
+                  respuesta.id === respuestaId
+                    ? { ...respuesta, likes: response.data.likes }
+                    : respuesta
+                )
+              }
+            : pregunta
+        )
+      );
+      setMeGusta(prevMeGusta => ({
+        ...prevMeGusta,
+        [`${preguntaId}-${respuestaId}`]: !prevMeGusta[`${preguntaId}-${respuestaId}`]
+      }));
+    } catch (error) {
+      console.error('Error al togglear me gusta en respuesta:', error);
+    }
   };
 
   const toggleFormularioRespuesta = (preguntaId) => {
     setMostrarFormularioRespuesta((prevId) => prevId === preguntaId ? null : preguntaId);
   };
 
-  const agregarRespuesta = (preguntaId, respuesta) => {
-    setPreguntas((prevPreguntas) =>
-      prevPreguntas.map((pregunta) =>
-        pregunta.id === preguntaId
-          ? {
-              ...pregunta,
-              respuestas: [...pregunta.respuestas, { ...respuesta, id: pregunta.respuestas.length + 1, usuarioId: 2, likes: 0 }]
-            }
-          : pregunta
-      )
-    );
+  const agregarRespuesta = async (preguntaId, respuesta) => {
+    try {
+      const response = await axios.post(`http://localhost:8000/preguntas/${preguntaId}/respuestas`, respuesta);
+      setPreguntas((prevPreguntas) =>
+        prevPreguntas.map((pregunta) =>
+          pregunta.id === preguntaId
+            ? {
+                ...pregunta,
+                respuestas: [...pregunta.respuestas, response.data]
+              }
+            : pregunta
+        )
+      );
+    } catch (error) {
+      console.error('Error al agregar respuesta:', error);
+    }
+  };
+
+  const eliminarPregunta = async (preguntaId) => {
+    try {
+      await axios.delete(`http://localhost:8000/preguntas/${preguntaId}`);
+      setPreguntas(preguntas.filter(pregunta => pregunta.id !== preguntaId));
+    } catch (error) {
+      console.error('Error al eliminar pregunta:', error);
+    }
+  };
+
+  const reportarPregunta = async (preguntaId) => {
+    try {
+      await axios.post(`http://localhost:8000/preguntas/${preguntaId}/reportar`);
+      alert('Pregunta reportada con éxito');
+    } catch (error) {
+      console.error('Error al reportar pregunta:', error);
+    }
   };
 
   return (
@@ -83,14 +128,12 @@ const Foro = () => {
             pregunta={pregunta}
             toggleMeGusta={toggleMeGusta}
             toggleFormularioRespuesta={toggleFormularioRespuesta}
-            eliminarPregunta={() => {}}
-            compartirPregunta={() => {}}
-            reportarPregunta={() => {}}
+            eliminarPregunta={eliminarPregunta}
+            reportarPregunta={reportarPregunta}
             meGusta={meGusta}
             mostrarFormularioRespuesta={mostrarFormularioRespuesta}
             agregarRespuesta={agregarRespuesta}
             toggleMeGustaRespuesta={toggleMeGustaRespuesta}
-            usuarios={Usuarios}
           />
         ))}
       </ul>

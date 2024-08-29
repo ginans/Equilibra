@@ -1,0 +1,386 @@
+// controller/foro/createPregunta.js
+require('dotenv').config();
+const  jwt  = require("jsonwebtoken")
+const Pregunta = require('../../models/foro/Pregunta');
+const { modelUserClient } = require('../../models/userClient/userClient');
+
+const createPregunta = async (req, res) => {
+  
+  try {
+    const { titulo, contenido, userClientId } = req.body;  
+    const decoded = jwt.verify(userClientId, process.env.JWT_SECRET_CLIENT); 
+    const userId = decoded.id;
+    console.log (userId)
+    const userClient = await modelUserClient.findByPk(userId);
+    if (!userClient) {
+     return res.status(404).json({ message: 'Usuario no encontrado' });
+   }
+   console.log (userClient.id, userId)
+    const nuevaPregunta = await Pregunta.create({
+      titulo,
+      contenido,
+      userClientId: userId,
+    });
+    if(!nuevaPregunta){
+      res.status(400).json({message:"sos"})
+    }
+    res.status(201).json(nuevaPregunta);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al crear la pregunta', error });
+  }
+};
+
+module.exports = {createPregunta};
+
+// controller/foro/createRespuesta.js
+const { Respuesta } = require('../../models/foro/Respuesta');
+
+const createRespuesta = async (req, res) => {
+    try {
+        // Extrae los datos del cuerpo de la solicitud
+        const { contenido, preguntaId, userProfessionalId } = req.body;
+
+        // Crea una nueva respuesta en la base de datos
+        const nuevaRespuesta = await Respuesta.create({
+            contenido,
+            preguntaId,
+            userProfessionalId,
+        });
+
+        // Devuelve la respuesta creada en formato JSON
+        res.status(201).json(nuevaRespuesta);
+    } catch (error) {
+        // En caso de error, envía un mensaje de error
+        res.status(500).json({ error: 'Error al crear la respuesta' });
+    }
+};
+
+module.exports = { createRespuesta };
+
+// controller/foro/toggleLike.js
+const { Likes } = require('../../models/foro/Likes');
+const { Pregunta } = require('../../models/foro/Pregunta');
+const { Respuesta } = require('../../models/foro/Respuesta');
+const { modelUserClient } = require('../../models/userClient/userClient');
+
+const toggleLike = async (req, res) => {
+  try {
+    const { preguntaId, respuestaId } = req.body;
+    const userClientId = req.user.id; // Suponiendo que tienes el ID del usuario en req.user
+
+    // Buscar si el like ya existe
+    const existingLike = await Likes.findOne({
+      where: {
+        userClientId,
+        preguntaId,
+        respuestaId,
+      },
+    });
+
+    if (existingLike) {
+      // Eliminar el like si ya existe
+      await existingLike.destroy();
+
+      // Actualizar el conteo de likes en Pregunta y Respuesta
+      if (preguntaId) {
+        await Pregunta.decrement('likes', { by: 1, where: { id: preguntaId } });
+      }
+      if (respuestaId) {
+        await Respuesta.decrement('likes', { by: 1, where: { id: respuestaId } });
+      }
+
+      return res.status(200).json({ message: 'Like removed' });
+    } else {
+      // Crear un nuevo like
+      await Likes.create({ userClientId, preguntaId, respuestaId });
+
+      // Actualizar el conteo de likes en Pregunta y Respuesta
+      if (preguntaId) {
+        await Pregunta.increment('likes', { by: 1, where: { id: preguntaId } });
+      }
+      if (respuestaId) {
+        await Respuesta.increment('likes', { by: 1, where: { id: respuestaId } });
+      }
+
+      return res.status(201).json({ message: 'Like added' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { toggleLike };
+
+// getData/getdataUserClient.js
+require('dotenv').config();
+const { modelUserClient } = require("../../models/userClient/userClient");
+const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken") 
+
+const getUserClientById = async (req, res) => {
+    try {
+        const token = req.params.token;
+        // Desencriptar el token para obtener el ID
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_CLIENT);
+        const userId = decoded.id;
+        // Obtener el usuario por su ID, excluyendo el campo 'password'
+        const user = await modelUserClient.findByPk(userId, {
+            attributes: { exclude: ['password'] }
+        });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Enviar la información del usuario
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving user data', error });
+    }
+};
+
+module.exports = {
+    getUserClientById 
+};
+
+// getData/getdataUserProffesional.js
+require('dotenv').config();
+const { modelUserProfessional } = require("../../models/userProfessional/userProfessional.js");
+const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken") 
+
+const getUserProfessionalById = async (req, res) => {
+    try {
+        const token = req.params.token;
+        console.log("1",token)
+        // Desencriptar el token para obtener el ID
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_PROFESSION); 
+        console.log("2",decoded)
+        const userId = decoded.id;
+        console.log("3",decoded.id)
+        // Obtener el usuario por su ID, excluyendo el campo 'password'
+        const user = await modelUserProfessional.findByPk(userId, {
+            attributes: { exclude: ['password'] }
+        });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Enviar la información del usuario
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving user data', error });
+    }
+};
+
+
+module.exports = {
+    getUserProfessionalById
+};
+
+// getData/getPreguntas.js
+const { db } = require('../../database/dataBase');
+
+const getPreguntas = async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      `SELECT P.id, P.titulo, P.contenido, P.userClientId, U.nombre AS usuarioNombre
+       FROM Preguntas P
+       JOIN userClients U ON P.userClientId = U.id`
+    );
+    res.status(200).json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener las preguntas' });
+  }
+};
+
+module.exports = getPreguntas;
+
+// models/foro/Likes.js
+const { DataTypes } = require('sequelize');
+const { db } = require('../../database/dataBase');
+const { modelUserClient } = require('../userClient/userClient');
+const { Pregunta } = require('./Pregunta');
+const { Respuesta } = require('./Respuesta');
+
+const Likes = db.define('likes', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+    },
+    userClientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: modelUserClient,
+            key: 'id',
+        },
+    },
+    userProfessionalId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: modelUserClient,
+            key: 'id',
+        },
+    },
+    preguntaId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: Pregunta,
+            key: 'id',
+        },
+    },
+    respuestaId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: Respuesta,
+            key: 'id',
+        },
+    },
+}, {
+    timestamps: true,
+});
+
+// Asociaciones con alias para evitar conflictos
+Likes.belongsTo(modelUserClient, { foreignKey: 'userClientId', as: 'client' });
+modelUserClient.hasMany(Likes, { foreignKey: 'userClientId', as: 'clientLikes' });
+
+Likes.belongsTo(modelUserClient, { foreignKey: 'userProfessionalId', as: 'professional' });
+modelUserClient.hasMany(Likes, { foreignKey: 'userProfessionalId', as: 'professionalLikes' });
+
+Likes.belongsTo(Pregunta, { foreignKey: 'preguntaId', as: 'question' });
+Pregunta.hasMany(Likes, { foreignKey: 'preguntaId', as: 'questionLikes' });
+
+Likes.belongsTo(Respuesta, { foreignKey: 'respuestaId', as: 'answer' });
+Respuesta.hasMany(Likes, { foreignKey: 'respuestaId', as: 'answerLikes' });
+
+module.exports = { Likes };
+
+// models/foro/Pregunta.js
+const { DataTypes } = require('sequelize');
+const { db } = require('../../database/dataBase');
+
+const Pregunta = db.define('preguntas', {
+  titulo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  contenido: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  likes: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+}, {
+  timestamps: true,
+});
+
+module.exports = { Pregunta };
+
+// models/foro/Respuesta.js
+const { DataTypes } = require('sequelize');
+const { db } = require('../../database/dataBase');
+const { Pregunta } = require('./Pregunta');
+const { modelUserClient } = require('../userClient/userClient');
+
+const Respuesta = db.define('respuestas', {
+  contenido: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  likes: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+});
+
+// Asociaciones
+Respuesta.belongsTo(modelUserClient, { foreignKey: 'userProfessionalId', as: 'professional' });
+modelUserClient.hasMany(Respuesta, { foreignKey: 'userProfessionalId', as: 'professionalResponses' });
+
+Respuesta.belongsTo(Pregunta, { foreignKey: 'preguntaId', as: 'question' });
+Pregunta.hasMany(Respuesta, { foreignKey: 'preguntaId', as: 'responses' });
+
+module.exports = { Respuesta };
+
+//routes
+const express = require('express')
+
+const { createUsuario } = require("../controller/createUserClient/createUserClient.js")
+const { checkName } = require("../controller/searchData/client/searchName.js")
+const { checkEmail } = require("../controller/searchData/client/searchEmail.js")
+const { loginUserClient } = require("../controller/loginUserClient/loginUserClient.js")
+const { loginUserProfessional } = require("../controller/loginUserProfessional/loginUserProfessional.js")
+
+const { createUserProfessional } = require("../controller/createUserProfessional/createUserProfessional.js")
+const { checkEmailUserProfessional } = require("../controller/searchData/professional/searchEmailProfessional.js")
+const { checkNameUserProfessional } = require("../controller/searchData/professional/searchNameProfessional.js")
+
+const { getUserClientById } =require("../controller/getData/getdataUserClient.js")
+const { getUserProfessionalById } = require("../controller/getData/getdataUserProfessional.js")
+
+const { createPregunta } = require('../controller/foro/createPregunta.js');
+const getPreguntas = require('../controller/getData/getPreguntas.js');
+const { createRespuesta } = require('../controller/foro/createRespuesta.js');
+const { toggleLike } = require('../controller/foro/toggleLike.js');
+const authMiddleware = require('../middleware/auth.js');
+
+const router = express.Router()
+const { getAllArticles, getArticleById, createArticle } = require("../controller/educationPage/articlesController.js");
+
+
+router.get('/checkEmail/:email', checkEmail)
+router.get('/checkName/:name', checkName)
+router.get('/getUserClientById/:token', getUserClientById)
+router.get('/getdataUserProfessional/:token', getUserProfessionalById)
+
+
+router.get('/checkEmailProfessional/:email', checkEmailUserProfessional)
+router.get('/checkNameProfessional/:name', checkNameUserProfessional)
+
+
+router.post('/createUser', createUsuario)
+router.post('/loginUserClient', loginUserClient)
+router.post('/loginUserProfessional', loginUserProfessional)
+router.post('/createUserProfessional', createUserProfessional)
+
+//foro
+
+router.post('/preguntas',  createPregunta);
+router.post('/respuestas', authMiddleware, createRespuesta);
+router.get('/preguntas', getPreguntas);
+router.post('/likes', toggleLike);
+
+router.get("/articles", getAllArticles);
+router.get("/articles/:id", getArticleById);
+router.post("/articles", createArticle);
+
+module.exports = {
+    router:router
+}
+
+//app.js
+const express = require("express");
+// const serverless = require("serverless-http");
+const cors = require('cors');
+const app = express();
+const { router }= require('./routes/routes')
+app.use(cors())
+app.use(express.json());
+app.use('/', router) 
+
+const port = 8000; 
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
+
+este es el backend, espera el fronted 

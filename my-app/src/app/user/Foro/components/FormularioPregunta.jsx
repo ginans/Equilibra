@@ -5,40 +5,33 @@ const FormularioPregunta = ({ agregarPregunta }) => {
   const [titulo, setTitulo] = useState('');
   const [contenido, setContenido] = useState('');
 
-  const manejarEnvio = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (titulo && contenido) {
-      agregarPregunta({ titulo, contenido });
-      setTitulo('');
-      setContenido('');
-    }
+    agregarPregunta({ titulo, contenido });
+    setTitulo('');
+    setContenido('');
   };
 
   return (
-    <form className={styles.formContainer} onSubmit={manejarEnvio}>
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
       <div className={styles.inputBox}>
-        <label htmlFor="titulo">Título:</label>
+        <label>Título:</label>
         <input
           type="text"
-          id="titulo"
           value={titulo}
           onChange={(e) => setTitulo(e.target.value)}
         />
       </div>
       <div className={styles.inputBox}>
-        <label htmlFor="contenido">Contenido:</label>
+        <label>Contenido:</label>
         <textarea
-          id="contenido"
           value={contenido}
           onChange={(e) => setContenido(e.target.value)}
-        />
+        ></textarea>
       </div>
-      <button className={styles.button} type="submit">
-        Publicar pregunta
-      </button>
+      <button type="submit" className={styles.button}>Enviar</button>
     </form>
   );
 };
 
 export default FormularioPregunta;
-
