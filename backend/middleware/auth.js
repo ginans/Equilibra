@@ -1,18 +1,18 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-  
-  if (!token) {
-    return res.status(401).json({ message: 'Autenticación requerida' });
-  }
-
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    const token = req.headers.authorization.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ message: 'Acceso denegado. No se encontró el token.' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_CLIENT);
+    req.user = decoded; // Almacenar los datos del usuario en la request
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Token inválido o expirado' });
+    console.error("Error en la autenticación:", error);
+    return res.status(401).json({ message: 'Autenticación fallida.' });
   }
 };
 

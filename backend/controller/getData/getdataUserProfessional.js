@@ -32,3 +32,4 @@ const getUserProfessionalById = async (req, res) => {
 module.exports = {
     getUserProfessionalById
 };
+

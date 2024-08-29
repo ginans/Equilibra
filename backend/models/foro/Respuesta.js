@@ -1,10 +1,10 @@
+// modelo Respuesta
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database');  
-const Usuario = require('./userProfessional'); 
-const Pregunta = require('./Pregunta');
+const { db } = require('../../database/dataBase');
+const { Pregunta } = require('./Pregunta');
+const { modelUserClient } = require('../userClient/userClient');
 
-// Definir el modelo de Respuesta
-const Respuesta = sequelize.define('Respuesta', {
+const Respuesta = db.define('respuestas', {
   contenido: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -16,10 +16,10 @@ const Respuesta = sequelize.define('Respuesta', {
 });
 
 // Asociaciones
-Respuesta.belongsTo(Usuario, { foreignKey: 'userProfessionalId' });
-Usuario.hasMany(Respuesta, { foreignKey: 'userProfessionalId' });
+Respuesta.belongsTo(modelUserClient, { foreignKey: 'userProfessionalId', as: 'professional' });
+modelUserClient.hasMany(Respuesta, { foreignKey: 'userProfessionalId', as: 'professionalResponses' });
 
-Respuesta.belongsTo(Pregunta, { foreignKey: 'preguntaId' });
-Pregunta.hasMany(Respuesta, { foreignKey: 'preguntaId' });
+Respuesta.belongsTo(Pregunta, { foreignKey: 'preguntaId', as: 'question' });
+Pregunta.hasMany(Respuesta, { foreignKey: 'preguntaId', as: 'responses' });
 
-module.exports = Respuesta;
+module.exports = { Respuesta };

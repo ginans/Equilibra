@@ -46,11 +46,7 @@ const Navbar = () => {
 
       <ul className={styles.navbarNav}>
         <li className={styles.navItem}>
-<<<<<<< HEAD
-          <a href="/Foro/" className={styles.navLink}>
-=======
           <a href="/foro" className={styles.navLink}>
->>>>>>> 80d900b48ad6b7d3573ca540c15118e25b0ad831
             Foro
           </a>
         </li>

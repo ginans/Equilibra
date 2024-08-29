@@ -1,0 +1,296 @@
+//src/app/user/foro/foro.jsx
+import React, { useState, useEffect } from 'react';
+import PreguntaItem from './components/PreguntaItem';
+import FormularioPregunta from './components/FormularioPregunta';
+import axios from 'axios';
+import styles from '../../../styles/Foro/foro.module.scss';
+
+
+const Foro = () => {
+  const [preguntas, setPreguntas] = useState([]);
+  const [meGusta, setMeGusta] = useState({});
+  const [mostrarFormularioRespuesta, setMostrarFormularioRespuesta] = useState(null);
+
+  useEffect(() => {
+    const fetchPreguntas = async () => {
+      try {
+        const response = await axios.get('/preguntas');
+        setPreguntas(response.data);
+      } catch (error) {
+        console.error('Error al obtener preguntas:', error);
+      }
+    };
+    
+    fetchPreguntas();
+  }, []);
+
+  const agregarPregunta = async (pregunta) => {
+    try {
+      const response = await axios.post('/preguntas', pregunta);
+      setPreguntas([...preguntas, response.data]);
+    } catch (error) {
+      console.error('Error al agregar pregunta:', error);
+    }
+  };
+
+  const toggleMeGusta = async (preguntaId) => {
+    try {
+      const response = await axios.post(`/preguntas/${preguntaId}/me-gusta`);
+      setPreguntas((prevPreguntas) =>
+        prevPreguntas.map((pregunta) =>
+          pregunta.id === preguntaId
+            ? { ...pregunta, likes: response.data.likes }
+            : pregunta
+        )
+      );
+      setMeGusta((prevMeGusta) => ({
+        ...prevMeGusta,
+        [preguntaId]: !prevMeGusta[preguntaId]
+      }));
+    } catch (error) {
+      console.error('Error al togglear me gusta:', error);
+    }
+  };
+
+  const toggleMeGustaRespuesta = async (preguntaId, respuestaId) => {
+    try {
+      const response = await axios.post(`/preguntas/${preguntaId}/respuestas/${respuestaId}/me-gusta`);
+      setPreguntas(prevPreguntas =>
+        prevPreguntas.map(pregunta =>
+          pregunta.id === preguntaId
+            ? {
+                ...pregunta,
+                respuestas: pregunta.respuestas.map(respuesta =>
+                  respuesta.id === respuestaId
+                    ? { ...respuesta, likes: response.data.likes }
+                    : respuesta
+                )
+              }
+            : pregunta
+        )
+      );
+      setMeGusta(prevMeGusta => ({
+        ...prevMeGusta,
+        [`${preguntaId}-${respuestaId}`]: !prevMeGusta[`${preguntaId}-${respuestaId}`]
+      }));
+    } catch (error) {
+      console.error('Error al togglear me gusta en respuesta:', error);
+    }
+  };
+
+  const toggleFormularioRespuesta = (preguntaId) => {
+    setMostrarFormularioRespuesta((prevId) => prevId === preguntaId ? null : preguntaId);
+  };
+
+  const agregarRespuesta = async (preguntaId, respuesta) => {
+    try {
+      const response = await axios.post(`/preguntas/${preguntaId}/respuestas`, respuesta);
+      setPreguntas((prevPreguntas) =>
+        prevPreguntas.map((pregunta) =>
+          pregunta.id === preguntaId
+            ? {
+                ...pregunta,
+                respuestas: [...pregunta.respuestas, response.data]
+              }
+            : pregunta
+        )
+      );
+    } catch (error) {
+      console.error('Error al agregar respuesta:', error);
+    }
+  };
+
+  return (
+    <div className={styles.home}>
+      <h1>Foro</h1>
+      <FormularioPregunta agregarPregunta={agregarPregunta} />
+      <ul className={styles.preguntasList}>
+        {preguntas.map((pregunta) => (
+          <PreguntaItem
+            key={pregunta.id}
+            pregunta={pregunta}
+            toggleMeGusta={toggleMeGusta}
+            toggleFormularioRespuesta={toggleFormularioRespuesta}
+            eliminarPregunta={() => {}}
+            compartirPregunta={() => {}}
+            reportarPregunta={() => {}}
+            meGusta={meGusta}
+            mostrarFormularioRespuesta={mostrarFormularioRespuesta}
+            agregarRespuesta={agregarRespuesta}
+            toggleMeGustaRespuesta={toggleMeGustaRespuesta}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Foro;
+
+//src/app/user/foro/components/FormularioPregunta.jsx
+import React, { useState } from 'react';
+import styles from '../../../../styles/Foro/formularioPregunta.module.scss';
+
+const FormularioPregunta = ({ agregarPregunta }) => {
+  const [titulo, setTitulo] = useState('');
+  const [contenido, setContenido] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    agregarPregunta({ titulo, contenido });
+    setTitulo('');
+    setContenido('');
+  };
+
+  return (
+    <form className={styles.formularioPregunta} onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Título de la pregunta"
+        value={titulo}
+        onChange={(e) => setTitulo(e.target.value)}
+        required
+      />
+      <textarea
+        placeholder="Contenido de la pregunta"
+        value={contenido}
+        onChange={(e) => setContenido(e.target.value)}
+        required
+      />
+      <button type="submit">Agregar Pregunta</button>
+    </form>
+  );
+};
+
+export default FormularioPregunta;
+
+//src/app/user/foro/components/FormularioRespuesta.jsx
+import React, { useState } from 'react';
+import styles from '../../../../styles/Foro/formularioRespuesta.module.scss';
+
+const FormularioRespuesta = ({ preguntaId, agregarRespuesta }) => {
+  const [contenido, setContenido] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    agregarRespuesta(preguntaId, { contenido });
+    setContenido('');
+  };
+
+  return (
+    <form className={styles.formularioRespuesta} onSubmit={handleSubmit}>
+      <textarea
+        placeholder="Escribe tu respuesta aquí"
+        value={contenido}
+        onChange={(e) => setContenido(e.target.value)}
+        required
+      />
+      <button type="submit">Agregar Respuesta</button>
+    </form>
+  );
+};
+
+export default FormularioRespuesta;
+
+//src/app/user/foro/components/PreguntaItem.jsx
+import React, { useState, useEffect } from 'react';
+import RespuestaItem from './RespuestaItem';
+import FormularioRespuesta from './FormularioRespuesta';
+import styles from '../../../../styles/Foro/preguntaItem.module.scss';
+import { FaThumbsUp } from 'react-icons/fa';
+
+const PreguntaItem = ({ pregunta, toggleMeGusta, meGusta, toggleFormularioRespuesta, mostrarFormularioRespuesta, agregarRespuesta, toggleMeGustaRespuesta }) => {
+  const [respuestas, setRespuestas] = useState([]);
+
+  useEffect(() => {
+    fetchRespuestas();
+  }, [pregunta.id]);
+
+  const fetchRespuestas = async () => {
+    try {
+      const response = await fetch(`/preguntas/${pregunta.id}/respuestas`); // Asegúrate de que esta ruta es correcta
+      const data = await response.json();
+      setRespuestas(data);
+    } catch (error) {
+      console.error('Error al obtener respuestas:', error);
+    }
+  };
+
+  return (
+    <div className={styles.preguntaItem}>
+      <h2>{pregunta.titulo}</h2>
+      <p>{pregunta.contenido}</p>
+      <div className={styles.preguntaUsuario}>
+        <img src={`http://localhost:8000/api/usuarios/${pregunta.userClientId}/foto`} alt="Usuario" />
+        <p>{pregunta.usuarioNombre}</p> {/* Usar el nombre del usuario obtenido en el backend */}
+      </div>
+      <div className={styles.icons}>
+        <div className={styles.iconContainer} onClick={() => toggleMeGusta(pregunta.id)}>
+          <FaThumbsUp className={meGusta[pregunta.id] ? styles.iconActive : styles.iconInactive} />
+          <span>{pregunta.likes}</span>
+        </div>
+        <button onClick={() => toggleFormularioRespuesta(pregunta.id)}>Responder</button>
+        {mostrarFormularioRespuesta === pregunta.id && <FormularioRespuesta preguntaId={pregunta.id} agregarRespuesta={agregarRespuesta} />}
+      </div>
+      <div>
+        {respuestas.map(respuesta => (
+          <RespuestaItem
+            key={respuesta.id}
+            respuesta={respuesta}
+            toggleMeGusta={() => toggleMeGustaRespuesta(pregunta.id, respuesta.id)}
+            meGusta={meGusta}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default PreguntaItem;
+
+//src/app/user/foro/components/RespuestaItem.jsx
+import React from 'react';
+import { FaThumbsUp } from 'react-icons/fa';
+import styles from '../../../../styles/Foro/respuestaItem.module.scss';
+
+const RespuestaItem = ({ respuesta, toggleMeGusta, meGusta }) => {
+  return (
+    <div className={styles.respuestaItem}>
+      <div className={styles.respuestaUsuario}>
+        <img src={`/api/usuarios/${respuesta.userProfessionalId}/foto`} alt={respuesta.usuario.nombre} /> {/* Asegúrate de que esta ruta es correcta */}
+        <p>{respuesta.usuario.nombre}</p>
+      </div>
+      <p>{respuesta.contenido}</p>
+      <div className={styles.icons}>
+        <div className={styles.iconContainer} onClick={toggleMeGusta}>
+          <FaThumbsUp className={meGusta[respuesta.id] ? styles.iconActive : styles.iconInactive} />
+          <span>{respuesta.likes}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RespuestaItem;
+
+//src/app/user/foro/components/UsuarioInfo.jsx
+import React from 'react';
+import usuarios from './data/usuarios';  // Datos de los usuarios
+import styles from '../../../../styles/Foro/usuarioInfo.module.scss';
+
+const UsuarioInfo = ({ usuarioId }) => {
+  // Encontramos al usuario por su ID
+  const usuario = usuarios.find((user) => user.id === usuarioId);
+
+  // Renderizamos la información del usuario
+  return (
+    <div className={styles.usuarioInfo}>
+      <img src={usuario.fotoPerfil} alt={`${usuario.nombre}'s perfil`} className={styles.fotoPerfil} />
+      <span>{usuario.nombre}</span>
+    </div>
+  );
+};
+
+export default UsuarioInfo;
+
+Tambien te mandare los estilos porque no funcionan en el foro principal 

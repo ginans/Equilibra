@@ -52,3 +52,4 @@ const modelUserClient = db.define('userClients', {
 module.exports = {  
   modelUserClient 
 }
+

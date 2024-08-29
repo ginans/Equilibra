@@ -52,3 +52,4 @@ const modelUserProfessional = db.define('userProfessionals', {
 module.exports = {  
     modelUserProfessional 
 }
+

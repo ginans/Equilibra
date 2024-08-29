@@ -1,70 +1,55 @@
-import React, { useState } from 'react';
-import { FaThumbsUp, FaComment, FaEllipsisV } from 'react-icons/fa';
-import styles from '../../../../styles/Foro/preguntaItem.module.scss';
-import RespuestaItem from './RespuestaItem';
+import React from 'react';
+import { FaThumbsUp, FaCommentDots, FaEllipsisH } from 'react-icons/fa';
 import FormularioRespuesta from './FormularioRespuesta';
+import styles from '../../../../styles/Foro/preguntaItem.module.scss';
 
 const PreguntaItem = ({
   pregunta,
   toggleMeGusta,
   toggleFormularioRespuesta,
+  eliminarPregunta,
+  reportarPregunta,
   meGusta,
   mostrarFormularioRespuesta,
   agregarRespuesta,
-  toggleMeGustaRespuesta,
-  usuarios,
+  toggleMeGustaRespuesta
 }) => {
-  const usuario = usuarios.find((usuario) => usuario.id === pregunta.usuarioId);
-  const [mostrarOpciones, setMostrarOpciones] = useState(false);
-
-  const toggleOpciones = () => setMostrarOpciones(!mostrarOpciones);
-
+  console.log (pregunta)
   return (
     <li className={styles.preguntaItem}>
       <h2>{pregunta.titulo}</h2>
-      <p>{pregunta.contenido}</p>
+      <p>{pregunta.descripcion}</p>
       <div className={styles.preguntaUsuario}>
-        <img src={usuario.foto} alt={usuario.nombre} />
-        <p>{usuario.nombre} {usuario.verificado && <span className={styles.verificado}>✔</span>}</p>
+        <img src = "https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?t=st=1724901979~exp=1724905579~hmac=e4ca4bb796d82f4b526e117e02c1f548d55a3431fb6f1e11447ec15aa346ccd6&w=1060"/>
+        <p>{pregunta.usuario.userName}</p>
       </div>
       <div className={styles.icons}>
-        <div className={styles.iconContainer} onClick={() => toggleMeGusta(pregunta.id)}>
-          <FaThumbsUp className={meGusta[pregunta.id] ? styles.iconActive : styles.iconInactive} />
+        <div className={styles.iconContainer}>
+          <FaThumbsUp
+            className={meGusta[pregunta.id] ? styles.iconActive : styles.iconInactive}
+            onClick={() => toggleMeGusta(pregunta.id)}
+          />
           <span>{pregunta.likes}</span>
         </div>
-        <div className={styles.iconContainer} onClick={() => toggleFormularioRespuesta(pregunta.id)}>
-          <FaComment />
+        <div className={styles.iconContainer}>
+          <FaCommentDots
+            className={styles.iconInactive}
+            onClick={() => toggleFormularioRespuesta(pregunta.id)}
+          />
         </div>
         <div className={styles.dropdown}>
-          <div className={styles.iconContainer} onClick={toggleOpciones}>
-            <FaEllipsisV />
+          <FaEllipsisH className={styles.iconInactive} />
+          <div className={styles.dropdownContent}>
+            <button onClick={() => reportarPregunta(pregunta.id)}>Reportar</button>
+            <button onClick={() => eliminarPregunta(pregunta.id)}>Eliminar</button>
           </div>
-          {mostrarOpciones && (
-            <div className={styles.dropdownContent}>
-              <button onClick={() => alert('Opción de eliminar')}>Eliminar</button>
-              <button onClick={() => alert('Opción de compartir')}>Compartir</button>
-              <button onClick={() => alert('Opción de reportar')}>Reportar</button>
-            </div>
-          )}
         </div>
       </div>
       {mostrarFormularioRespuesta === pregunta.id && (
         <FormularioRespuesta agregarRespuesta={(respuesta) => agregarRespuesta(pregunta.id, respuesta)} />
       )}
-      <ul>
-        {pregunta.respuestas.map((respuesta) => (
-          <RespuestaItem
-            key={respuesta.id}
-            respuesta={respuesta}
-            toggleMeGusta={() => toggleMeGustaRespuesta(pregunta.id, respuesta.id)}
-            meGusta={meGusta[`${pregunta.id}-${respuesta.id}`]}
-            usuarios={usuarios}
-          />
-        ))}
-      </ul>
     </li>
   );
 };
 
 export default PreguntaItem;
-
